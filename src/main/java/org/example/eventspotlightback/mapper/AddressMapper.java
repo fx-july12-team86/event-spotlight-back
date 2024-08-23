@@ -15,6 +15,7 @@ public interface AddressMapper {
 
     List<AddressDto> toDto(List<Address> addresses);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "city", ignore = true)
     Address toModel(AddAddressDto addressDto);
-
 }

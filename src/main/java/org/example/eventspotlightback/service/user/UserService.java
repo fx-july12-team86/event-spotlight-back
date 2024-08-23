@@ -6,4 +6,6 @@ import org.example.eventspotlightback.exception.RegistrationException;
 
 public interface UserService {
     UserResponseDto register(UserRegistrationRequestDto requestDto) throws RegistrationException;
+
+    void deleteUserById(Long id);
 }

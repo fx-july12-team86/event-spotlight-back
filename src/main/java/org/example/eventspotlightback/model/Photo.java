@@ -1,5 +1,6 @@
 package org.example.eventspotlightback.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,9 @@ public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String url;
+    @Column(nullable = false, unique = true)
+    private String path;
+    @Column(nullable = false, unique = true, name = "shared_url")
+    private String sharedUrl;
     private LocalDateTime createdAt;
 }
