@@ -1,0 +1,10 @@
+spring.application.name=event-spotlight-back
+spring.datasource.url=jdbc:h2:mem:event_spotlight
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=jack
+spring.datasource.password=12345
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+spring.h2.console.settings.web-allow-others=true

@@ -13,6 +13,7 @@ import org.example.eventspotlightback.repository.RoleRepository;
 import org.example.eventspotlightback.repository.UserRepository;
 import org.example.eventspotlightback.service.favorite.FavoriteService;
 import org.example.eventspotlightback.service.my.events.MyEventsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final FavoriteService favoriteService;
     private final MyEventsService myEventsService;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     @Override
@@ -33,10 +35,16 @@ public class UserServiceImpl implements UserService {
             throw new RegistrationException("Can't register user");
         }
         User newUser = userMapper.toModel(requestDto);
+        newUser.setPassword(passwordEncoder.encode(requestDto.getPassword()));
         newUser.setRoles(Set.of(roleRepository.getByRoleName(Role.RoleName.USER)));
         User savedUser = userRepository.save(newUser);
         favoriteService.createFavorite(savedUser);
         myEventsService.createMyEvents(savedUser);
         return userMapper.toDto(savedUser);
+    }
+
+    @Override
+    public void deleteUserById(Long userId) {
+        userRepository.deleteById(userId);
     }
 }

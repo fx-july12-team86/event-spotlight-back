@@ -6,9 +6,11 @@ import org.example.eventspotlightback.dto.internal.description.CreateDescription
 import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 import org.example.eventspotlightback.model.Description;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(config = MapperConfig.class)
 public interface DescriptionMapper {
+    @Mapping(target = "id", ignore = true)
     Description toModel(CreateDescriptionDto createDescriptionDto);
 
     Description toModel(DescriptionDto descriptionDto);

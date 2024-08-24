@@ -20,6 +20,7 @@ import org.example.eventspotlightback.repository.DescriptionRepository;
 import org.example.eventspotlightback.repository.EventRepository;
 import org.example.eventspotlightback.repository.PhotoRepository;
 import org.example.eventspotlightback.repository.UserRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -30,8 +31,8 @@ public class EventServiceImpl implements EventService {
     private final DescriptionRepository descriptionRepository;
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
-    private final PhotoRepository photoRepository;
     private final CategoryRepository categoryRepository;
+    private final PhotoRepository photoRepository;
 
     @Transactional
     @Override
@@ -43,8 +44,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findAllEvents() {
-        return eventMapper.toDto(eventRepository.findAll());
+    public List<EventDto> findAllEvents(Pageable pageable) {
+        return eventMapper.toDto(eventRepository.findAll(pageable).toList());
     }
 
     @Override
@@ -73,6 +74,9 @@ public class EventServiceImpl implements EventService {
     }
 
     private void insertEntitiesFromIds(Event event, CreateEventDto createEventDto) {
+        Set<Photo> eventPhotos = photoRepository.findAllByIdIn(createEventDto.getPhotoIds());
+        event.setPhotos(eventPhotos);
+
         Description eventDescription = descriptionRepository
                 .findById(createEventDto.getDescriptionId())
                 .orElseThrow(
@@ -93,10 +97,6 @@ public class EventServiceImpl implements EventService {
                                 + createEventDto.getAddressId())
                 );
         event.setAddress(eventAddress);
-
-        Set<Photo> eventPhotos =
-                photoRepository.findAllByIdIn(createEventDto.getPhotoIds());
-        event.setPhotos(eventPhotos);
 
         Set<Category> eventCategories =
                 categoryRepository.findAllByIdIn(createEventDto.getCategoryIds());

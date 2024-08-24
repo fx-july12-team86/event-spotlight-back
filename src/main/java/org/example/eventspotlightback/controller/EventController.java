@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.service.event.EventService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +22,13 @@ public class EventController {
     private final EventService eventService;
 
     @PostMapping
-    public EventDto postEvent(@RequestBody CreateEventDto createEventDto) {
+    public EventDto addEvent(@RequestBody CreateEventDto createEventDto) {
         return eventService.addEvent(createEventDto);
     }
 
     @GetMapping
-    public List<EventDto> getAllEvents() {
-        return eventService.findAllEvents();
+    public List<EventDto> getAllEvents(Pageable pageable) {
+        return eventService.findAllEvents(pageable);
     }
 
     @GetMapping("/{id}")

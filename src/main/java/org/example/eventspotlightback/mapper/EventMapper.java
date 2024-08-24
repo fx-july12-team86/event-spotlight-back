@@ -15,6 +15,15 @@ import org.mapstruct.Mapping;
         CategoryMapper.class
 })
 public interface EventMapper {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "description", ignore = true)
+    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "address", ignore = true)
+    @Mapping(target = "categories", ignore = true)
+    @Mapping(target = "top", ignore = true)
+    @Mapping(target = "accepted", ignore = true)
+    @Mapping(target = "favorites", ignore = true)
+    @Mapping(target = "photos", ignore = true)
     Event toModel(CreateEventDto eventDto);
 
     @Mapping(source = "user.id", target = "userId")

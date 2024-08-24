@@ -6,9 +6,8 @@ import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
 import org.example.eventspotlightback.model.Favorite;
 import org.mapstruct.Mapper;
 
-@Mapper(config = MapperConfig.class)
+@Mapper(config = MapperConfig.class, uses = {EventMapper.class})
 public interface FavoriteMapper {
-    Favorite toModel(FavoriteDto dto);
 
     FavoriteDto toDto(Favorite favorite);
 

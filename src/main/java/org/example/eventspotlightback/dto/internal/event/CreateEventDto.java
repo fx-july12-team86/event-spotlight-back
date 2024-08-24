@@ -2,6 +2,7 @@ package org.example.eventspotlightback.dto.internal.event;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,11 +18,13 @@ public class CreateEventDto {
     private Long userId;
     @NotNull
     private Long addressId;
+    @NotNull
     private Set<Long> photoIds;
     private Set<Long> categoryIds;
     @NotNull
     private LocalDateTime startTime;
     @NotNull
+    @Positive
     private BigDecimal price;
     private boolean isOnline;
 }
