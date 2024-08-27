@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.example.eventspotlightback.model.Event;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -17,9 +18,12 @@ public interface EventRepository extends
     @EntityGraph(attributePaths = {"description", "address", "photos", "categories"})
     List<Event> findAll();
 
-    @EntityGraph(attributePaths = {"description", "address", "photos", "categories"})
+    @EntityGraph(attributePaths = {"description", "description.contacts", "address", "photos", "categories"})
     Page<Event> findAll(Pageable pageable);
 
-    @EntityGraph(attributePaths = {"description", "address", "photos", "categories"})
+    @EntityGraph(attributePaths = {"description", "description.contacts", "address", "photos", "categories"})
+    Page<Event> findAll(Specification specification, Pageable pageable);
+
+    @EntityGraph(attributePaths = {"description", "description.contacts", "address", "photos", "categories"})
     Optional<Event> findById(Long id);
 }

@@ -3,6 +3,7 @@ package org.example.eventspotlightback.service.event;
 import java.util.List;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
+import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.springframework.data.domain.Pageable;
 
 public interface EventService {
@@ -11,6 +12,8 @@ public interface EventService {
     List<EventDto> findAllEvents(Pageable pageable);
 
     EventDto findEventById(Long id);
+
+    List<EventDto> search(EventSearchParameters eventSearchParameters, Pageable pageable);
 
     EventDto updateEvent(Long id, CreateEventDto event);
 

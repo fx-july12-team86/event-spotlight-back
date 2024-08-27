@@ -6,21 +6,26 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
+import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.EventMapper;
 import org.example.eventspotlightback.model.Address;
 import org.example.eventspotlightback.model.Category;
 import org.example.eventspotlightback.model.Description;
 import org.example.eventspotlightback.model.Event;
+import org.example.eventspotlightback.model.MyEvents;
 import org.example.eventspotlightback.model.Photo;
 import org.example.eventspotlightback.model.User;
 import org.example.eventspotlightback.repository.AddressRepository;
 import org.example.eventspotlightback.repository.CategoryRepository;
 import org.example.eventspotlightback.repository.DescriptionRepository;
 import org.example.eventspotlightback.repository.EventRepository;
+import org.example.eventspotlightback.repository.MyEventsRepository;
 import org.example.eventspotlightback.repository.PhotoRepository;
 import org.example.eventspotlightback.repository.UserRepository;
+import org.example.eventspotlightback.repository.specification.SpecificationBuilder;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -33,6 +38,8 @@ public class EventServiceImpl implements EventService {
     private final AddressRepository addressRepository;
     private final CategoryRepository categoryRepository;
     private final PhotoRepository photoRepository;
+    private final MyEventsRepository myEventsRepository;
+    private final SpecificationBuilder<Event> specificationBuilder;
 
     @Transactional
     @Override
@@ -53,6 +60,15 @@ public class EventServiceImpl implements EventService {
         return eventMapper.toDto(eventRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + id)
         ));
+    }
+
+    @Transactional
+    @Override
+    public List<EventDto> search(EventSearchParameters eventSearchParameters, Pageable pageable) {
+        Specification<Event> specification = specificationBuilder.build(eventSearchParameters);
+        return eventRepository.findAll(specification, pageable).stream()
+                .map(eventMapper::toDto)
+                .toList();
     }
 
     @Transactional
@@ -90,6 +106,14 @@ public class EventServiceImpl implements EventService {
                         + createEventDto.getUserId())
         );
         event.setUser(eventOwner);
+
+        MyEvents myEvents = myEventsRepository.findMyEventsByUserId(eventOwner.getId()).orElseThrow(
+                () -> new EntityNotFoundException("Can't find user with id: "
+                        + createEventDto.getUserId())
+        );
+        myEvents.getEvents().add(event);
+        event.getMyEvents().add(myEvents);
+
 
         Address eventAddress = addressRepository.findById(createEventDto.getAddressId())
                 .orElseThrow(

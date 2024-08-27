@@ -59,4 +59,6 @@ public class Event {
     private boolean isAccepted;
     @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
     private Set<Favorite> favorites = new HashSet<>();
+    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
+    private Set<MyEvents> myEvents = new HashSet<>();
 }
