@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.example.eventspotlightback.service.event.EventService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,7 @@ public class EventController {
     }
 
     @GetMapping
-    public List<EventDto> getAllEvents(Pageable pageable) {
+    public List<SimpleEventDto> getAllEvents(Pageable pageable) {
         return eventService.findAllEvents(pageable);
     }
 
@@ -38,7 +39,7 @@ public class EventController {
     }
 
     @GetMapping("/search")
-    public List<EventDto> searchEvents(
+    public List<SimpleEventDto> searchEvents(
             Pageable pageable,
             EventSearchParameters eventSearchParameters
     ) {

@@ -14,6 +14,7 @@ public class EventSpecificationBuilder implements SpecificationBuilder<Event> {
     private static final String CATEGORIES_SPEC_KEY = "categories";
     private static final String DATA_RANGE_SPEC_KEY = "dataRange";
     private static final String ONLINE_STATUS_SPEC_KEY = "isOnline";
+    private static final String CITY_SPEC_KEY = "cities";
     private final SpecificationProviderManager<Event> specificationProviderManager;
 
     @Override
@@ -41,6 +42,13 @@ public class EventSpecificationBuilder implements SpecificationBuilder<Event> {
                     specificationProviderManager.getSpecificationProvider(ONLINE_STATUS_SPEC_KEY)
                             .getSpecification(eventSearchParameters.onlineStatus())
             );
+        }
+
+        if (eventSearchParameters.cities() != null
+                && eventSearchParameters.cities().length > 0) {
+            specification = specification.and(specificationProviderManager
+                    .getSpecificationProvider(CITY_SPEC_KEY)
+                    .getSpecification(eventSearchParameters.cities()));
         }
         return specification;
     }

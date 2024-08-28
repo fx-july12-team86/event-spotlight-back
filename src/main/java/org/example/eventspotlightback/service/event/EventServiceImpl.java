@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.EventMapper;
 import org.example.eventspotlightback.model.Address;
@@ -51,8 +52,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findAllEvents(Pageable pageable) {
-        return eventMapper.toDto(eventRepository.findAll(pageable).toList());
+    public List<SimpleEventDto> findAllEvents(Pageable pageable) {
+        return eventMapper.toSimpleDto(eventRepository.findAll(pageable).toList());
     }
 
     @Override
@@ -64,10 +65,13 @@ public class EventServiceImpl implements EventService {
 
     @Transactional
     @Override
-    public List<EventDto> search(EventSearchParameters eventSearchParameters, Pageable pageable) {
+    public List<SimpleEventDto> search(
+            EventSearchParameters eventSearchParameters,
+            Pageable pageable
+    ) {
         Specification<Event> specification = specificationBuilder.build(eventSearchParameters);
         return eventRepository.findAll(specification, pageable).stream()
-                .map(eventMapper::toDto)
+                .map(eventMapper::toSimpleDto)
                 .toList();
     }
 
@@ -113,7 +117,6 @@ public class EventServiceImpl implements EventService {
         );
         myEvents.getEvents().add(event);
         event.getMyEvents().add(myEvents);
-
 
         Address eventAddress = addressRepository.findById(createEventDto.getAddressId())
                 .orElseThrow(

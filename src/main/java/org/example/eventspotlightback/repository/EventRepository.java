@@ -18,12 +18,30 @@ public interface EventRepository extends
     @EntityGraph(attributePaths = {"description", "address", "photos", "categories"})
     List<Event> findAll();
 
-    @EntityGraph(attributePaths = {"description", "description.contacts", "address", "photos", "categories"})
+    @EntityGraph(attributePaths = {
+            "description",
+            "description.contacts",
+            "address",
+            "photos",
+            "categories"
+    })
     Page<Event> findAll(Pageable pageable);
 
-    @EntityGraph(attributePaths = {"description", "description.contacts", "address", "photos", "categories"})
+    @EntityGraph(attributePaths = {
+            "description",
+            "description.contacts",
+            "address",
+            "photos",
+            "categories"
+    })
     Page<Event> findAll(Specification specification, Pageable pageable);
 
-    @EntityGraph(attributePaths = {"description", "description.contacts", "address", "photos", "categories"})
+    @EntityGraph(attributePaths = {
+            "description",
+            "description.contacts",
+            "address",
+            "photos",
+            "categories"
+    })
     Optional<Event> findById(Long id);
 }
