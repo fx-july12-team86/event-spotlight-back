@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 public interface EventService {
     EventDto addEvent(CreateEventDto eventDto);
 
+    SimpleEventDto acceptEvent(Long eventId);
+
     List<SimpleEventDto> findAllEvents(Pageable pageable);
 
     EventDto findEventById(Long id);

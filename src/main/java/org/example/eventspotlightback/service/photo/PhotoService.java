@@ -10,6 +10,8 @@ public interface PhotoService {
 
     Set<PhotoDto> uploadPhotos(List<MultipartFile> files);
 
+    List<PhotoDto> findAllPhotos();
+
     PhotoDto getPhoto(Long photoId);
 
     void deletePhoto(Long photoId);

@@ -35,7 +35,7 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public CityDto findById(@PathVariable long id) {
+    public CityDto findById(@PathVariable Long id) {
         return cityService.findCityById(id);
     }
 

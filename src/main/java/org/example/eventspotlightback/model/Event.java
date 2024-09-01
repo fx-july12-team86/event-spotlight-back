@@ -39,9 +39,9 @@ public class Event {
     @JoinTable(
             name = "events_photos",
             joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "photo_id", unique = true)
+            inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
-        private Set<Photo> photos = new HashSet<>();
+    private Set<Photo> photos = new HashSet<>();
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "events_categories",

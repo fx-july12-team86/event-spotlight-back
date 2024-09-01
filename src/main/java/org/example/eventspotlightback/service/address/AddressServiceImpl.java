@@ -24,7 +24,7 @@ public class AddressServiceImpl implements AddressService {
         Address newAddress = addressMapper.toModel(addressRequestDto);
         City city = cityRepository.findById(addressRequestDto.getCityId()).orElseThrow(
                 () -> new EntityNotFoundException("City with id " + addressRequestDto.getCityId()
-                        + "not found for address " + addressRequestDto.getStreet() + " : "
+                        + " not found for address " + addressRequestDto.getStreet() + " : "
                         + addressRequestDto.getNumber())
         );
         newAddress.setCity(city);

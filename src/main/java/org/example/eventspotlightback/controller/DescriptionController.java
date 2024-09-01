@@ -35,7 +35,7 @@ public class DescriptionController {
     }
 
     @GetMapping("/{id}")
-    public DescriptionDto findById(@PathVariable long id) {
+    public DescriptionDto findById(@PathVariable Long id) {
         return descriptionService.findById(id);
     }
 
@@ -47,7 +47,7 @@ public class DescriptionController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable Long id) {
         descriptionService.deleteById(id);
     }
 }

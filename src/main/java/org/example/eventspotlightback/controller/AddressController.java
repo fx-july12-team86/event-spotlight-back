@@ -23,12 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddressController {
     private final AddressService addressService;
 
-    @PostMapping()
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public AddressDto addAddress(@RequestBody @Valid AddAddressDto addAddressDto) {
         return addressService.addAddress(addAddressDto);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<AddressDto> findAllAddresses() {
         return addressService.findAll();
     }

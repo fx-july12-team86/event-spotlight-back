@@ -1,5 +1,6 @@
 package org.example.eventspotlightback.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.my.events.AddMyEventDto;
 import org.example.eventspotlightback.dto.internal.my.events.MyEventsDto;
@@ -24,7 +25,7 @@ public class MyEventsController {
     }
 
     @PostMapping
-    public MyEventsDto addMyEvent(@RequestBody AddMyEventDto myEventDto) {
+    public MyEventsDto addMyEvent(@RequestBody @Valid AddMyEventDto myEventDto) {
         return myEventsService.addEvent(myEventDto.getEventId(), myEventDto.getUserId());
     }
 

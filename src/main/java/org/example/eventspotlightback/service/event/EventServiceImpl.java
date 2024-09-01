@@ -52,6 +52,15 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public SimpleEventDto acceptEvent(Long eventId) {
+        Event event = eventRepository.findById(eventId).orElseThrow(
+                () -> new EntityNotFoundException("Can't find event with id: " + eventId)
+        );
+        event.setAccepted(true);
+        return eventMapper.toSimpleDto(eventRepository.save(event));
+    }
+
+    @Override
     public List<SimpleEventDto> findAllEvents(Pageable pageable) {
         return eventMapper.toSimpleDto(eventRepository.findAll(pageable).toList());
     }

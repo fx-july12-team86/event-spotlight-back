@@ -1,5 +1,6 @@
 package org.example.eventspotlightback.controller;
 
+import jakarta.annotation.security.PermitAll;
 import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class PhotoController {
     private final PhotoService photoService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public PhotoDto uploadPhoto(@RequestParam("photo") MultipartFile photo) {
         return photoService.uploadPhoto(photo);
     }
@@ -32,6 +34,12 @@ public class PhotoController {
         return photoService.uploadPhotos(photos);
     }
 
+    @GetMapping
+    public List<PhotoDto> findAllPhotos() {
+        return photoService.findAllPhotos();
+    }
+
+    @PermitAll
     @GetMapping("/{id}")
     public PhotoDto getPhoto(@PathVariable Long id) {
         return photoService.getPhoto(id);

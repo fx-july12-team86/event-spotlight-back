@@ -1,5 +1,6 @@
 package org.example.eventspotlightback.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
 import org.example.eventspotlightback.dto.internal.favorite.RequestFavoriteDto;
@@ -19,7 +20,7 @@ public class FavoriteController {
     private final FavoriteService favoriteService;
 
     @PostMapping
-    public FavoriteDto addToFavorite(@RequestBody RequestFavoriteDto requestDto) {
+    public FavoriteDto addToFavorite(@RequestBody @Valid RequestFavoriteDto requestDto) {
         return favoriteService.addEvent(requestDto.getEventId(), requestDto.getUserId());
     }
 
