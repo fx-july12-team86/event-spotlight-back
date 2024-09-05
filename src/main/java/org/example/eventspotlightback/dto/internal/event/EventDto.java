@@ -7,6 +7,7 @@ import java.util.Set;
 import lombok.Data;
 import org.example.eventspotlightback.dto.internal.address.AddressDto;
 import org.example.eventspotlightback.dto.internal.category.CategoryDto;
+import org.example.eventspotlightback.dto.internal.contact.ContactDto;
 import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 import org.example.eventspotlightback.dto.internal.photo.PhotoDto;
 
@@ -16,6 +17,7 @@ public class EventDto {
     private String title;
     private DescriptionDto description;
     private long userId;
+    private ContactDto contact;
     private AddressDto address;
     private Set<PhotoDto> photos = new HashSet<>();
     private Set<CategoryDto> categories = new HashSet<>();

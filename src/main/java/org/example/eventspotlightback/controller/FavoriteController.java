@@ -1,15 +1,15 @@
 package org.example.eventspotlightback.controller;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
-import org.example.eventspotlightback.dto.internal.favorite.RequestFavoriteDto;
+import org.example.eventspotlightback.model.User;
 import org.example.eventspotlightback.service.favorite.FavoriteService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,18 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class FavoriteController {
     private final FavoriteService favoriteService;
 
-    @PostMapping
-    public FavoriteDto addToFavorite(@RequestBody @Valid RequestFavoriteDto requestDto) {
-        return favoriteService.addEvent(requestDto.getEventId(), requestDto.getUserId());
+    @PreAuthorize("hasAuthority('USER')")
+    @PostMapping("/{eventId}")
+    public FavoriteDto addToFavorite(Authentication authentication, @PathVariable Long eventId) {
+        User user = (User) authentication.getPrincipal();
+        return favoriteService.addEvent(eventId, user.getId());
     }
 
-    @GetMapping("/{userId}")
-    public FavoriteDto findByUserId(@PathVariable Long userId) {
-        return favoriteService.findFavoriteByUserId(userId);
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping()
+    public FavoriteDto findByUserId(Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        return favoriteService.findFavoriteByUserId(user.getId());
     }
 
-    @DeleteMapping("/{userId}/{eventId}")
-    public void deleteFromFavorite(@PathVariable Long userId, @PathVariable Long eventId) {
-        favoriteService.removeEventFromFavorite(eventId, userId);
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @DeleteMapping("/{eventId}")
+    public FavoriteDto deleteFromFavorite(
+            Authentication authentication,
+            @PathVariable Long eventId
+    ) {
+        User user = (User) authentication.getPrincipal();
+        return favoriteService.removeEventFromFavorite(eventId, user.getId());
     }
 }

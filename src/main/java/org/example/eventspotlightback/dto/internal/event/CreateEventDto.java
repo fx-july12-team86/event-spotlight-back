@@ -17,6 +17,8 @@ public class CreateEventDto {
     @NotNull
     private Long userId;
     @NotNull
+    private Long contactId;
+    @NotNull
     private Long addressId;
     @NotNull
     private Set<Long> photoIds;

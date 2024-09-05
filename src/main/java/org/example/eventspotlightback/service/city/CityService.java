@@ -7,11 +7,11 @@ import org.example.eventspotlightback.dto.internal.city.CityDto;
 public interface CityService {
     CityDto addCity(AddCityDto city);
 
-    List<CityDto> findAllCities();
-
-    CityDto findCityById(Long cityId);
-
     CityDto updateCityById(Long id, AddCityDto city);
 
     void deleteCityById(Long cityId);
+
+    CityDto findCityById(Long cityId);
+
+    List<CityDto> findAllCities();
 }

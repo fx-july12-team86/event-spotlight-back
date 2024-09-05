@@ -33,6 +33,7 @@ public class AuthController {
         return userService.register(requestDto);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PostMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);
@@ -44,5 +45,4 @@ public class AuthController {
     public void delete(@PathVariable long id) {
         userService.deleteUserById(id);
     }
-
 }

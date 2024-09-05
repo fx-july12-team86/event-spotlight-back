@@ -18,7 +18,8 @@ import org.mapstruct.MappingTarget;
         DescriptionMapper.class,
         AddressMapper.class,
         PhotoMapper.class,
-        CategoryMapper.class
+        CategoryMapper.class,
+        ContactMapper.class,
 })
 public interface EventMapper {
     @Mapping(target = "id", ignore = true)

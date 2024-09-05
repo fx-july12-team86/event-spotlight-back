@@ -10,11 +10,13 @@ import org.example.eventspotlightback.model.MyEvents;
 import org.example.eventspotlightback.model.User;
 import org.example.eventspotlightback.repository.EventRepository;
 import org.example.eventspotlightback.repository.MyEventsRepository;
+import org.example.eventspotlightback.service.event.EventService;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class MyEventsServiceImpl implements MyEventsService {
+    private final EventService eventService;
     private final MyEventsRepository myEventsRepository;
     private final EventRepository eventRepository;
     private final MyEventsMapper myEventsMapper;
@@ -43,8 +45,9 @@ public class MyEventsServiceImpl implements MyEventsService {
         Event newEvent = eventRepository.findById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
+        newEvent.getMyEvents().add(myEvents);
         myEvents.getEvents().add(newEvent);
-        return myEventsMapper.toDto(myEventsRepository.save(myEvents));
+        return myEventsMapper.toDto(myEvents);
     }
 
     @Transactional
@@ -56,7 +59,12 @@ public class MyEventsServiceImpl implements MyEventsService {
         Event event = eventRepository.findById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
+        if (event.getUser().getId() == userId) {
+            eventService.deleteEventById(event.getId());
+        } else {
+            event.getMyEvents().remove(myEvents);
+        }
         myEvents.getEvents().remove(event);
-        return myEventsMapper.toDto(myEventsRepository.save(myEvents));
+        return myEventsMapper.toDto(myEvents);
     }
 }

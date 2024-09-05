@@ -1,6 +1,5 @@
 package org.example.eventspotlightback.controller;
 
-import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -28,12 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
     private final EventService eventService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public EventDto addEvent(@RequestBody @Valid CreateEventDto createEventDto) {
-        return eventService.addEvent(createEventDto);
-    }
-
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/accept/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -41,27 +34,20 @@ public class EventController {
         return eventService.acceptEvent(id);
     }
 
-    @PermitAll
-    @GetMapping
-    public List<SimpleEventDto> getAllEvents(Pageable pageable) {
-        return eventService.findAllEvents(pageable);
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/{id}")
+    public void deleteEvent(@PathVariable Long id) {
+        eventService.deleteEventById(id);
     }
 
-    @PermitAll
-    @GetMapping("/{id}")
-    public EventDto findEventById(@PathVariable Long id) {
-        return eventService.findEventById(id);
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public EventDto addEvent(@RequestBody @Valid CreateEventDto createEventDto) {
+        return eventService.addEvent(createEventDto);
     }
 
-    @PermitAll
-    @GetMapping("/search")
-    public List<SimpleEventDto> searchEvents(
-            Pageable pageable,
-            EventSearchParameters eventSearchParameters
-    ) {
-        return eventService.search(eventSearchParameters, pageable);
-    }
-
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PutMapping("/{id}")
     public EventDto updateEvent(
             @PathVariable long id,
@@ -69,8 +55,21 @@ public class EventController {
         return eventService.updateEvent(id, eventDto);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteEvent(@PathVariable Long id) {
-        eventService.deleteEventById(id);
+    @GetMapping
+    public List<SimpleEventDto> getAllEvents(Pageable pageable) {
+        return eventService.findAllEvents(pageable);
+    }
+
+    @GetMapping("/{id}")
+    public EventDto findEventById(@PathVariable Long id) {
+        return eventService.findEventById(id);
+    }
+
+    @GetMapping("/search")
+    public List<SimpleEventDto> searchEvents(
+            Pageable pageable,
+            EventSearchParameters eventSearchParameters
+    ) {
+        return eventService.search(eventSearchParameters, pageable);
     }
 }

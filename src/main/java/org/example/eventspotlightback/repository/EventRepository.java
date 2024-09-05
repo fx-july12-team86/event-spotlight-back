@@ -20,7 +20,7 @@ public interface EventRepository extends
 
     @EntityGraph(attributePaths = {
             "description",
-            "description.contacts",
+            "contact",
             "address",
             "photos",
             "categories"
@@ -29,7 +29,7 @@ public interface EventRepository extends
 
     @EntityGraph(attributePaths = {
             "description",
-            "description.contacts",
+            "contact",
             "address",
             "photos",
             "categories"
@@ -38,7 +38,7 @@ public interface EventRepository extends
 
     @EntityGraph(attributePaths = {
             "description",
-            "description.contacts",
+            "contact",
             "address",
             "photos",
             "categories"

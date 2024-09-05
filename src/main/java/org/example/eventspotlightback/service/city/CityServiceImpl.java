@@ -25,7 +25,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public List<CityDto> findAllCities() {
-        return cityMapper.toDto(cityRepository.findAll().stream().toList());
+        return cityMapper.toDto(cityRepository.findAll());
     }
 
     @Override

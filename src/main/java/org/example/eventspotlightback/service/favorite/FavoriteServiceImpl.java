@@ -43,8 +43,9 @@ public class FavoriteServiceImpl implements FavoriteService {
         Event newFavoriteEvent = eventRepository.findById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
+        newFavoriteEvent.getFavorites().add(favorite);
         favorite.getEvents().add(newFavoriteEvent);
-        return favoriteMapper.toDto(favoriteRepository.save(favorite));
+        return favoriteMapper.toDto(favorite);
     }
 
     @Transactional
@@ -56,7 +57,8 @@ public class FavoriteServiceImpl implements FavoriteService {
         Event removeFavoriteEvent = eventRepository.findById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
+        removeFavoriteEvent.getFavorites().remove(favorite);
         favorite.getEvents().remove(removeFavoriteEvent);
-        return favoriteMapper.toDto(favoriteRepository.save(favorite));
+        return favoriteMapper.toDto(favorite);
     }
 }

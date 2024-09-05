@@ -12,6 +12,7 @@ import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.EventMapper;
 import org.example.eventspotlightback.model.Address;
 import org.example.eventspotlightback.model.Category;
+import org.example.eventspotlightback.model.Contact;
 import org.example.eventspotlightback.model.Description;
 import org.example.eventspotlightback.model.Event;
 import org.example.eventspotlightback.model.MyEvents;
@@ -19,6 +20,7 @@ import org.example.eventspotlightback.model.Photo;
 import org.example.eventspotlightback.model.User;
 import org.example.eventspotlightback.repository.AddressRepository;
 import org.example.eventspotlightback.repository.CategoryRepository;
+import org.example.eventspotlightback.repository.ContactRepository;
 import org.example.eventspotlightback.repository.DescriptionRepository;
 import org.example.eventspotlightback.repository.EventRepository;
 import org.example.eventspotlightback.repository.MyEventsRepository;
@@ -34,6 +36,7 @@ import org.springframework.stereotype.Service;
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
+    private final ContactRepository contactRepository;
     private final DescriptionRepository descriptionRepository;
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
@@ -46,7 +49,13 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventDto addEvent(CreateEventDto createEventDto) {
         Event newEvent = eventMapper.toModel(createEventDto);
-        insertEntitiesFromIds(newEvent, createEventDto);
+        updateModelFromDto(newEvent, createEventDto);
+        MyEvents myEvents = myEventsRepository.findMyEventsByUserId(createEventDto.getUserId())
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Can't find user with id: "
+                                + createEventDto.getUserId())
+                );
+        newEvent.getMyEvents().add(myEvents);
         Event savedEvent = eventRepository.save(newEvent);
         return eventMapper.toDto(savedEvent);
     }
@@ -87,13 +96,12 @@ public class EventServiceImpl implements EventService {
     @Transactional
     @Override
     public EventDto updateEvent(Long id, CreateEventDto updateEventDto) {
-        Event updatedEvent = eventMapper.toModel(updateEventDto);
-        updatedEvent.setId(id);
-        eventRepository.findById(id).orElseThrow(
+        Event existingEvent = eventRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + id)
         );
-        insertEntitiesFromIds(updatedEvent, updateEventDto);
-        Event savedEvent = eventRepository.save(updatedEvent);
+        updateModelFromDto(existingEvent, updateEventDto);
+        existingEvent.setAccepted(false);
+        Event savedEvent = eventRepository.save(existingEvent);
         return eventMapper.toDto(savedEvent);
     }
 
@@ -102,9 +110,22 @@ public class EventServiceImpl implements EventService {
         eventRepository.deleteById(id);
     }
 
-    private void insertEntitiesFromIds(Event event, CreateEventDto createEventDto) {
+    private void updateModelFromDto(Event event, CreateEventDto createEventDto) {
+        event.setTitle(createEventDto.getTitle());
+        event.setStartTime(createEventDto.getStartTime());
+        event.setPrice(createEventDto.getPrice());
+        event.setOnline(createEventDto.isOnline());
+
         Set<Photo> eventPhotos = photoRepository.findAllByIdIn(createEventDto.getPhotoIds());
         event.setPhotos(eventPhotos);
+
+        Contact eventContact = contactRepository
+                .findById(createEventDto.getContactId())
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Can't find contact with id: "
+                                + createEventDto.getContactId())
+                );
+        event.setContact(eventContact);
 
         Description eventDescription = descriptionRepository
                 .findById(createEventDto.getDescriptionId())
@@ -119,13 +140,6 @@ public class EventServiceImpl implements EventService {
                         + createEventDto.getUserId())
         );
         event.setUser(eventOwner);
-
-        MyEvents myEvents = myEventsRepository.findMyEventsByUserId(eventOwner.getId()).orElseThrow(
-                () -> new EntityNotFoundException("Can't find user with id: "
-                        + createEventDto.getUserId())
-        );
-        myEvents.getEvents().add(event);
-        event.getMyEvents().add(myEvents);
 
         Address eventAddress = addressRepository.findById(createEventDto.getAddressId())
                 .orElseThrow(

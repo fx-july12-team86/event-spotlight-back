@@ -1,6 +1,5 @@
 package org.example.eventspotlightback.controller;
 
-import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -32,27 +31,27 @@ public class CategoryController {
         return categoryService.add(category);
     }
 
-    @PermitAll
-    @GetMapping
-    public List<CategoryDto> findAllCategories() {
-        return categoryService.findAll();
-    }
-
-    @PermitAll
-    @GetMapping("/{id}")
-    public CategoryDto findCategoryById(@PathVariable Long id) {
-        return categoryService.findById(id);
-    }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
     public CategoryDto updateCategory(@PathVariable Long id,
                                       @RequestBody @Valid CreateCategoryDto categoryDto) {
         return categoryService.update(id, categoryDto);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         categoryService.deleteById(id);
+    }
+
+    @GetMapping
+    public List<CategoryDto> findAllCategories() {
+        return categoryService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public CategoryDto findCategoryById(@PathVariable Long id) {
+        return categoryService.findById(id);
     }
 }
