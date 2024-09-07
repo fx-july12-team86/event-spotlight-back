@@ -45,6 +45,11 @@ public class PhotoDropboxServiceImpl implements PhotoService {
     }
 
     @Override
+    public List<PhotoDto> findAllPhotos() {
+        return photoMapper.toDto(photoRepository.findAll());
+    }
+
+    @Override
     public PhotoDto getPhoto(Long photoId) {
         Photo photo = photoRepository.findById(photoId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find photo by id: " + photoId)

@@ -27,6 +27,7 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserResponseDto registerUser(@RequestBody @Valid UserRegistrationRequestDto requestDto)
             throws RegistrationException {
         return userService.register(requestDto);
@@ -43,5 +44,4 @@ public class AuthController {
     public void delete(@PathVariable long id) {
         userService.deleteUserById(id);
     }
-
 }

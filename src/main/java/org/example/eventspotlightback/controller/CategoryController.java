@@ -7,6 +7,7 @@ import org.example.eventspotlightback.dto.internal.category.CategoryDto;
 import org.example.eventspotlightback.dto.internal.category.CreateCategoryDto;
 import org.example.eventspotlightback.service.category.CategoryService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,30 +24,34 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @PostMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto addCategory(@RequestBody @Valid CreateCategoryDto category) {
         return categoryService.add(category);
     }
 
-    @GetMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/{id}")
+    public CategoryDto updateCategory(@PathVariable Long id,
+                                      @RequestBody @Valid CreateCategoryDto categoryDto) {
+        return categoryService.update(id, categoryDto);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        categoryService.deleteById(id);
+    }
+
+    @GetMapping
     public List<CategoryDto> findAllCategories() {
         return categoryService.findAll();
     }
 
     @GetMapping("/{id}")
-    public CategoryDto findCategoryById(@PathVariable long id) {
+    public CategoryDto findCategoryById(@PathVariable Long id) {
         return categoryService.findById(id);
-    }
-
-    @PutMapping("/{id}")
-    public CategoryDto updateCategory(@PathVariable long id,
-                                      @RequestBody @Valid CreateCategoryDto categoryDto) {
-        return categoryService.update(id, categoryDto);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id) {
-        categoryService.deleteById(id);
     }
 }

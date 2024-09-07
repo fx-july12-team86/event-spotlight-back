@@ -24,7 +24,7 @@ public class AddressServiceImpl implements AddressService {
         Address newAddress = addressMapper.toModel(addressRequestDto);
         City city = cityRepository.findById(addressRequestDto.getCityId()).orElseThrow(
                 () -> new EntityNotFoundException("City with id " + addressRequestDto.getCityId()
-                        + "not found for address " + addressRequestDto.getStreet() + " : "
+                        + " not found for address " + addressRequestDto.getStreet() + " : "
                         + addressRequestDto.getNumber())
         );
         newAddress.setCity(city);
@@ -32,19 +32,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressDto> findAll() {
-        return addressMapper.toDto(addressRepository.findAll());
-    }
-
-    @Override
-    public AddressDto findAddressById(long addressId) {
-        Address address = addressRepository.findById(addressId).orElseThrow(
-                () -> new EntityNotFoundException("Address with id" + addressId + " not found"));
-        return addressMapper.toDto(address);
-    }
-
-    @Override
-    public AddressDto updateAddress(long id, AddAddressDto updateAddressDto) {
+    public AddressDto updateAddress(Long id, AddAddressDto updateAddressDto) {
         Address updatedAddress = addressMapper.toModel(updateAddressDto);
         updatedAddress.setId(id);
         addressRepository.findById(id).orElseThrow(
@@ -58,7 +46,19 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void deleteAddressById(long addressId) {
+    public void deleteAddressById(Long addressId) {
         addressRepository.deleteById(addressId);
+    }
+
+    @Override
+    public List<AddressDto> findAll() {
+        return addressMapper.toDto(addressRepository.findAll());
+    }
+
+    @Override
+    public AddressDto findAddressById(Long addressId) {
+        Address address = addressRepository.findById(addressId).orElseThrow(
+                () -> new EntityNotFoundException("Address with id" + addressId + " not found"));
+        return addressMapper.toDto(address);
     }
 }

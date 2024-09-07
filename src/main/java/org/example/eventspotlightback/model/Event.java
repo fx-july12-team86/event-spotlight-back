@@ -15,23 +15,43 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = {
+        "id",
+        "description",
+        "user",
+        "favorites",
+        "myEvents",
+        "photos",
+        "categories",
+        "isOnline",
+        "isTop",
+        "isAccepted",
+        "isDeleted"})
 @Entity
+@SQLDelete(sql = "UPDATE events SET is_deleted = true WHERE id=?")
+@Where(clause = "is_deleted=false")
 @Table(name = "events")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String title;
     @ManyToOne(fetch = FetchType.LAZY)
     private Description description;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
@@ -39,9 +59,9 @@ public class Event {
     @JoinTable(
             name = "events_photos",
             joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "photo_id", unique = true)
+            inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
-        private Set<Photo> photos = new HashSet<>();
+    private Set<Photo> photos = new HashSet<>();
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "events_categories",
@@ -57,6 +77,21 @@ public class Event {
     private boolean isTop;
     @Column(name = "is_accepted")
     private boolean isAccepted;
-    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "events_favorites",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "favorite_id")
+    )
     private Set<Favorite> favorites = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "events_my_events",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "my_event_id")
+    )
+    private Set<MyEvents> myEvents = new HashSet<>();
+
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
 }

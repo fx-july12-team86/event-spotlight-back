@@ -7,6 +7,7 @@ import org.example.eventspotlightback.dto.internal.address.AddAddressDto;
 import org.example.eventspotlightback.dto.internal.address.AddressDto;
 import org.example.eventspotlightback.service.address.AddressService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +24,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddressController {
     private final AddressService addressService;
 
-    @PostMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public AddressDto addAddress(@RequestBody @Valid AddAddressDto addAddressDto) {
         return addressService.addAddress(addAddressDto);
     }
 
-    @GetMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/{id}")
+    public AddressDto updateAddress(@PathVariable long id,
+                                    @RequestBody @Valid AddAddressDto updateAddressDto) {
+        return addressService.updateAddress(id, updateAddressDto);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAddress(@PathVariable long id) {
+        addressService.deleteAddressById(id);
+    }
+
+    @GetMapping
     public List<AddressDto> findAllAddresses() {
         return addressService.findAll();
     }
@@ -36,17 +53,5 @@ public class AddressController {
     @GetMapping("/{id}")
     public AddressDto findAddressById(@PathVariable long id) {
         return addressService.findAddressById(id);
-    }
-
-    @PutMapping("/{id}")
-    public AddressDto updateAddress(@PathVariable long id,
-                                      @RequestBody @Valid AddAddressDto updateAddressDto) {
-        return addressService.updateAddress(id, updateAddressDto);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAddress(@PathVariable long id) {
-        addressService.deleteAddressById(id);
     }
 }

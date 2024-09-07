@@ -1,9 +1,13 @@
 package org.example.eventspotlightback.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.my.events.AddMyEventDto;
 import org.example.eventspotlightback.dto.internal.my.events.MyEventsDto;
+import org.example.eventspotlightback.model.User;
 import org.example.eventspotlightback.service.my.events.MyEventsService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,18 +22,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyEventsController {
     private final MyEventsService myEventsService;
 
-    @GetMapping("/{userId}")
-    public MyEventsDto getMyEvents(@PathVariable Long userId) {
-        return myEventsService.findMyEventsById(userId);
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping
+    public MyEventsDto getMyEvents(Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        return myEventsService.findMyEventsById(user.getId());
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
-    public MyEventsDto addMyEvent(@RequestBody AddMyEventDto myEventDto) {
+    public MyEventsDto addMyEvent(@RequestBody @Valid AddMyEventDto myEventDto) {
         return myEventsService.addEvent(myEventDto.getEventId(), myEventDto.getUserId());
     }
 
-    @DeleteMapping("/{userId}/{eventId}")
-    public MyEventsDto deleteMyEvent(@PathVariable Long userId, @PathVariable Long eventId) {
-        return myEventsService.removeEventFromMyEvents(eventId, userId);
+    @PreAuthorize("hasAnyAuthority('USER')")
+    @DeleteMapping("/{eventId}")
+    public MyEventsDto deleteEventFromMyEvent(
+            Authentication authentication,
+            @PathVariable Long eventId
+    ) {
+        User user = (User) authentication.getPrincipal();
+        return myEventsService.removeEventFromMyEvents(eventId, user);
     }
 }

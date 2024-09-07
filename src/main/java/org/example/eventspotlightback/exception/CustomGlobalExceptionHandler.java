@@ -29,19 +29,15 @@ public class CustomGlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAllExceptions(Exception ex) {
+    @ExceptionHandler({
+            DropboxException.class,
+            EntityNotFoundException.class,
+            IllegalArgumentException.class,
+            RegistrationException.class
+    })
+    public ResponseEntity<String> handleException(Exception ex) {
         return new ResponseEntity<>(
-                "An unexpected error occurred\n" + ex.getMessage(),
-                HttpStatus.INTERNAL_SERVER_ERROR
-        );
-    }
-
-    @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<String> handleNullPointerException(NullPointerException ex) {
-        return new ResponseEntity<>(
-                "Null pointer exception occurred",
-                HttpStatus.INTERNAL_SERVER_ERROR
+                ex.getMessage(), HttpStatus.BAD_REQUEST
         );
     }
 }

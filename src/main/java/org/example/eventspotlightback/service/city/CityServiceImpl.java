@@ -24,19 +24,6 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public List<CityDto> findAllCities() {
-        return cityMapper.toDto(cityRepository.findAll().stream().toList());
-    }
-
-    @Override
-    public CityDto findCityById(Long cityId) {
-        City city = cityRepository.findById(cityId).orElseThrow(
-                () -> new EntityNotFoundException("City with id " + cityId + " not found")
-        );
-        return cityMapper.toDto(city);
-    }
-
-    @Override
     public CityDto updateCityById(Long id, AddCityDto updateCityDto) {
         City newCity = cityMapper.toModel(updateCityDto);
         newCity.setId(id);
@@ -52,4 +39,16 @@ public class CityServiceImpl implements CityService {
         cityRepository.deleteById(cityId);
     }
 
+    @Override
+    public List<CityDto> findAllCities() {
+        return cityMapper.toDto(cityRepository.findAll());
+    }
+
+    @Override
+    public CityDto findCityById(Long cityId) {
+        City city = cityRepository.findById(cityId).orElseThrow(
+                () -> new EntityNotFoundException("City with id " + cityId + " not found")
+        );
+        return cityMapper.toDto(city);
+    }
 }

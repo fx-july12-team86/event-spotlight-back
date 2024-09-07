@@ -24,19 +24,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDto> findAll() {
-        return categoryMapper.toDto(categoryRepository.findAll());
-    }
-
-    @Override
-    public CategoryDto findById(Long id) {
-        Category category = categoryRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Category with id" + id + " not found")
-        );
-        return categoryMapper.toDto(category);
-    }
-
-    @Override
     public CategoryDto update(Long id, CreateCategoryDto dto) {
         Category newCategory = categoryMapper.toModel(dto);
         newCategory.setId(id);
@@ -49,5 +36,18 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteById(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CategoryDto> findAll() {
+        return categoryMapper.toDto(categoryRepository.findAll());
+    }
+
+    @Override
+    public CategoryDto findById(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Category with id" + id + " not found")
+        );
+        return categoryMapper.toDto(category);
     }
 }

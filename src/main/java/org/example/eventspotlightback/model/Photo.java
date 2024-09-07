@@ -17,10 +17,10 @@ import lombok.Setter;
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(nullable = false, unique = true)
+    private Long id;
+    @Column(nullable = false)
     private String path;
-    @Column(nullable = false, unique = true, name = "shared_url")
+    @Column(nullable = false, name = "shared_url")
     private String sharedUrl;
     private LocalDateTime createdAt;
 }
