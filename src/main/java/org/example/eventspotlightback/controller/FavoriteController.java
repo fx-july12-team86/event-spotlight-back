@@ -26,14 +26,7 @@ public class FavoriteController {
         return favoriteService.addEvent(eventId, user.getId());
     }
 
-    @PreAuthorize("hasAuthority('USER')")
-    @GetMapping()
-    public FavoriteDto findByUserId(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
-        return favoriteService.findFavoriteByUserId(user.getId());
-    }
-
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyAuthority('USER')")
     @DeleteMapping("/{eventId}")
     public FavoriteDto deleteFromFavorite(
             Authentication authentication,
@@ -41,5 +34,12 @@ public class FavoriteController {
     ) {
         User user = (User) authentication.getPrincipal();
         return favoriteService.removeEventFromFavorite(eventId, user.getId());
+    }
+
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping
+    public FavoriteDto findByUserId(Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        return favoriteService.findFavoriteByUserId(user.getId());
     }
 }

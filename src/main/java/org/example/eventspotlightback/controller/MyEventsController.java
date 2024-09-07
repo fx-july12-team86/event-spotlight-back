@@ -35,7 +35,7 @@ public class MyEventsController {
         return myEventsService.addEvent(myEventDto.getEventId(), myEventDto.getUserId());
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyAuthority('USER')")
     @DeleteMapping("/{eventId}")
     public MyEventsDto deleteEventFromMyEvent(
             Authentication authentication,

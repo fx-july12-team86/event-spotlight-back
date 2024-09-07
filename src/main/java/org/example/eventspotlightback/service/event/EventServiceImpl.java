@@ -1,6 +1,5 @@
 package org.example.eventspotlightback.service.event;
 
-import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +29,7 @@ import org.example.eventspotlightback.repository.specification.SpecificationBuil
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -45,7 +45,6 @@ public class EventServiceImpl implements EventService {
     private final MyEventsRepository myEventsRepository;
     private final SpecificationBuilder<Event> specificationBuilder;
 
-    @Transactional
     @Override
     public EventDto addEvent(CreateEventDto createEventDto) {
         Event newEvent = eventMapper.toModel(createEventDto);
@@ -98,7 +97,6 @@ public class EventServiceImpl implements EventService {
         ));
     }
 
-    @Transactional
     @Override
     public List<SimpleEventDto> search(
             EventSearchParameters eventSearchParameters,

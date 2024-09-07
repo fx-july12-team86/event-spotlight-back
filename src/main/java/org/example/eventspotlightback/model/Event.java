@@ -42,7 +42,7 @@ import org.hibernate.annotations.Where;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String title;
     @ManyToOne(fetch = FetchType.LAZY)
     private Description description;

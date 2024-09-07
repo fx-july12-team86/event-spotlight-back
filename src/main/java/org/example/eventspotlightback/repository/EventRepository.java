@@ -44,7 +44,9 @@ public interface EventRepository extends
             "address",
             "address.city",
             "photos",
-            "categories"
+            "categories",
+            "favorites",
+            "myEvents"
     })
     Optional<Event> findById(Long id);
 
@@ -57,4 +59,14 @@ public interface EventRepository extends
             + "LEFT JOIN FETCH e.user u "
             + "WHERE e.id = :eventId")
     Optional<Event> findByIdWithMyEvents(@Param("eventId")Long eventId);
+
+    @Query("SELECT e FROM Event e "
+            + "LEFT JOIN FETCH e.favorites f "
+            + "LEFT JOIN FETCH e.photos p "
+            + "LEFT JOIN FETCH e.categories c "
+            + "LEFT JOIN FETCH e.address a "
+            + "LEFT JOIN FETCH e.contact co "
+            + "LEFT JOIN FETCH e.user u "
+            + "WHERE e.id = :eventId")
+    Optional<Event> findByIdWithFavorite(@Param("eventId")Long eventId);
 }
