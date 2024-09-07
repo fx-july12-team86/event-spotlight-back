@@ -7,11 +7,11 @@ import org.example.eventspotlightback.dto.internal.address.AddressDto;
 public interface AddressService {
     AddressDto addAddress(AddAddressDto address);
 
+    AddressDto updateAddress(Long id, AddAddressDto address);
+
+    void deleteAddressById(Long addressId);
+
     List<AddressDto> findAll();
 
-    AddressDto findAddressById(long addressId);
-
-    AddressDto updateAddress(long id, AddAddressDto address);
-
-    void deleteAddressById(long addressId);
+    AddressDto findAddressById(Long addressId);
 }

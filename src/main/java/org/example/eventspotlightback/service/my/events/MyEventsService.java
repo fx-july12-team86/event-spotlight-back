@@ -8,9 +8,9 @@ public interface MyEventsService {
 
     MyEvents createMyEvents(User user);
 
-    MyEventsDto findMyEventsById(long userId);
+    MyEventsDto findMyEventsById(Long userId);
 
-    MyEventsDto addEvent(long eventId, long userId);
+    MyEventsDto addEvent(Long eventId, Long userId);
 
-    MyEventsDto removeEventFromMyEvents(long eventId, long userId);
+    MyEventsDto removeEventFromMyEvents(Long eventId, User userId);
 }

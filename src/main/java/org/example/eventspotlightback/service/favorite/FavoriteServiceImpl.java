@@ -28,14 +28,6 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Transactional
     @Override
-    public FavoriteDto findFavoriteByUserId(Long userId) {
-        return favoriteMapper.toDto(favoriteRepository.findByUserId(userId).orElseThrow(
-                () -> new EntityNotFoundException("Can't find favorite by user id: " + userId)
-        ));
-    }
-
-    @Transactional
-    @Override
     public FavoriteDto addEvent(Long eventId, Long userId) {
         Favorite favorite = favoriteRepository.findByUserId(userId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find favorite by user id: " + userId)
@@ -60,5 +52,13 @@ public class FavoriteServiceImpl implements FavoriteService {
         removeFavoriteEvent.getFavorites().remove(favorite);
         favorite.getEvents().remove(removeFavoriteEvent);
         return favoriteMapper.toDto(favorite);
+    }
+
+    @Transactional
+    @Override
+    public FavoriteDto findFavoriteByUserId(Long userId) {
+        return favoriteMapper.toDto(favoriteRepository.findByUserId(userId).orElseThrow(
+                () -> new EntityNotFoundException("Can't find favorite by user id: " + userId)
+        ));
     }
 }

@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +26,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @SQLDelete(sql = "UPDATE users SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted=false")
+@EqualsAndHashCode(exclude = {"id", "roles", "favorite", "myEvents", "isDeleted"})
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
@@ -59,6 +61,10 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    public String getCustomUserName() {
+        return userName;
     }
 
     @Override

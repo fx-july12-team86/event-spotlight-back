@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
@@ -22,6 +23,18 @@ import org.hibernate.annotations.Where;
 
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = {
+        "id",
+        "description",
+        "user",
+        "favorites",
+        "myEvents",
+        "photos",
+        "categories",
+        "isOnline",
+        "isTop",
+        "isAccepted",
+        "isDeleted"})
 @Entity
 @SQLDelete(sql = "UPDATE events SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted=false")
@@ -36,7 +49,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contact_id")
     private Contact contact;
     @ManyToOne

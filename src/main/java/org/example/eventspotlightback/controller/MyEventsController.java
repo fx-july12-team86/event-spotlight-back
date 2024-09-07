@@ -42,6 +42,6 @@ public class MyEventsController {
             @PathVariable Long eventId
     ) {
         User user = (User) authentication.getPrincipal();
-        return myEventsService.removeEventFromMyEvents(eventId, user.getId());
+        return myEventsService.removeEventFromMyEvents(eventId, user);
     }
 }

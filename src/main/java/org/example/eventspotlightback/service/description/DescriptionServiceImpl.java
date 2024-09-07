@@ -24,19 +24,6 @@ public class DescriptionServiceImpl implements DescriptionService {
     }
 
     @Override
-    public List<DescriptionDto> findAll() {
-        return descriptionMapper.toDto(descriptionRepository.findAll());
-    }
-
-    @Override
-    public DescriptionDto findById(long id) {
-        Description description = descriptionRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Description with id " + id + " not found")
-        );
-        return descriptionMapper.toDto(description);
-    }
-
-    @Override
     public DescriptionDto update(Long id, CreateDescriptionDto descriptionDto) {
         Description newDescription = descriptionMapper.toModel(descriptionDto);
         newDescription.setId(id);
@@ -48,7 +35,20 @@ public class DescriptionServiceImpl implements DescriptionService {
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         descriptionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<DescriptionDto> findAll() {
+        return descriptionMapper.toDto(descriptionRepository.findAll());
+    }
+
+    @Override
+    public DescriptionDto findById(Long id) {
+        Description description = descriptionRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Description with id " + id + " not found")
+        );
+        return descriptionMapper.toDto(description);
     }
 }

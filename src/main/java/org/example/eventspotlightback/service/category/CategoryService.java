@@ -7,11 +7,11 @@ import org.example.eventspotlightback.dto.internal.category.CreateCategoryDto;
 public interface CategoryService {
     CategoryDto add(CreateCategoryDto requestDto);
 
-    List<CategoryDto> findAll();
-
-    CategoryDto findById(Long id);
-
     CategoryDto update(Long id, CreateCategoryDto dto);
 
     void deleteById(Long id);
+
+    List<CategoryDto> findAll();
+
+    CategoryDto findById(Long id);
 }

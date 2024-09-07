@@ -10,7 +10,6 @@ import org.mapstruct.Mapping;
 @Mapper(config = MapperConfig.class, uses = {EventMapper.class})
 public interface MyEventsMapper {
 
-    @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "events", target = "eventDtos")
     MyEventsDto toDto(MyEvents myEvents);
 

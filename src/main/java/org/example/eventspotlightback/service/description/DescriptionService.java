@@ -7,11 +7,11 @@ import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 public interface DescriptionService {
     DescriptionDto add(CreateDescriptionDto descriptionDto);
 
-    List<DescriptionDto> findAll();
-
-    DescriptionDto findById(long id);
-
     DescriptionDto update(Long id, CreateDescriptionDto descriptionDto);
 
-    void deleteById(long id);
+    void deleteById(Long id);
+
+    List<DescriptionDto> findAll();
+
+    DescriptionDto findById(Long id);
 }

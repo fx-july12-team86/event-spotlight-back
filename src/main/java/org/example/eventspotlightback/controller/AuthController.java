@@ -33,7 +33,6 @@ public class AuthController {
         return userService.register(requestDto);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PostMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);

@@ -50,9 +50,9 @@ public class EventServiceImpl implements EventService {
     public EventDto addEvent(CreateEventDto createEventDto) {
         Event newEvent = eventMapper.toModel(createEventDto);
         updateModelFromDto(newEvent, createEventDto);
-        MyEvents myEvents = myEventsRepository.findMyEventsByUserId(createEventDto.getUserId())
+        MyEvents myEvents = myEventsRepository.findMyEventsById(createEventDto.getUserId())
                 .orElseThrow(
-                        () -> new EntityNotFoundException("Can't find user with id: "
+                        () -> new EntityNotFoundException("Can't find user's events with id: "
                                 + createEventDto.getUserId())
                 );
         newEvent.getMyEvents().add(myEvents);
@@ -67,6 +67,23 @@ public class EventServiceImpl implements EventService {
         );
         event.setAccepted(true);
         return eventMapper.toSimpleDto(eventRepository.save(event));
+    }
+
+    @Transactional
+    @Override
+    public EventDto updateEvent(Long id, CreateEventDto updateEventDto) {
+        Event existingEvent = eventRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Can't find event with id: " + id)
+        );
+        updateModelFromDto(existingEvent, updateEventDto);
+        existingEvent.setAccepted(false);
+        Event savedEvent = eventRepository.save(existingEvent);
+        return eventMapper.toDto(savedEvent);
+    }
+
+    @Override
+    public void deleteEventById(Long id) {
+        eventRepository.deleteById(id);
     }
 
     @Override
@@ -91,23 +108,6 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findAll(specification, pageable).stream()
                 .map(eventMapper::toSimpleDto)
                 .toList();
-    }
-
-    @Transactional
-    @Override
-    public EventDto updateEvent(Long id, CreateEventDto updateEventDto) {
-        Event existingEvent = eventRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find event with id: " + id)
-        );
-        updateModelFromDto(existingEvent, updateEventDto);
-        existingEvent.setAccepted(false);
-        Event savedEvent = eventRepository.save(existingEvent);
-        return eventMapper.toDto(savedEvent);
-    }
-
-    @Override
-    public void deleteEventById(Long id) {
-        eventRepository.deleteById(id);
     }
 
     private void updateModelFromDto(Event event, CreateEventDto createEventDto) {

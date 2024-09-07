@@ -30,7 +30,10 @@ public interface EventMapper {
     @Mapping(target = "top", ignore = true)
     @Mapping(target = "accepted", ignore = true)
     @Mapping(target = "favorites", ignore = true)
+    @Mapping(target = "myEvents", ignore = true)
     @Mapping(target = "photos", ignore = true)
+    @Mapping(target = "contact", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     Event toModel(CreateEventDto eventDto);
 
     SimpleEventDto toSimpleDto(Event event);
