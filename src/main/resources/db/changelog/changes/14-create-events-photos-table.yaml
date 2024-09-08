@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-events-photos-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: events_photos
+            columns:
+              - column:
+                  name: event_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_photos_events
+                    referencedTableName: events
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: photo_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_photos_photos
+                    referencedTableName: photos
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true

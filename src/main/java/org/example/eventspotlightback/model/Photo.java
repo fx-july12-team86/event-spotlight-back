@@ -22,5 +22,6 @@ public class Photo {
     private String path;
     @Column(nullable = false, name = "shared_url")
     private String sharedUrl;
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 }

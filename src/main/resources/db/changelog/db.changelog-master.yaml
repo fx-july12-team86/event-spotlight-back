@@ -7,4 +7,31 @@ databaseChangeLog:
       file: db/changelog/changes/03-create-users-roles-table.yaml
   - include:
       file: db/changelog/changes/04-add-admin-user.yaml
+  - include:
+      file: db/changelog/changes/05-create-cities-table.yaml
+  - include:
+      file: db/changelog/changes/06-create-addresses-table.yaml
+  - include:
+      file: db/changelog/changes/07-create-contacts-table.yaml
+  - include:
+      file: db/changelog/changes/08-create-categories-table.yaml
+  - include:
+      file: db/changelog/changes/09-create-descriptions-table.yaml
+  - include:
+      file: db/changelog/changes/10-create-favorites-table.yaml
+  - include:
+      file: db/changelog/changes/11-create-my-events-table.yaml
+  - include:
+      file: db/changelog/changes/12-create-photos-table.yaml
+  - include:
+      file: db/changelog/changes/13-create-events-table.yaml
+  - include:
+      file: db/changelog/changes/14-create-events-photos-table.yaml
+  - include:
+      file: db/changelog/changes/15-create-event-categories-table.yaml
+  - include:
+      file: db/changelog/changes/16-create-events-favorites-table.yaml
+  - include:
+      file: db/changelog/changes/17-create-events-my-events-table.yaml
+
 
