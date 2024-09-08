@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-events-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: events
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: description_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_descriptions
+                    referencedTableName: descriptions
+                    referencedColumnNames: id
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_users
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: contact_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_contacts
+                    referencedTableName: contacts
+                    referencedColumnNames: id
+              - column:
+                  name: address_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_addresses
+                    referencedTableName: addresses
+                    referencedColumnNames: id
+              - column:
+                  name: start_time
+                  type: DATETIME(6)
+              - column:
+                  name: price
+                  type: DECIMAL(38, 2)
+              - column:
+                  name: is_online
+                  type: bit
+              - column:
+                  name: is_top
+                  type: bit
+              - column:
+                  name: is_accepted
+                  type: bit
+              - column:
+                  name: is_deleted
+                  type: bit

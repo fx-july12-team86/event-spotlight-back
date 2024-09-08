@@ -44,7 +44,16 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private LocalDateTime startTime;
+    private BigDecimal price;
+    @Column(name = "is_online")
+    private boolean isOnline;
+    @Column(name = "is_top")
+    private boolean isTop;
+    @Column(name = "is_accepted")
+    private boolean isAccepted;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "description_id")
     private Description description;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -55,6 +64,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "events_photos",
@@ -62,6 +72,7 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
     private Set<Photo> photos = new HashSet<>();
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "events_categories",
@@ -69,14 +80,7 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories = new HashSet<>();
-    private LocalDateTime startTime;
-    private BigDecimal price;
-    @Column(name = "is_online")
-    private boolean isOnline;
-    @Column(name = "is_top")
-    private boolean isTop;
-    @Column(name = "is_accepted")
-    private boolean isAccepted;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "events_favorites",
@@ -84,6 +88,7 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "favorite_id")
     )
     private Set<Favorite> favorites = new HashSet<>();
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "events_my_events",

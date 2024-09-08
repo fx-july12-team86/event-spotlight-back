@@ -20,7 +20,7 @@ import lombok.Setter;
 @Table(name = "favorites")
 public class Favorite {
     @Id
-    private long id;
+    private Long id;
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "id")

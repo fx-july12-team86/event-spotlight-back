@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-events-categories-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: events_categories
+            columns:
+              - column:
+                  name: event_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_categories_events
+                    referencedTableName: events
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_categories_categories
+                    referencedTableName: categories
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true

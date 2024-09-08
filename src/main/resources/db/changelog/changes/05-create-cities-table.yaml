@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cities-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
