@@ -1,6 +1,7 @@
 package org.example.eventspotlightback.config;
 
 import lombok.RequiredArgsConstructor;
+import org.example.eventspotlightback.security.JwtAuthenticationEntryPoint;
 import org.example.eventspotlightback.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -60,6 +62,9 @@ public class SecurityConfig {
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
+                )
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 )
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session
