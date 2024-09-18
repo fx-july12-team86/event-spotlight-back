@@ -28,14 +28,14 @@ public class CategoryController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto addCategory(@RequestBody @Valid CreateCategoryDto category) {
-        return categoryService.add(category);
+        return categoryService.addCategory(category);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
     public CategoryDto updateCategory(@PathVariable Long id,
                                       @RequestBody @Valid CreateCategoryDto categoryDto) {
-        return categoryService.update(id, categoryDto);
+        return categoryService.updateCategory(id, categoryDto);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

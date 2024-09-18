@@ -17,14 +17,14 @@ public class DescriptionServiceImpl implements DescriptionService {
     private final DescriptionMapper descriptionMapper;
 
     @Override
-    public DescriptionDto add(CreateDescriptionDto descriptionDto) {
+    public DescriptionDto addDescription(CreateDescriptionDto descriptionDto) {
         Description description = descriptionMapper.toModel(descriptionDto);
         Description savedDescription = descriptionRepository.save(description);
         return descriptionMapper.toDto(savedDescription);
     }
 
     @Override
-    public DescriptionDto update(Long id, CreateDescriptionDto descriptionDto) {
+    public DescriptionDto updateById(Long id, CreateDescriptionDto descriptionDto) {
         Description newDescription = descriptionMapper.toModel(descriptionDto);
         newDescription.setId(id);
         descriptionRepository.findById(id).orElseThrow(

@@ -36,7 +36,7 @@ public class AddressServiceImpl implements AddressService {
         Address updatedAddress = addressMapper.toModel(updateAddressDto);
         updatedAddress.setId(id);
         addressRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Address with id" + id + " not found")
+                () -> new EntityNotFoundException("Address with id " + id + " not found")
         );
         City city = cityRepository.findById(updateAddressDto.getCityId()).orElseThrow(
                 () -> new EntityNotFoundException("City with id " + updateAddressDto.getCityId())
@@ -61,4 +61,6 @@ public class AddressServiceImpl implements AddressService {
                 () -> new EntityNotFoundException("Address with id" + addressId + " not found"));
         return addressMapper.toDto(address);
     }
+
+
 }

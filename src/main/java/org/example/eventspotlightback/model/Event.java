@@ -18,46 +18,26 @@ import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLSelect;
 import org.hibernate.annotations.Where;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {
-        "id",
-        "description",
-        "user",
-        "favorites",
-        "myEvents",
-        "photos",
-        "categories",
-        "isOnline",
-        "isTop",
-        "isAccepted",
-        "isDeleted"})
 @Entity
 @SQLDelete(sql = "UPDATE events SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted=false")
 @Table(name = "events")
+@Accessors(chain = true)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private Long id;
     private String title;
     private LocalDateTime startTime;
     private BigDecimal price;
-    @Column(name = "is_online")
-    private boolean isOnline;
-    @Column(name = "is_top")
-    private boolean isTop;
-    @Column(name = "is_accepted")
-    private boolean isAccepted;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "description_id")
-    private Description description;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contact_id")
     private Contact contact;
@@ -65,7 +45,30 @@ public class Event {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @EqualsAndHashCode.Exclude
+    @Column(name = "is_online")
+    private boolean isOnline;
+
+    @EqualsAndHashCode.Exclude
+    @Column(name = "is_top")
+    private boolean isTop;
+
+    @EqualsAndHashCode.Exclude
+    @Column(name = "is_accepted")
+    private boolean isAccepted;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "description_id")
+    @EqualsAndHashCode.Exclude
+    private Description description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @EqualsAndHashCode.Exclude
+    private User user;
+
     @ManyToMany(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
     @JoinTable(
             name = "events_photos",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -74,6 +77,7 @@ public class Event {
     private Set<Photo> photos = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
     @JoinTable(
             name = "events_categories",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -82,6 +86,7 @@ public class Event {
     private Set<Category> categories = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
     @JoinTable(
             name = "events_favorites",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -90,6 +95,7 @@ public class Event {
     private Set<Favorite> favorites = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
     @JoinTable(
             name = "events_my_events",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -98,5 +104,6 @@ public class Event {
     private Set<MyEvents> myEvents = new HashSet<>();
 
     @Column(name = "is_deleted")
+    @EqualsAndHashCode.Exclude
     private boolean isDeleted;
 }

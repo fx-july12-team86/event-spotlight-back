@@ -38,15 +38,15 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public List<ContactDto> findAllContacts() {
+        return contactMapper.toDto(contactRepository.findAll());
+    }
+
+    @Override
     public ContactDto findContactById(Long id) {
         Contact contact = contactRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find contact with id: " + id)
         );
         return contactMapper.toDto(contact);
-    }
-
-    @Override
-    public List<ContactDto> findAllContacts() {
-        return contactMapper.toDto(contactRepository.findAll());
     }
 }
