@@ -13,7 +13,7 @@ services:
 
   event-spotlight:
     container_name: event-spotlight-back
-    image: shumyevh/event-spotlight-back:latest
+    image: shumyevh/event-spotlight-back:1.0
     depends_on:
       - mysqldb
     environment:
