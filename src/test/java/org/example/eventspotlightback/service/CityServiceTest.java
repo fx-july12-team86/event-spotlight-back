@@ -25,11 +25,10 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.example.eventspotlightback.utils.TestUtil.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CityServiceTest {
-    private static final Long TEST_CITY_ID = 1L;
-    private static final String TEST_CITY_NAME = "Test City Name";
     private static final String TEST_UPDATE_CITY_NAME = "Test Update City Name";
 
     @Mock
@@ -39,25 +38,12 @@ public class CityServiceTest {
     @InjectMocks
     private CityServiceImpl cityService;
 
-    private City testCity;
     private City testUpdatedCity;
-    private CityDto testCityDto;
     private CityDto testUpdatedCityDto;
-    private AddCityDto addCityDto;
     private AddCityDto updateCityDto;
 
     @BeforeEach
     void setUp() {
-        testCity = new City()
-                .setId(TEST_CITY_ID)
-                .setName(TEST_CITY_NAME);
-
-        testCityDto = new CityDto()
-                .setId(TEST_CITY_ID)
-                .setName(TEST_CITY_NAME);
-
-        addCityDto = new AddCityDto()
-                .setName(TEST_CITY_NAME);
 
         testUpdatedCity = new City()
                 .setId(TEST_CITY_ID)

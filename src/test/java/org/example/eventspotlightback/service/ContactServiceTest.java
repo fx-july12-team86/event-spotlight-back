@@ -25,15 +25,10 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.example.eventspotlightback.utils.TestUtil.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ContactServiceTest {
-    private static final Long TEST_CONTACT_ID = 1L;
-    private static final String TEST_CONTACT_PHONE_NUMBER = "380961111111";
-    private static final String TEST_CONTACT_EMAIL = "test@example.com";
-    private static final String TEST_CONTACT_INSTAGRAM = "@testInstagram";
-    private static final String TEST_CONTACT_TELEGRAM = "@testTelegram";
-    private static final String TEST_CONTACT_FACEBOOK = "@testFacebook";
     private static final String TEST_UPDATE_CONTACT_INSTAGRAM = "@testUpdatedInstagram";
 
     @Mock
@@ -43,38 +38,12 @@ public class ContactServiceTest {
     @InjectMocks
     private ContactServiceImpl contactService;
 
-    private Contact testContact;
     private Contact updatedTestContact;
-    private ContactDto testContactDto;
     private ContactDto updatedTestContactDto;
-    private CreateContactDto addContactDto;
     private CreateContactDto updateContactDto;
 
     @BeforeEach
     void setUp() {
-        testContact = new Contact()
-                .setId(TEST_CONTACT_ID)
-                .setPhoneNumber(TEST_CONTACT_PHONE_NUMBER)
-                .setEmail(TEST_CONTACT_EMAIL)
-                .setInstagram(TEST_CONTACT_INSTAGRAM)
-                .setTelegram(TEST_CONTACT_TELEGRAM)
-                .setFacebook(TEST_CONTACT_FACEBOOK);
-
-        testContactDto = new ContactDto()
-                .setId(TEST_CONTACT_ID)
-                .setPhoneNumber(TEST_CONTACT_PHONE_NUMBER)
-                .setEmail(TEST_CONTACT_EMAIL)
-                .setInstagram(TEST_CONTACT_INSTAGRAM)
-                .setTelegram(TEST_CONTACT_TELEGRAM)
-                .setFacebook(TEST_CONTACT_FACEBOOK);
-
-        addContactDto = new CreateContactDto()
-                .setPhoneNumber(TEST_CONTACT_PHONE_NUMBER)
-                .setEmail(TEST_CONTACT_EMAIL)
-                .setInstagram(TEST_CONTACT_INSTAGRAM)
-                .setTelegram(TEST_CONTACT_TELEGRAM)
-                .setFacebook(TEST_CONTACT_FACEBOOK);
-
         updatedTestContact = new Contact()
                 .setId(TEST_CONTACT_ID)
                 .setPhoneNumber(TEST_CONTACT_PHONE_NUMBER)

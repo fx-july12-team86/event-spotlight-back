@@ -7,7 +7,6 @@ import org.example.eventspotlightback.dto.internal.address.AddressDto;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.AddressMapper;
 import org.example.eventspotlightback.model.Address;
-import org.example.eventspotlightback.model.City;
 import org.example.eventspotlightback.repository.AddressRepository;
 import org.example.eventspotlightback.repository.CityRepository;
 import org.example.eventspotlightback.service.address.AddressServiceImpl;
@@ -27,15 +26,11 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.example.eventspotlightback.utils.TestUtil.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AddressServiceTest {
-    private static final Long TEST_ADDRESS_ID = 1L;
-    private static final String TEST_ADDRESS_STREET = "TestStreet";
     private static final String TEST_UPDATE_ADDRESS_STREET = "UpdateTestStreet";
-    private static final String TEST_ADDRESS_NUMBER = "TestNumber";
-    private static final Long TEST_CITY_ID = 1L;
-    private static final String TEST_CITY_NAME = "TestCityName";
 
     @Mock
     private AddressRepository addressRepository;
@@ -46,37 +41,13 @@ public class AddressServiceTest {
     @InjectMocks
     private AddressServiceImpl addressService;
 
-    private Address testAddress;
+
     private Address updatedTestAddress;
-    private City testCity;
-    private AddAddressDto addAddressDto;
     private AddAddressDto updateAddressDto;
-    private AddressDto testAddressDto;
     private AddressDto updatedTestAddressDto;
 
     @BeforeEach
     void setUp () {
-        testAddress = new Address()
-                .setId(TEST_ADDRESS_ID)
-                .setCity(testCity)
-                .setStreet(TEST_ADDRESS_STREET)
-                .setNumber(TEST_ADDRESS_NUMBER);
-
-        testCity = new City()
-                .setId(TEST_CITY_ID)
-                .setName(TEST_CITY_NAME);
-
-        addAddressDto = new AddAddressDto()
-                .setCityId(TEST_CITY_ID)
-                .setStreet(TEST_ADDRESS_STREET)
-                .setNumber(TEST_ADDRESS_NUMBER);
-
-        testAddressDto = new AddressDto()
-                .setId(TEST_ADDRESS_ID)
-                .setCityId(TEST_CITY_ID)
-                .setStreet(TEST_ADDRESS_STREET)
-                .setNumber(TEST_ADDRESS_NUMBER);
-
         updatedTestAddress = new Address()
                 .setId(TEST_ADDRESS_ID)
                 .setCity(testCity)
@@ -165,7 +136,6 @@ public class AddressServiceTest {
                 .thenReturn(Optional.empty());
 
         //When
-
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,
                 () -> addressService.updateAddress(TEST_ADDRESS_ID, updateAddressDto)

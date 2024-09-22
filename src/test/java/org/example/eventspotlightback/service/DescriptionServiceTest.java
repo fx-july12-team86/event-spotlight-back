@@ -25,12 +25,10 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.example.eventspotlightback.utils.TestUtil.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DescriptionServiceTest {
-    private static final Long TEST_DESCRIPTION_ID = 1L;
-    private static final String TEST_DESCRIPTION_TITLE = "testTitle";
-    private static final String TEST_DESCRIPTION_DESCRIPTION = "testDescription";
     private static final String TEST_UPDATE_DESCRIPTION_TITLE = "updateTestTitle";
 
     @Mock
@@ -40,37 +38,20 @@ public class DescriptionServiceTest {
     @InjectMocks
     private DescriptionServiceImpl descriptionService;
 
-    private Description testDescription;
     private Description updatedTestDescription;
-    private DescriptionDto testDescriptionDto;
     private DescriptionDto updatedTestDescriptionDto;
-    private CreateDescriptionDto addDescriptionDto;
     private CreateDescriptionDto updateDescriptionDto;
 
     @BeforeEach
     void setUp() {
-        testDescription = new Description()
-                .setId(TEST_DESCRIPTION_ID)
-                .setTitle(TEST_DESCRIPTION_TITLE)
-                .setDescription(TEST_DESCRIPTION_DESCRIPTION);
-
         updatedTestDescription = new Description()
                 .setId(TEST_DESCRIPTION_ID)
                 .setTitle(TEST_UPDATE_DESCRIPTION_TITLE)
                 .setDescription(TEST_DESCRIPTION_DESCRIPTION);
 
-        testDescriptionDto = new DescriptionDto()
-                .setId(TEST_DESCRIPTION_ID)
-                .setTitle(TEST_DESCRIPTION_TITLE)
-                .setDescription(TEST_DESCRIPTION_DESCRIPTION);
-
         updatedTestDescriptionDto = new DescriptionDto()
                 .setId(TEST_DESCRIPTION_ID)
                 .setTitle(TEST_UPDATE_DESCRIPTION_TITLE)
-                .setDescription(TEST_DESCRIPTION_DESCRIPTION);
-
-        addDescriptionDto = new CreateDescriptionDto()
-                .setTitle(TEST_DESCRIPTION_TITLE)
                 .setDescription(TEST_DESCRIPTION_DESCRIPTION);
 
         updateDescriptionDto = new CreateDescriptionDto()
