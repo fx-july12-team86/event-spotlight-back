@@ -13,6 +13,8 @@ import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
+import org.example.eventspotlightback.dto.internal.photo.PhotoDto;
 import org.example.eventspotlightback.dto.internal.user.UserRegistrationRequestDto;
 import org.example.eventspotlightback.dto.internal.user.UserResponseDto;
 import org.example.eventspotlightback.model.Address;
@@ -29,6 +31,8 @@ import org.example.eventspotlightback.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 public class TestUtil {
@@ -68,12 +72,11 @@ public class TestUtil {
     public static final Long TEST_MY_EVENTS_ID = TEST_USER_ID;
     public static final Long TEST_FAVORITE_ID = TEST_USER_ID;
 
-
     public static final Long TEST_PHOTO_ID = 8L;
-    private static final String TEST_PHOTO_PATH = "/test/path";
-    private static final LocalDateTime TEST_PHOTO_CREATED_AT = LocalDateTime
+    public static final String TEST_PHOTO_PATH = "/test/path";
+    public static final LocalDateTime TEST_PHOTO_CREATED_AT = LocalDateTime
             .of(2024, 9, 22, 8, 45, 54);
-    private static final String TEST_PHOTO_SHARED_URL = "/url/test/sharing";
+    public static final String TEST_PHOTO_SHARED_URL = "/url/test/sharing";
 
     public static final City testCity = new City()
             .setId(TEST_CITY_ID)
@@ -168,6 +171,9 @@ public class TestUtil {
     public static final Favorite testFavorite = new Favorite()
             .setId(TEST_FAVORITE_ID)
             .setUser(testUser);
+    public static final FavoriteDto testFavoriteDto = new FavoriteDto()
+            .setId(TEST_FAVORITE_ID)
+            .setEvents(Collections.emptyList());
 
     public static final Event testEvent = new Event()
             .setId(TEST_EVENT_ID)
@@ -209,5 +215,9 @@ public class TestUtil {
             .setId(TEST_PHOTO_ID)
             .setPath(TEST_PHOTO_PATH)
             .setCreatedAt(TEST_PHOTO_CREATED_AT)
+            .setSharedUrl(TEST_PHOTO_SHARED_URL);
+    public static final PhotoDto testPhotoDto = new PhotoDto()
+            .setId(TEST_PHOTO_ID)
+            .setCreatedAt(TEST_PHOTO_CREATED_AT.toString())
             .setSharedUrl(TEST_PHOTO_SHARED_URL);
 }
