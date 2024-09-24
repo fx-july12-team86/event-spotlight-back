@@ -3,6 +3,7 @@ package org.example.eventspotlightback.dto.internal.user;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.example.eventspotlightback.validation.FieldMatch;
 import org.hibernate.validator.constraints.Length;
 
@@ -12,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
         fieldMatch = "repeatPassword",
         message = "Passwords do not match!"
 )
+@Accessors(chain = true)
 public class UserRegistrationRequestDto {
     @NotBlank
     private String userName;

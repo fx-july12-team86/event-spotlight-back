@@ -12,12 +12,14 @@ import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @Entity
 @EqualsAndHashCode(exclude = {"id", "events"})
 @Table(name = "favorites")
+@Accessors(chain = true)
 public class Favorite {
     @Id
     private Long id;

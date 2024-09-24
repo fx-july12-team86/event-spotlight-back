@@ -1,5 +1,8 @@
 package org.example.eventspotlightback.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
@@ -32,11 +35,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.example.eventspotlightback.utils.TestUtil.TEST_ADDRESS_ID;
 import static org.example.eventspotlightback.utils.TestUtil.TEST_CATEGORY_ID;
 import static org.example.eventspotlightback.utils.TestUtil.TEST_CONTACT_ID;
@@ -62,7 +60,6 @@ import static org.example.eventspotlightback.utils.TestUtil.testUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.times;
@@ -99,7 +96,6 @@ public class EventServiceTest {
     private Event updatedEvent;
     private EventDto updatedEventDto;
     private CreateEventDto updateEventDto;
-
     private MyEvents testMyEvents = new MyEvents();
 
     @BeforeEach
@@ -427,5 +423,4 @@ public class EventServiceTest {
         //Then
         assertEquals(expected, actual);
     }
-
 }

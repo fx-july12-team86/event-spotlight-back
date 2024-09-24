@@ -13,13 +13,18 @@ import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.user.UserRegistrationRequestDto;
+import org.example.eventspotlightback.dto.internal.user.UserResponseDto;
 import org.example.eventspotlightback.model.Address;
 import org.example.eventspotlightback.model.Category;
 import org.example.eventspotlightback.model.City;
 import org.example.eventspotlightback.model.Contact;
 import org.example.eventspotlightback.model.Description;
 import org.example.eventspotlightback.model.Event;
+import org.example.eventspotlightback.model.Favorite;
+import org.example.eventspotlightback.model.MyEvents;
 import org.example.eventspotlightback.model.Photo;
+import org.example.eventspotlightback.model.Role;
 import org.example.eventspotlightback.model.User;
 
 import java.math.BigDecimal;
@@ -58,6 +63,11 @@ public class TestUtil {
     public static final String TEST_USER_NAME = "Test User Name";
     public static final String TEST_USER_EMAIL = "Test User Email";
     public static final String TEST_USER_PASSWORD = "Test User Password";
+    public static final Long TEST_ROLE_ID = 8L;
+
+    public static final Long TEST_MY_EVENTS_ID = TEST_USER_ID;
+    public static final Long TEST_FAVORITE_ID = TEST_USER_ID;
+
 
     public static final Long TEST_PHOTO_ID = 8L;
     private static final String TEST_PHOTO_PATH = "/test/path";
@@ -131,11 +141,33 @@ public class TestUtil {
             .setStreet(TEST_ADDRESS_STREET)
             .setNumber(TEST_ADDRESS_NUMBER);
 
+
+    public static final Role testUserRole = new Role()
+            .setId(TEST_ROLE_ID)
+            .setRoleName(Role.RoleName.USER);
     public static final User testUser = new User()
             .setId(TEST_USER_ID)
             .setUserName(TEST_USER_NAME)
             .setEmail(TEST_USER_EMAIL)
-            .setPassword(TEST_USER_PASSWORD);
+            .setPassword(TEST_USER_PASSWORD)
+            .setRoles(Set.of(testUserRole));
+    public static final UserResponseDto testUserDto = new UserResponseDto()
+            .setId(TEST_USER_ID)
+            .setUserName(TEST_USER_NAME)
+            .setEmail(TEST_USER_EMAIL);
+    public static final UserRegistrationRequestDto testUserRegistrationDto =
+            new UserRegistrationRequestDto()
+                    .setUserName(TEST_USER_NAME)
+                    .setEmail(TEST_USER_EMAIL)
+                    .setPassword(TEST_USER_PASSWORD)
+                    .setRepeatPassword(TEST_USER_PASSWORD);
+
+    public static final MyEvents testMyEvents = new MyEvents()
+            .setId(TEST_MY_EVENTS_ID)
+            .setUser(testUser);
+    public static final Favorite testFavorite = new Favorite()
+            .setId(TEST_FAVORITE_ID)
+            .setUser(testUser);
 
     public static final Event testEvent = new Event()
             .setId(TEST_EVENT_ID)
