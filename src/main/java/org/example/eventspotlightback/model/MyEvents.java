@@ -12,12 +12,14 @@ import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @Entity
 @EqualsAndHashCode(exclude = {"id", "events"})
 @Table(name = "my_events")
+@Accessors(chain = true)
 public class MyEvents {
     @Id
     private Long id;

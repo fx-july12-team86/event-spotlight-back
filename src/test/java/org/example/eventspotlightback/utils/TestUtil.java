@@ -12,16 +12,19 @@ import org.example.eventspotlightback.dto.internal.description.CreateDescription
 import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.example.eventspotlightback.model.Address;
 import org.example.eventspotlightback.model.Category;
 import org.example.eventspotlightback.model.City;
 import org.example.eventspotlightback.model.Contact;
 import org.example.eventspotlightback.model.Description;
 import org.example.eventspotlightback.model.Event;
+import org.example.eventspotlightback.model.Photo;
 import org.example.eventspotlightback.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class TestUtil {
     public static final Long TEST_ADDRESS_ID = 1L;
@@ -45,16 +48,22 @@ public class TestUtil {
     public static final String TEST_DESCRIPTION_TITLE = "testTitle";
     public static final String TEST_DESCRIPTION_DESCRIPTION = "testDescription";
 
-    public static final Long TEST_EVENT_ID = 1L;
+    public static final Long TEST_EVENT_ID = 6L;
     public static final String TEST_EVENT_TITLE = "Test Event Title";
     public static final LocalDateTime TEST_EVENT_START_TIME = LocalDateTime
             .of(2024, 11, 19, 6, 0);
     public static final BigDecimal TEST_EVENT_PRICE = BigDecimal.valueOf(100.0);
 
-    public static final Long TEST_USER_ID = 1L;
+    public static final Long TEST_USER_ID = 7L;
     public static final String TEST_USER_NAME = "Test User Name";
     public static final String TEST_USER_EMAIL = "Test User Email";
     public static final String TEST_USER_PASSWORD = "Test User Password";
+
+    public static final Long TEST_PHOTO_ID = 8L;
+    private static final String TEST_PHOTO_PATH = "/test/path";
+    private static final LocalDateTime TEST_PHOTO_CREATED_AT = LocalDateTime
+            .of(2024, 9, 22, 8, 45, 54);
+    private static final String TEST_PHOTO_SHARED_URL = "/url/test/sharing";
 
     public static final City testCity = new City()
             .setId(TEST_CITY_ID)
@@ -136,7 +145,8 @@ public class TestUtil {
             .setContact(testContact)
             .setAddress(testAddress)
             .setDescription(testDescription)
-            .setUser(testUser);
+            .setUser(testUser)
+            .setAccepted(false);
     public static final EventDto testEventDto = new EventDto()
             .setId(TEST_EVENT_ID)
             .setTitle(TEST_EVENT_TITLE)
@@ -146,10 +156,26 @@ public class TestUtil {
             .setAddress(testAddressDto)
             .setUserId(TEST_USER_ID)
             .setDescription(testDescriptionDto);
+    public static final SimpleEventDto testSimpleEventDto = new SimpleEventDto()
+            .setId(TEST_EVENT_ID)
+            .setTitle(TEST_EVENT_TITLE)
+            .setStartTime(TEST_EVENT_START_TIME)
+            .setPrice(TEST_EVENT_PRICE)
+            .setAddress(testAddressDto);
     public static final CreateEventDto addEventDto = new CreateEventDto()
             .setTitle(TEST_EVENT_TITLE)
+            .setStartTime(TEST_EVENT_START_TIME)
+            .setPrice(TEST_EVENT_PRICE)
             .setContactId(TEST_CONTACT_ID)
             .setAddressId(TEST_ADDRESS_ID)
-            .setPrice(TEST_EVENT_PRICE);
+            .setDescriptionId(TEST_DESCRIPTION_ID)
+            .setUserId(TEST_USER_ID)
+            .setPhotoIds(Set.of(TEST_PHOTO_ID))
+            .setCategoryIds(Set.of(TEST_CATEGORY_ID));
 
+    public static final Photo testPhoto = new Photo()
+            .setId(TEST_PHOTO_ID)
+            .setPath(TEST_PHOTO_PATH)
+            .setCreatedAt(TEST_PHOTO_CREATED_AT)
+            .setSharedUrl(TEST_PHOTO_SHARED_URL);
 }
