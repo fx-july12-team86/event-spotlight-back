@@ -8,6 +8,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
+import java.util.HashSet;
 import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,5 +30,5 @@ public class MyEvents {
     @JoinColumn(nullable = false, name = "id")
     private User user;
     @ManyToMany(mappedBy = "myEvents", fetch = FetchType.LAZY)
-    private Set<Event> events;
+    private Set<Event> events = new HashSet<>();
 }

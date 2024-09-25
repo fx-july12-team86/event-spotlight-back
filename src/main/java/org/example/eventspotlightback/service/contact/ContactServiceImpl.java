@@ -8,12 +8,14 @@ import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.ContactMapper;
 import org.example.eventspotlightback.model.Contact;
 import org.example.eventspotlightback.repository.ContactRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
+    @Qualifier
     private final ContactMapper contactMapper;
 
     @Override
