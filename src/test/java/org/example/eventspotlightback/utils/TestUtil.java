@@ -14,6 +14,7 @@ import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
+import org.example.eventspotlightback.dto.internal.my.events.MyEventsDto;
 import org.example.eventspotlightback.dto.internal.photo.PhotoDto;
 import org.example.eventspotlightback.dto.internal.user.UserRegistrationRequestDto;
 import org.example.eventspotlightback.dto.internal.user.UserResponseDto;
@@ -168,6 +169,9 @@ public class TestUtil {
     public static final MyEvents testMyEvents = new MyEvents()
             .setId(TEST_MY_EVENTS_ID)
             .setUser(testUser);
+    public static final MyEventsDto testMyEventsDto = new MyEventsDto()
+            .setId(TEST_MY_EVENTS_ID)
+            .setEventDtos(Collections.emptyList());//EventDtos fix
     public static final Favorite testFavorite = new Favorite()
             .setId(TEST_FAVORITE_ID)
             .setUser(testUser);

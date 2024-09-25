@@ -82,7 +82,6 @@ public class FavoriteServiceTest {
                 .setUser(testUser)
                 .setAccepted(false);
 
-        testUser.setFavorite(testFavorite);
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.of(testFavorite));
         when(eventRepository.findByIdWithFavorite(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
         when(favoriteRepository.save(any(Favorite.class))).thenReturn(testFavorite);
@@ -139,7 +138,7 @@ public class FavoriteServiceTest {
     }
 
     @Test
-    @DisplayName("Remove Event to Favorite")
+    @DisplayName("Remove Event from Favorite")
     public void removeEvent_EventIdAndUserId_FavoriteDto() {
         //Given
 
@@ -187,7 +186,7 @@ public class FavoriteServiceTest {
     }
 
     @Test
-    @DisplayName("Remove Event to Favorite with invalid User id")
+    @DisplayName("Remove Event from Favorite with invalid User id")
     public void removeEvent_EventIdAndInvalidUserId_EntityNotFoundException() {
         //Given
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.empty());
@@ -204,7 +203,7 @@ public class FavoriteServiceTest {
     }
 
     @Test
-    @DisplayName("Remove Event to Favorite with invalid Event id")
+    @DisplayName("Remove Event from Favorite with invalid Event id")
     public void removeEvent_InvalidEventIdAndUserId_EntityNotFoundException() {
         //Given
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.of(testFavorite));
