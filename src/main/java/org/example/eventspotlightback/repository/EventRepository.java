@@ -9,7 +9,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -50,23 +49,25 @@ public interface EventRepository extends
     })
     Optional<Event> findById(Long id);
 
-    @Query("SELECT e FROM Event e "
-            + "LEFT JOIN FETCH e.myEvents m "
-            + "LEFT JOIN FETCH e.photos p "
-            + "LEFT JOIN FETCH e.categories c "
-            + "LEFT JOIN FETCH e.address a "
-            + "LEFT JOIN FETCH e.contact co "
-            + "LEFT JOIN FETCH e.user u "
-            + "WHERE e.id = :eventId")
-    Optional<Event> findByIdWithMyEvents(@Param("eventId")Long eventId);
+    @EntityGraph(attributePaths = {
+            "myEvents",
+            "photos",
+            "categories",
+            "address",
+            "address.city",
+            "contact",
+            "user"
+    }, type = EntityGraph.EntityGraphType.FETCH)
+    Optional<Event> findEventWithMyEventsById(Long eventId);
 
-    @Query("SELECT e FROM Event e "
-            + "LEFT JOIN FETCH e.favorites f "
-            + "LEFT JOIN FETCH e.photos p "
-            + "LEFT JOIN FETCH e.categories c "
-            + "LEFT JOIN FETCH e.address a "
-            + "LEFT JOIN FETCH e.contact co "
-            + "LEFT JOIN FETCH e.user u "
-            + "WHERE e.id = :eventId")
-    Optional<Event> findByIdWithFavorite(@Param("eventId")Long eventId);
+    @EntityGraph(attributePaths = {
+            "favorites",
+            "photos",
+            "categories",
+            "address",
+            "address.city",
+            "contact",
+            "user"
+    }, type = EntityGraph.EntityGraphType.FETCH)
+    Optional<Event> findEventWithFavoriteById(Long eventId);
 }

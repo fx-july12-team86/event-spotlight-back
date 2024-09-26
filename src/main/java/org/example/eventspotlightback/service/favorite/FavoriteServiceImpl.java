@@ -30,7 +30,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         Favorite favorite = favoriteRepository.findByUserId(userId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find favorite by user id: " + userId)
         );
-        Event newFavoriteEvent = eventRepository.findByIdWithFavorite(eventId).orElseThrow(
+        Event newFavoriteEvent = eventRepository.findEventWithFavoriteById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
         favorite.getEvents().add(newFavoriteEvent);
@@ -47,7 +47,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         Favorite favorite = favoriteRepository.findByUserId(userId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find favorite by user id: " + userId)
         );
-        Event removeFavoriteEvent = eventRepository.findByIdWithFavorite(eventId).orElseThrow(
+        Event removeFavoriteEvent = eventRepository.findEventWithFavoriteById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
         favorite.getEvents().remove(removeFavoriteEvent);

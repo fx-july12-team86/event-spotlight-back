@@ -10,14 +10,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
-    @EntityGraph(attributePaths = {"events"})
-    @Query("SELECT f FROM Favorite f "
-            + "LEFT JOIN FETCH f.events e "
-            + "LEFT JOIN FETCH f.user u "
-            + "LEFT JOIN FETCH e.address ad "
-            + "LEFT JOIN FETCH ad.city ci "
-            + "LEFT JOIN FETCH e.photos p "
-            + "LEFT JOIN FETCH e.categories c "
-            + "WHERE f.id = :favoriteId")
-    Optional<Favorite> findByUserId(@Param("favoriteId") Long favoriteId);
+    @EntityGraph(attributePaths = {
+            "events",
+            "user",
+            "events.address",
+            "events.address.city",
+            "events.photos",
+            "events.categories",
+    }, type = EntityGraph.EntityGraphType.FETCH)
+    Optional<Favorite> findByUserId(Long favoriteId);
 }

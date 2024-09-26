@@ -39,7 +39,7 @@ public class MyEventsServiceImpl implements MyEventsService {
         MyEvents myEvents = myEventsRepository.findMyEventsById(userId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find MyEvents by userId: " + userId)
         );
-        Event newEvent = eventRepository.findByIdWithMyEvents(eventId).orElseThrow(
+        Event newEvent = eventRepository.findEventWithMyEventsById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
 
@@ -57,7 +57,7 @@ public class MyEventsServiceImpl implements MyEventsService {
         MyEvents myEvents = myEventsRepository.findMyEventsById(user.getId()).orElseThrow(
                 () -> new EntityNotFoundException("Can't find MyEvents by userId: " + user.getId())
         );
-        Event event = eventRepository.findByIdWithMyEvents(eventId).orElseThrow(
+        Event event = eventRepository.findEventWithMyEventsById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
 
