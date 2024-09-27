@@ -18,6 +18,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.example.eventspotlightback.utils.CategoryTestUtil.TEST_CATEGORY_ID;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.TEST_UPDATE_CATEGORY_NAME;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.addCategoryDto;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.testCategory;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.testCategoryDto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
@@ -25,11 +30,9 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.example.eventspotlightback.utils.TestUtil.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CategoryServiceTest {
-    private static final String TEST_UPDATE_CATEGORY_NAME = "Test Update Category Name";
 
     @Mock
     private CategoryMapper categoryMapper;

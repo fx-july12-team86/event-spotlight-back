@@ -35,28 +35,29 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
-import static org.example.eventspotlightback.utils.TestUtil.TEST_ADDRESS_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_CATEGORY_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_CONTACT_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_DESCRIPTION_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_EVENT_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_EVENT_PRICE;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_EVENT_START_TIME;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_PHOTO_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_USER_ID;
-import static org.example.eventspotlightback.utils.TestUtil.addEventDto;
-import static org.example.eventspotlightback.utils.TestUtil.testAddress;
-import static org.example.eventspotlightback.utils.TestUtil.testAddressDto;
-import static org.example.eventspotlightback.utils.TestUtil.testCategory;
-import static org.example.eventspotlightback.utils.TestUtil.testContact;
-import static org.example.eventspotlightback.utils.TestUtil.testContactDto;
-import static org.example.eventspotlightback.utils.TestUtil.testDescription;
-import static org.example.eventspotlightback.utils.TestUtil.testDescriptionDto;
-import static org.example.eventspotlightback.utils.TestUtil.testEvent;
-import static org.example.eventspotlightback.utils.TestUtil.testEventDto;
-import static org.example.eventspotlightback.utils.TestUtil.testPhoto;
-import static org.example.eventspotlightback.utils.TestUtil.testSimpleEventDto;
-import static org.example.eventspotlightback.utils.TestUtil.testUser;
+import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_ID;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddressDto;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.TEST_CATEGORY_ID;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.testCategory;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_ID;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContact;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContactDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_ID;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescriptionDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_PRICE;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_START_TIME;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_UPDATE_EVENT_TITLE;
+import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.testEvent;
+import static org.example.eventspotlightback.utils.EventTestUtil.testEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhoto;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -68,7 +69,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class EventServiceTest {
-    private static final String TEST_UPDATE_EVENT_TITLE = "Test Updated Event Title";
 
     @Mock
     private EventRepository eventRepository;

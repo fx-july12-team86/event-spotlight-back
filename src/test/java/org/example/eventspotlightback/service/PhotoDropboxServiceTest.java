@@ -8,7 +8,6 @@ import org.example.eventspotlightback.repository.PhotoRepository;
 import org.example.eventspotlightback.service.dropbox.DropboxService;
 import org.example.eventspotlightback.service.photo.PhotoDropboxServiceImpl;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +20,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_PATH;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_SHARED_URL;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhoto;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhotoDto;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,7 +33,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.example.eventspotlightback.utils.TestUtil.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PhotoDropboxServiceTest {

@@ -33,7 +33,7 @@ public class FavoriteController {
             @PathVariable Long eventId
     ) {
         User user = (User) authentication.getPrincipal();
-        return favoriteService.removeEvent(eventId, user.getId());
+        return favoriteService.removeEventFromFavorite(eventId, user.getId());
     }
 
     @PreAuthorize("hasAuthority('USER')")

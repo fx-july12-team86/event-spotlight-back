@@ -21,20 +21,19 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.example.eventspotlightback.utils.TestUtil.TEST_USER_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_USER_PASSWORD;
-import static org.example.eventspotlightback.utils.TestUtil.testFavorite;
-import static org.example.eventspotlightback.utils.TestUtil.testMyEvents;
-import static org.example.eventspotlightback.utils.TestUtil.testUser;
-import static org.example.eventspotlightback.utils.TestUtil.testUserDto;
-import static org.example.eventspotlightback.utils.TestUtil.testUserRegistrationDto;
-import static org.example.eventspotlightback.utils.TestUtil.testUserRole;
+import static org.example.eventspotlightback.utils.FavoriteTestUtil.testFavorite;
+import static org.example.eventspotlightback.utils.MyEventsTestUtil.testMyEvents;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_PASSWORD;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUserDto;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUserRegistrationDto;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUserRole;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {

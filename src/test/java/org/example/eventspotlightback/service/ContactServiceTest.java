@@ -18,6 +18,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_EMAIL;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_FACEBOOK;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_ID;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_PHONE_NUMBER;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_TELEGRAM;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_UPDATE_CONTACT_INSTAGRAM;
+import static org.example.eventspotlightback.utils.ContactTestUtil.addContactDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContact;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContactDto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
@@ -25,11 +34,9 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.example.eventspotlightback.utils.TestUtil.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ContactServiceTest {
-    private static final String TEST_UPDATE_CONTACT_INSTAGRAM = "@testUpdatedInstagram";
 
     @Mock
     private ContactMapper contactMapper;

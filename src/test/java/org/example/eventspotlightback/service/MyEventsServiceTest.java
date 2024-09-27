@@ -1,11 +1,12 @@
 package org.example.eventspotlightback.service;
 
-import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import org.example.eventspotlightback.dto.internal.my.events.MyEventsDto;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.MyEventsMapper;
 import org.example.eventspotlightback.model.Event;
-import org.example.eventspotlightback.model.Favorite;
 import org.example.eventspotlightback.model.MyEvents;
 import org.example.eventspotlightback.model.User;
 import org.example.eventspotlightback.repository.EventRepository;
@@ -20,28 +21,22 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
-import static org.example.eventspotlightback.utils.TestUtil.TEST_EVENT_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_EVENT_PRICE;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_EVENT_START_TIME;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_EVENT_TITLE;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_FAVORITE_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_MY_EVENTS_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_USER_ID;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_USER_NAME;
-import static org.example.eventspotlightback.utils.TestUtil.TEST_USER_PASSWORD;
-import static org.example.eventspotlightback.utils.TestUtil.testAddress;
-import static org.example.eventspotlightback.utils.TestUtil.testContact;
-import static org.example.eventspotlightback.utils.TestUtil.testDescription;
-import static org.example.eventspotlightback.utils.TestUtil.testFavorite;
-import static org.example.eventspotlightback.utils.TestUtil.testFavoriteDto;
-import static org.example.eventspotlightback.utils.TestUtil.testMyEvents;
-import static org.example.eventspotlightback.utils.TestUtil.testMyEventsDto;
-import static org.example.eventspotlightback.utils.TestUtil.testSimpleEventDto;
-import static org.example.eventspotlightback.utils.TestUtil.testUser;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContact;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_PRICE;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_START_TIME;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_TITLE;
+import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
+import static org.example.eventspotlightback.utils.FavoriteTestUtil.TEST_FAVORITE_ID;
+import static org.example.eventspotlightback.utils.MyEventsTestUtil.TEST_MY_EVENTS_ID;
+import static org.example.eventspotlightback.utils.MyEventsTestUtil.testMyEvents;
+import static org.example.eventspotlightback.utils.MyEventsTestUtil.testMyEventsDto;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_NAME;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_PASSWORD;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -133,7 +128,7 @@ public class MyEventsServiceTest {
                 .setAccepted(false);
 
         when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findByIdWithMyEvents(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
         when(myEventsRepository.save(any(MyEvents.class))).thenReturn(testMyEvents);
         when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
         when(myEventsMapper.toDto(testMyEvents)).thenReturn(testMyEventsDto);
@@ -174,7 +169,7 @@ public class MyEventsServiceTest {
     public void addEvent_InvalidEventIdAndUserId_EntityNotFoundException() {
         //Given
         when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findByIdWithMyEvents(TEST_EVENT_ID)).thenReturn(Optional.empty());
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.empty());
         //When
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,
@@ -214,7 +209,7 @@ public class MyEventsServiceTest {
                 .setEventDtos(Collections.emptyList());
 
         when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findByIdWithMyEvents(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
         when(myEventsRepository.save(any(MyEvents.class))).thenReturn(testMyEvents);
         when(myEventsMapper.toDto(testMyEvents)).thenReturn(testMyEventsDto);
         testEvent.getMyEvents().remove(testMyEvents);
@@ -266,7 +261,7 @@ public class MyEventsServiceTest {
                 .setEventDtos(Collections.emptyList());
 
         when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findByIdWithMyEvents(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
         when(myEventsRepository.save(any(MyEvents.class))).thenReturn(testMyEvents);
         when(myEventsMapper.toDto(testMyEvents)).thenReturn(testMyEventsDto);
 
@@ -306,7 +301,7 @@ public class MyEventsServiceTest {
     public void removeEvent_InvalidEventIdAndUserId_EntityNotFoundException() {
         //Given
         when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findByIdWithMyEvents(TEST_EVENT_ID)).thenReturn(Optional.empty());
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.empty());
         //When
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,

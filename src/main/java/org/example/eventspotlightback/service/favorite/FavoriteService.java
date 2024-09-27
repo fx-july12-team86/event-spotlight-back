@@ -9,7 +9,7 @@ public interface FavoriteService {
 
     FavoriteDto addEvent(Long eventId, Long userId);
 
-    FavoriteDto removeEvent(Long eventId, Long userId);
+    FavoriteDto removeEventFromFavorite(Long eventId, Long userId);
 
     FavoriteDto findFavoriteByUserId(Long userId);
 }
