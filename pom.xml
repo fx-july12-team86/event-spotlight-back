@@ -35,6 +35,7 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <jjwt.version>0.12.6</jjwt.version>
         <liquibase.version>4.29.1</liquibase.version>
+        <testcontainers.version>1.18.0</testcontainers.version>
     </properties>
     <dependencies>
         <dependency>
@@ -90,6 +91,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mysql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
@@ -109,6 +120,18 @@
             <version>3.0.0</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>${testcontainers.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
