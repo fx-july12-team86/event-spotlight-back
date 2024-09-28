@@ -1,27 +1,11 @@
 package org.example.eventspotlightback.controller;
 
-import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
-import static org.example.eventspotlightback.utils.CityTestUtil.addCityDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.getTestListWithCities;
-import static org.example.eventspotlightback.utils.CityTestUtil.testCityDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.updateCityDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.updatedCityDto;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import javax.sql.DataSource;
 import lombok.SneakyThrows;
 import org.example.eventspotlightback.dto.internal.city.AddCityDto;
 import org.example.eventspotlightback.dto.internal.city.CityDto;
+import org.example.eventspotlightback.dto.internal.contact.ContactDto;
+import org.example.eventspotlightback.dto.internal.contact.CreateContactDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -40,8 +24,34 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
+import static org.example.eventspotlightback.utils.CityTestUtil.addCityDto;
+import static org.example.eventspotlightback.utils.CityTestUtil.getTestListWithCities;
+import static org.example.eventspotlightback.utils.CityTestUtil.testCityDto;
+import static org.example.eventspotlightback.utils.CityTestUtil.updateCityDto;
+import static org.example.eventspotlightback.utils.CityTestUtil.updatedCityDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_EMAIL;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_ID;
+import static org.example.eventspotlightback.utils.ContactTestUtil.addContactDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.getTestListWithContacts;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContactDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.updateContactDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.updatedContactDto;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CityControllerTest {
+public class ContactControllerTest {
     private static MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
@@ -60,11 +70,11 @@ public class CityControllerTest {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/city/add_three_cities.sql")
+                    new ClassPathResource("database/contact/add_three_contacts.sql")
             );
         }
     }
-    
+
     @AfterAll
     public static void afterAll(
             @Autowired DataSource dataSource
@@ -78,21 +88,21 @@ public class CityControllerTest {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/city/delete_all_cities.sql")
+                    new ClassPathResource("database/contact/delete_all_contacts.sql")
             );
         }
     }
 
     @Sql(scripts = {
-            "classpath:database/city/delete_test_city.sql"
+            "classpath:database/contact/delete_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("create new City")
-    public void save_AddCityDto_Success() throws Exception {
+    @DisplayName("Create new Contact")
+    public void save_CreateContactDto_Success() throws Exception {
         //Given
-        String jsonRequest = objectMapper.writeValueAsString(addCityDto);
-        MvcResult result = mockMvc.perform(post("/cities")
+        String jsonRequest = objectMapper.writeValueAsString(addContactDto);
+        MvcResult result = mockMvc.perform(post("/contacts")
                         .content(jsonRequest)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -100,28 +110,27 @@ public class CityControllerTest {
                 .andReturn();
 
         //When
-        CityDto expected = testCityDto;
-        CityDto actual = objectMapper.readValue(
-                result.getResponse().getContentAsString(), CityDto.class);
+        ContactDto expected = testContactDto;
+        ContactDto actual = objectMapper.readValue(
+                result.getResponse().getContentAsString(), ContactDto.class);
 
         //Then
         EqualsBuilder.reflectionEquals(expected, actual, "id");
     }
 
     @Sql(scripts = {
-            "classpath:database/city/add_test_city.sql"
+            "classpath:database/contact/add_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/city/delete_updated_test_city.sql"
+            "classpath:database/contact/delete_updated_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Update test City")
-    public void update_AddCityDto_Success() throws Exception {
+    @DisplayName("Update test Contact")
+    public void update_CreateContactDto_Success() throws Exception {
         //Given
-        AddCityDto updateDto = updateCityDto;
-        String jsonRequest = objectMapper.writeValueAsString(updateDto);
-        MvcResult result = mockMvc.perform(put("/cities/" + TEST_CITY_ID)
+        String jsonRequest = objectMapper.writeValueAsString(updateContactDto);
+        MvcResult result = mockMvc.perform(put("/contacts/" + TEST_CONTACT_ID)
                         .content(jsonRequest)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -129,44 +138,45 @@ public class CityControllerTest {
                 .andReturn();
 
         //When
-        CityDto expected = updatedCityDto;
-        CityDto actual = objectMapper.readValue(
-                result.getResponse().getContentAsString(), CityDto.class);
+        ContactDto expected = updatedContactDto;
+        ContactDto actual = objectMapper.readValue(
+                result.getResponse().getContentAsString(), ContactDto.class);
 
         //Then
         EqualsBuilder.reflectionEquals(expected, actual);
     }
 
     @Sql(scripts = {
-            "classpath:database/city/add_test_city.sql"
+            "classpath:database/contact/add_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/city/delete_test_city.sql"
+            "classpath:database/contact/delete_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Delete existing city")
+    @DisplayName("Delete existing Contact")
     public void delete_anyRequest_Success() throws Exception {
-        mockMvc.perform(delete("/cities/" + TEST_CITY_ID))
+        mockMvc.perform(delete("/contacts/" + TEST_CONTACT_ID))
                 .andExpect(status().isNoContent())
                 .andReturn();
 
-        mockMvc.perform(get("/cities/" + TEST_CITY_ID))
+        mockMvc.perform(get("/contacts/" + TEST_CONTACT_ID))
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }
 
+    @WithMockUser(username = "testUser", authorities = {"USER"})
     @Test
-    @DisplayName("Test find all cities")
-    public void findAll_Empty_ListOfCityDto() throws Exception {
-        MvcResult result = mockMvc.perform(get("/cities"))
+    @DisplayName("Test find all Contacts")
+    public void findAll_Empty_ListOfContactDto() throws Exception {
+        MvcResult result = mockMvc.perform(get("/contacts"))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<CityDto> expected = getTestListWithCities();
-        CityDto[] actual = objectMapper.readValue(
+        List<ContactDto> expected = getTestListWithContacts();
+        ContactDto[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                CityDto[].class
+                ContactDto[].class
         );
 
         Assertions.assertEquals(3, actual.length);
@@ -174,22 +184,23 @@ public class CityControllerTest {
     }
 
     @Sql(scripts = {
-            "classpath:database/city/add_test_city.sql"
+            "classpath:database/contact/add_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/city/delete_test_city.sql"
+            "classpath:database/contact/delete_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @WithMockUser(username = "testUser", authorities = {"USER"})
     @Test
-    @DisplayName("Test find City by id")
-    public void findById_CityId_CityDto() throws Exception {
-        MvcResult result = mockMvc.perform(get("/cities/" + TEST_CITY_ID))
+    @DisplayName("Test find Contact by id")
+    public void findById_CityId_ContactDto() throws Exception {
+        MvcResult result = mockMvc.perform(get("/contacts/" + TEST_CONTACT_ID))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        CityDto expected = testCityDto;
-        CityDto actual = objectMapper.readValue(
+        ContactDto expected = testContactDto;
+        ContactDto actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                CityDto.class
+                ContactDto.class
         );
 
         EqualsBuilder.reflectionEquals(expected, actual, "id");

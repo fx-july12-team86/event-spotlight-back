@@ -26,6 +26,7 @@ public class ContactController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     ContactDto save(@RequestBody @Valid CreateContactDto contactDto) {
         return contactService.createContact(contactDto);
     }
