@@ -1,25 +1,5 @@
 package org.example.eventspotlightback.service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
-import org.example.eventspotlightback.exception.EntityNotFoundException;
-import org.example.eventspotlightback.mapper.FavoriteMapper;
-import org.example.eventspotlightback.model.Event;
-import org.example.eventspotlightback.model.Favorite;
-import org.example.eventspotlightback.model.User;
-import org.example.eventspotlightback.repository.EventRepository;
-import org.example.eventspotlightback.repository.FavoriteRepository;
-import org.example.eventspotlightback.service.favorite.FavoriteServiceImpl;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
 import static org.example.eventspotlightback.utils.ContactTestUtil.testContact;
 import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
@@ -39,6 +19,26 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import org.example.eventspotlightback.dto.internal.favorite.FavoriteDto;
+import org.example.eventspotlightback.exception.EntityNotFoundException;
+import org.example.eventspotlightback.mapper.FavoriteMapper;
+import org.example.eventspotlightback.model.Event;
+import org.example.eventspotlightback.model.Favorite;
+import org.example.eventspotlightback.model.User;
+import org.example.eventspotlightback.repository.EventRepository;
+import org.example.eventspotlightback.repository.FavoriteRepository;
+import org.example.eventspotlightback.service.favorite.FavoriteServiceImpl;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class FavoriteServiceTest {
@@ -89,7 +89,8 @@ public class FavoriteServiceTest {
                 .setAccepted(false);
 
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.of(testFavorite));
-        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID))
+                .thenReturn(Optional.of(testEvent));
         when(favoriteRepository.save(any(Favorite.class))).thenReturn(testFavorite);
         when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
         when(favoriteMapper.toDto(testFavorite)).thenReturn(testFavoriteDto);
@@ -130,7 +131,8 @@ public class FavoriteServiceTest {
     public void addEvent_InvalidEventIdAndUserId_EntityNotFoundException() {
         //Given
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.of(testFavorite));
-        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID)).thenReturn(Optional.empty());
+        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID))
+                .thenReturn(Optional.empty());
         //When
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,
@@ -166,20 +168,21 @@ public class FavoriteServiceTest {
         testFavorite.getEvents().add(testEvent);
         testEvent.getFavorites().add(testFavorite);
 
-
         FavoriteDto testFavoriteDto = new FavoriteDto()
                 .setId(TEST_FAVORITE_ID)
                 .setEvents(Collections.emptyList());
 
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.of(testFavorite));
-        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID))
+                .thenReturn(Optional.of(testEvent));
         when(favoriteRepository.save(any(Favorite.class))).thenReturn(testFavorite);
         when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
         when(favoriteMapper.toDto(testFavorite)).thenReturn(testFavoriteDto);
 
         //When
         FavoriteDto expected = testFavoriteDto;
-        FavoriteDto actual = favoriteService.removeEventFromFavorite(TEST_EVENT_ID, TEST_USER_ID);
+        FavoriteDto actual = favoriteService
+                .removeEventFromFavorite(TEST_EVENT_ID, TEST_USER_ID);
 
         //Then
         assertEquals(expected, actual);
@@ -199,7 +202,7 @@ public class FavoriteServiceTest {
         //When
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,
-                () -> favoriteService.addEvent(TEST_EVENT_ID, TEST_USER_ID)
+                () -> favoriteService.removeEventFromFavorite(TEST_EVENT_ID, TEST_USER_ID)
         );
         String expected = "Can't find favorite by user id: " + TEST_USER_ID;
         String actual = exception.getMessage();
@@ -213,11 +216,12 @@ public class FavoriteServiceTest {
     public void removeEvent_InvalidEventIdAndUserId_EntityNotFoundException() {
         //Given
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.of(testFavorite));
-        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID)).thenReturn(Optional.empty());
+        when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID))
+                .thenReturn(Optional.empty());
         //When
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,
-                () -> favoriteService.addEvent(TEST_EVENT_ID, TEST_USER_ID)
+                () -> favoriteService.removeEventFromFavorite(TEST_EVENT_ID, TEST_USER_ID)
         );
         String expected = "Can't find event with id: " + TEST_EVENT_ID;
         String actual = exception.getMessage();
@@ -238,7 +242,6 @@ public class FavoriteServiceTest {
         verify(favoriteRepository, times(1)).findByUserId(TEST_USER_ID);
         verify(favoriteMapper, times(1)).toDto(testFavorite);
     }
-
 
     @Test
     @DisplayName("Find Favorite by not existing User id")

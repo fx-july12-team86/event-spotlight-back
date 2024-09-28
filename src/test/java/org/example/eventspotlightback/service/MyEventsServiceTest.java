@@ -1,26 +1,5 @@
 package org.example.eventspotlightback.service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import org.example.eventspotlightback.dto.internal.my.events.MyEventsDto;
-import org.example.eventspotlightback.exception.EntityNotFoundException;
-import org.example.eventspotlightback.mapper.MyEventsMapper;
-import org.example.eventspotlightback.model.Event;
-import org.example.eventspotlightback.model.MyEvents;
-import org.example.eventspotlightback.model.User;
-import org.example.eventspotlightback.repository.EventRepository;
-import org.example.eventspotlightback.repository.MyEventsRepository;
-import org.example.eventspotlightback.service.event.EventService;
-import org.example.eventspotlightback.service.my.events.MyEventsServiceImpl;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
 import static org.example.eventspotlightback.utils.ContactTestUtil.testContact;
 import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
@@ -43,6 +22,27 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import org.example.eventspotlightback.dto.internal.my.events.MyEventsDto;
+import org.example.eventspotlightback.exception.EntityNotFoundException;
+import org.example.eventspotlightback.mapper.MyEventsMapper;
+import org.example.eventspotlightback.model.Event;
+import org.example.eventspotlightback.model.MyEvents;
+import org.example.eventspotlightback.model.User;
+import org.example.eventspotlightback.repository.EventRepository;
+import org.example.eventspotlightback.repository.MyEventsRepository;
+import org.example.eventspotlightback.service.event.EventService;
+import org.example.eventspotlightback.service.my.events.MyEventsServiceImpl;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class MyEventsServiceTest {
@@ -76,7 +76,8 @@ public class MyEventsServiceTest {
     @DisplayName("Find Favorite by User id")
     public void findMyEventsByUserId_UserId_MyEventsDto() {
         //Given
-        when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
+        when(myEventsRepository.findMyEventsById(TEST_USER_ID))
+                .thenReturn(Optional.of(testMyEvents));
         when(myEventsMapper.toDto(testMyEvents)).thenReturn(testMyEventsDto);
 
         //Then
@@ -84,7 +85,6 @@ public class MyEventsServiceTest {
         verify(myEventsRepository, times(1)).findMyEventsById(TEST_USER_ID);
         verify(myEventsMapper, times(1)).toDto(testMyEvents);
     }
-
 
     @Test
     @DisplayName("Find MyEvents by not existing User id")
@@ -127,8 +127,12 @@ public class MyEventsServiceTest {
                 .setUser(testUser)
                 .setAccepted(false);
 
-        when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(myEventsRepository.findMyEventsById(TEST_USER_ID))
+                .thenReturn(Optional.of(testMyEvents));
+
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID))
+                .thenReturn(Optional.of(testEvent));
+
         when(myEventsRepository.save(any(MyEvents.class))).thenReturn(testMyEvents);
         when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
         when(myEventsMapper.toDto(testMyEvents)).thenReturn(testMyEventsDto);
@@ -168,8 +172,12 @@ public class MyEventsServiceTest {
     @DisplayName("Add Event to MyEvents with invalid Event id")
     public void addEvent_InvalidEventIdAndUserId_EntityNotFoundException() {
         //Given
-        when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.empty());
+        when(myEventsRepository.findMyEventsById(TEST_USER_ID))
+                .thenReturn(Optional.of(testMyEvents));
+
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID))
+                .thenReturn(Optional.empty());
+
         //When
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,
@@ -208,8 +216,12 @@ public class MyEventsServiceTest {
                 .setId(TEST_MY_EVENTS_ID)
                 .setEventDtos(Collections.emptyList());
 
-        when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(myEventsRepository.findMyEventsById(TEST_USER_ID))
+                .thenReturn(Optional.of(testMyEvents));
+
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID))
+                .thenReturn(Optional.of(testEvent));
+
         when(myEventsRepository.save(any(MyEvents.class))).thenReturn(testMyEvents);
         when(myEventsMapper.toDto(testMyEvents)).thenReturn(testMyEventsDto);
         testEvent.getMyEvents().remove(testMyEvents);
@@ -260,8 +272,12 @@ public class MyEventsServiceTest {
                 .setId(TEST_MY_EVENTS_ID)
                 .setEventDtos(Collections.emptyList());
 
-        when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
+        when(myEventsRepository.findMyEventsById(TEST_USER_ID))
+                .thenReturn(Optional.of(testMyEvents));
+
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID))
+                .thenReturn(Optional.of(testEvent));
+
         when(myEventsRepository.save(any(MyEvents.class))).thenReturn(testMyEvents);
         when(myEventsMapper.toDto(testMyEvents)).thenReturn(testMyEventsDto);
 
@@ -300,8 +316,11 @@ public class MyEventsServiceTest {
     @DisplayName("Remove Event from MyEvents with invalid Event id")
     public void removeEvent_InvalidEventIdAndUserId_EntityNotFoundException() {
         //Given
-        when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
-        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID)).thenReturn(Optional.empty());
+        when(myEventsRepository.findMyEventsById(TEST_USER_ID))
+                .thenReturn(Optional.of(testMyEvents));
+
+        when(eventRepository.findEventWithMyEventsById(TEST_EVENT_ID))
+                .thenReturn(Optional.empty());
         //When
         Exception exception = Assertions.assertThrows(
                 EntityNotFoundException.class,
@@ -313,6 +332,4 @@ public class MyEventsServiceTest {
         //Then
         assertEquals(expected, actual);
     }
-
-
 }

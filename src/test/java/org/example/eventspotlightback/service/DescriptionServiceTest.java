@@ -1,5 +1,21 @@
 package org.example.eventspotlightback.service;
 
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_DESCRIPTION;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_ID;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_UPDATE_DESCRIPTION_TITLE;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.addDescriptionDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescriptionDto;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.Optional;
 import org.example.eventspotlightback.dto.internal.description.CreateDescriptionDto;
 import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
@@ -15,23 +31,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_DESCRIPTION;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_ID;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_UPDATE_DESCRIPTION_TITLE;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.addDescriptionDto;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescriptionDto;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class DescriptionServiceTest {

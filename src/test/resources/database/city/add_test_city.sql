@@ -1,0 +1,1 @@
+INSERT INTO cities (id, name) VALUES (99, 'Test City Name');

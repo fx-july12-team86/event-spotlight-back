@@ -1,5 +1,18 @@
 package org.example.eventspotlightback.service;
 
+import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
+import static org.example.eventspotlightback.utils.CityTestUtil.TEST_UPDATE_CITY_NAME;
+import static org.example.eventspotlightback.utils.CityTestUtil.addCityDto;
+import static org.example.eventspotlightback.utils.CityTestUtil.testCity;
+import static org.example.eventspotlightback.utils.CityTestUtil.testCityDto;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.List;
 import java.util.Optional;
 import org.example.eventspotlightback.dto.internal.city.AddCityDto;
@@ -17,19 +30,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
-import static org.example.eventspotlightback.utils.CityTestUtil.TEST_UPDATE_CITY_NAME;
-import static org.example.eventspotlightback.utils.CityTestUtil.addCityDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.testCity;
-import static org.example.eventspotlightback.utils.CityTestUtil.testCityDto;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CityServiceTest {

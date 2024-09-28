@@ -1,5 +1,22 @@
 package org.example.eventspotlightback.service;
 
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_PATH;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_SHARED_URL;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhoto;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhotoDto;
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 import org.example.eventspotlightback.dto.internal.photo.PhotoDto;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.PhotoMapper;
@@ -15,24 +32,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-
-import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
-import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_PATH;
-import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_SHARED_URL;
-import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhoto;
-import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhotoDto;
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class PhotoDropboxServiceTest {
@@ -63,9 +62,9 @@ public class PhotoDropboxServiceTest {
         //Then
         assertEquals(expected, actual);
         assertNotNull(actual);
-        verify(dropboxService).uploadFile(testPhotoFile);  // Перевірка виклику uploadFile
-        verify(dropboxService).getSharedLink(TEST_PHOTO_PATH);  // Перевірка виклику getSharedLink
-        verify(photoRepository).save(any(Photo.class));  // Перевірка збереження
+        verify(dropboxService).uploadFile(testPhotoFile);
+        verify(dropboxService).getSharedLink(TEST_PHOTO_PATH);
+        verify(photoRepository).save(any(Photo.class));
         verify(photoMapper).toDto(testPhoto);
     }
 

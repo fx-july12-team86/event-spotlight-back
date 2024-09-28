@@ -1,5 +1,5 @@
 # Builder stage
-FROM openjdk:17-jdk-slim as builder
+FROM openjdk:21-jdk-slim as builder
 WORKDIR /event-spotlight
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} event-spotlight.jar

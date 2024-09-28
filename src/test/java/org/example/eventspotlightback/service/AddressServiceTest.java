@@ -1,5 +1,22 @@
 package org.example.eventspotlightback.service;
 
+import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_ID;
+import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_NUMBER;
+import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_STREET;
+import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_UPDATE_ADDRESS_STREET;
+import static org.example.eventspotlightback.utils.AddressTestUtil.addAddressDto;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddressDto;
+import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
+import static org.example.eventspotlightback.utils.CityTestUtil.testCity;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.List;
 import java.util.Optional;
 import org.example.eventspotlightback.dto.internal.address.AddAddressDto;
@@ -19,23 +36,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_ID;
-import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_NUMBER;
-import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_STREET;
-import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_UPDATE_ADDRESS_STREET;
-import static org.example.eventspotlightback.utils.AddressTestUtil.addAddressDto;
-import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
-import static org.example.eventspotlightback.utils.AddressTestUtil.testAddressDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
-import static org.example.eventspotlightback.utils.CityTestUtil.testCity;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 @ExtendWith(MockitoExtension.class)
 public class AddressServiceTest {
 
@@ -48,13 +48,12 @@ public class AddressServiceTest {
     @InjectMocks
     private AddressServiceImpl addressService;
 
-
     private Address updatedTestAddress;
     private AddAddressDto updateAddressDto;
     private AddressDto updatedTestAddressDto;
 
     @BeforeEach
-    void setUp () {
+    void setUp() {
         updatedTestAddress = new Address()
                 .setId(TEST_ADDRESS_ID)
                 .setCity(testCity)

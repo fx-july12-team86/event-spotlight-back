@@ -1,5 +1,19 @@
 package org.example.eventspotlightback.service;
 
+import static org.example.eventspotlightback.utils.FavoriteTestUtil.testFavorite;
+import static org.example.eventspotlightback.utils.MyEventsTestUtil.testMyEvents;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_PASSWORD;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUserDto;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUserRegistrationDto;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUserRole;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.Optional;
 import org.example.eventspotlightback.dto.internal.user.UserResponseDto;
 import org.example.eventspotlightback.exception.RegistrationException;
@@ -20,20 +34,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import static org.example.eventspotlightback.utils.FavoriteTestUtil.testFavorite;
-import static org.example.eventspotlightback.utils.MyEventsTestUtil.testMyEvents;
-import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
-import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_PASSWORD;
-import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
-import static org.example.eventspotlightback.utils.UserTestUtil.testUserDto;
-import static org.example.eventspotlightback.utils.UserTestUtil.testUserRegistrationDto;
-import static org.example.eventspotlightback.utils.UserTestUtil.testUserRole;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {

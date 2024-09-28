@@ -61,6 +61,4 @@ public class AddressServiceImpl implements AddressService {
                 () -> new EntityNotFoundException("Address with id" + addressId + " not found"));
         return addressMapper.toDto(address);
     }
-
-
 }

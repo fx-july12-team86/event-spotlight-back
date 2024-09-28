@@ -1,13 +1,5 @@
 package org.example.eventspotlightback.utils;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Set;
-import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
-import org.example.eventspotlightback.dto.internal.event.EventDto;
-import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
-import org.example.eventspotlightback.model.Event;
-
 import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_ID;
 import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
 import static org.example.eventspotlightback.utils.AddressTestUtil.testAddressDto;
@@ -21,6 +13,14 @@ import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescr
 import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
 import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
 import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Set;
+import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
+import org.example.eventspotlightback.dto.internal.event.EventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.model.Event;
 
 public class EventTestUtil {
     public static final Long TEST_EVENT_ID = 6L;

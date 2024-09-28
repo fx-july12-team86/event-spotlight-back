@@ -20,7 +20,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.SQLSelect;
 import org.hibernate.annotations.Where;
 
 @Getter

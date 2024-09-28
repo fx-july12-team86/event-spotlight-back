@@ -1,5 +1,37 @@
 package org.example.eventspotlightback.service;
 
+import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_ID;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddressDto;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.TEST_CATEGORY_ID;
+import static org.example.eventspotlightback.utils.CategoryTestUtil.testCategory;
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_ID;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContact;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContactDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_ID;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescriptionDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_PRICE;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_START_TIME;
+import static org.example.eventspotlightback.utils.EventTestUtil.TEST_UPDATE_EVENT_TITLE;
+import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.testEvent;
+import static org.example.eventspotlightback.utils.EventTestUtil.testEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
+import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhoto;
+import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
+import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anySet;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -34,38 +66,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-
-import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_ID;
-import static org.example.eventspotlightback.utils.AddressTestUtil.testAddress;
-import static org.example.eventspotlightback.utils.AddressTestUtil.testAddressDto;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.TEST_CATEGORY_ID;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.testCategory;
-import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_ID;
-import static org.example.eventspotlightback.utils.ContactTestUtil.testContact;
-import static org.example.eventspotlightback.utils.ContactTestUtil.testContactDto;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_ID;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescription;
-import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescriptionDto;
-import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
-import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_PRICE;
-import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_START_TIME;
-import static org.example.eventspotlightback.utils.EventTestUtil.TEST_UPDATE_EVENT_TITLE;
-import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
-import static org.example.eventspotlightback.utils.EventTestUtil.testEvent;
-import static org.example.eventspotlightback.utils.EventTestUtil.testEventDto;
-import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
-import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
-import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhoto;
-import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
-import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anySet;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class EventServiceTest {
@@ -143,11 +143,18 @@ public class EventServiceTest {
         when(eventMapper.toModel(any(CreateEventDto.class))).thenReturn(testEvent);
         when(photoRepository.findAllByIdIn(anySet())).thenReturn(Set.of(testPhoto));
         when(contactRepository.findById(TEST_CONTACT_ID)).thenReturn(Optional.of(testContact));
-        when(descriptionRepository.findById(TEST_DESCRIPTION_ID)).thenReturn(Optional.of(testDescription));
-        when(userRepository.findById(TEST_USER_ID)).thenReturn(Optional.of(testUser));
-        when(addressRepository.findById(TEST_ADDRESS_ID)).thenReturn(Optional.of(testAddress));
-        when(categoryRepository.findAllByIdIn(Set.of(TEST_CATEGORY_ID))).thenReturn(Set.of(testCategory));
-        when(myEventsRepository.findMyEventsById(TEST_USER_ID)).thenReturn(Optional.of(testMyEvents));
+
+        when(descriptionRepository.findById(TEST_DESCRIPTION_ID))
+                .thenReturn(Optional.of(testDescription));
+        when(userRepository.findById(TEST_USER_ID))
+                .thenReturn(Optional.of(testUser));
+        when(addressRepository.findById(TEST_ADDRESS_ID))
+                .thenReturn(Optional.of(testAddress));
+
+        when(categoryRepository.findAllByIdIn(Set.of(TEST_CATEGORY_ID)))
+                .thenReturn(Set.of(testCategory));
+        when(myEventsRepository.findMyEventsById(TEST_USER_ID))
+                .thenReturn(Optional.of(testMyEvents));
         when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
         when(eventMapper.toDto(testEvent)).thenReturn(testEventDto);
 
@@ -207,7 +214,8 @@ public class EventServiceTest {
         when(eventMapper.toModel(any(CreateEventDto.class))).thenReturn(testEvent);
         when(photoRepository.findAllByIdIn(anySet())).thenReturn(Set.of(testPhoto));
         when(contactRepository.findById(TEST_CONTACT_ID)).thenReturn(Optional.of(testContact));
-        when(descriptionRepository.findById(TEST_DESCRIPTION_ID)).thenReturn(Optional.of(testDescription));
+        when(descriptionRepository.findById(TEST_DESCRIPTION_ID))
+                .thenReturn(Optional.of(testDescription));
         when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         //When
@@ -229,7 +237,8 @@ public class EventServiceTest {
         when(eventMapper.toModel(any(CreateEventDto.class))).thenReturn(testEvent);
         when(photoRepository.findAllByIdIn(anySet())).thenReturn(Set.of(testPhoto));
         when(contactRepository.findById(TEST_CONTACT_ID)).thenReturn(Optional.of(testContact));
-        when(descriptionRepository.findById(TEST_DESCRIPTION_ID)).thenReturn(Optional.of(testDescription));
+        when(descriptionRepository.findById(TEST_DESCRIPTION_ID))
+                .thenReturn(Optional.of(testDescription));
         when(userRepository.findById(TEST_USER_ID)).thenReturn(Optional.of(testUser));
         when(addressRepository.findById(anyLong())).thenReturn(Optional.empty());
 
@@ -252,10 +261,13 @@ public class EventServiceTest {
         when(eventMapper.toModel(any(CreateEventDto.class))).thenReturn(testEvent);
         when(photoRepository.findAllByIdIn(anySet())).thenReturn(Set.of(testPhoto));
         when(contactRepository.findById(TEST_CONTACT_ID)).thenReturn(Optional.of(testContact));
-        when(descriptionRepository.findById(TEST_DESCRIPTION_ID)).thenReturn(Optional.of(testDescription));
+
+        when(descriptionRepository.findById(TEST_DESCRIPTION_ID))
+                .thenReturn(Optional.of(testDescription));
         when(userRepository.findById(TEST_USER_ID)).thenReturn(Optional.of(testUser));
         when(addressRepository.findById(TEST_ADDRESS_ID)).thenReturn(Optional.of(testAddress));
-        when(categoryRepository.findAllByIdIn(Set.of(TEST_CATEGORY_ID))).thenReturn(Set.of(testCategory));
+        when(categoryRepository.findAllByIdIn(Set.of(TEST_CATEGORY_ID)))
+                .thenReturn(Set.of(testCategory));
         when(myEventsRepository.findMyEventsById(anyLong())).thenReturn(Optional.empty());
 
         //When
@@ -274,7 +286,8 @@ public class EventServiceTest {
     @DisplayName("Accept Event with valid Id")
     public void acceptEvent_validEventId_SimpleEventDto() {
         //Given
-        when(eventRepository.findById(anyLong())).thenReturn(Optional.of(testEvent.setAccepted(false)));
+        when(eventRepository.findById(anyLong()))
+                .thenReturn(Optional.of(testEvent.setAccepted(false)));
         when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
         when(eventMapper.toSimpleDto(testEvent)).thenReturn(testSimpleEventDto);
 
@@ -311,10 +324,14 @@ public class EventServiceTest {
         when(eventRepository.findById(TEST_EVENT_ID)).thenReturn(Optional.of(testEvent));
         when(photoRepository.findAllByIdIn(anySet())).thenReturn(Set.of(testPhoto));
         when(contactRepository.findById(TEST_CONTACT_ID)).thenReturn(Optional.of(testContact));
-        when(descriptionRepository.findById(TEST_DESCRIPTION_ID)).thenReturn(Optional.of(testDescription));
+
+        when(descriptionRepository.findById(TEST_DESCRIPTION_ID))
+                .thenReturn(Optional.of(testDescription));
         when(userRepository.findById(TEST_USER_ID)).thenReturn(Optional.of(testUser));
         when(addressRepository.findById(TEST_ADDRESS_ID)).thenReturn(Optional.of(testAddress));
-        when(categoryRepository.findAllByIdIn(Set.of(TEST_CATEGORY_ID))).thenReturn(Set.of(testCategory));
+
+        when(categoryRepository.findAllByIdIn(Set.of(TEST_CATEGORY_ID)))
+                .thenReturn(Set.of(testCategory));
         when(eventRepository.save(any(Event.class))).thenReturn(updatedEvent);
         when(eventMapper.toDto(updatedEvent)).thenReturn(updatedEventDto);
 
@@ -408,12 +425,15 @@ public class EventServiceTest {
     public void search_ValidParams_ListSimpleEventDto() {
         //Given
         String[] cities = {"TestCityName"};
-        EventSearchParameters params = new EventSearchParameters(null, null, null, cities);
+        EventSearchParameters params = new EventSearchParameters(
+                null, null, null, cities
+        );
         Specification<Event> specification = Specification.where(null);
         Pageable pageable = PageRequest.of(0, 10);
 
         when(specificationBuilder.build(params)).thenReturn(specification);
-        when(eventRepository.findAll(any(Specification.class), any(Pageable.class))).thenReturn(new PageImpl<>(List.of(testEvent)));
+        when(eventRepository.findAll(any(Specification.class), any(Pageable.class)))
+                .thenReturn(new PageImpl<>(List.of(testEvent)));
         when(eventMapper.toSimpleDto(any(Event.class))).thenReturn(testSimpleEventDto);
 
         //When

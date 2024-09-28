@@ -2,20 +2,18 @@ package org.example.eventspotlightback.config;
 
 import org.testcontainers.containers.MySQLContainer;
 
-import java.time.Duration;
-
 public class CustomMySqlContainer extends MySQLContainer<CustomMySqlContainer> {
     private static final String DB_IMAGE = "mysql:8.0.33";
 
     private static CustomMySqlContainer mySqlContainer;
 
-    private CustomMySqlContainer() {
+    public CustomMySqlContainer() {
         super(DB_IMAGE);
     }
 
     public static synchronized CustomMySqlContainer getInstance() {
         if (mySqlContainer == null) {
-            mySqlContainer = new CustomMySqlContainer().withStartupTimeout(Duration.ofMinutes(5));
+            mySqlContainer = new CustomMySqlContainer();
         }
         return mySqlContainer;
     }

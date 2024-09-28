@@ -1,9 +1,8 @@
 package org.example.eventspotlightback.utils;
 
+import java.time.LocalDateTime;
 import org.example.eventspotlightback.dto.internal.photo.PhotoDto;
 import org.example.eventspotlightback.model.Photo;
-
-import java.time.LocalDateTime;
 
 public class PhotoTestUtil {
     public static final Long TEST_PHOTO_ID = 8L;
