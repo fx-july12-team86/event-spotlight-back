@@ -59,7 +59,7 @@ public class AddressControllerTest {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/city/add_three_cities.sql")
+                    new ClassPathResource("database/city/add_test_city.sql")
             );
             ScriptUtils.executeSqlScript(
                     connection,
@@ -85,7 +85,7 @@ public class AddressControllerTest {
             );
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/city/delete_all_cities.sql")
+                    new ClassPathResource("database/city/delete_test_city.sql")
             );
         }
     }
