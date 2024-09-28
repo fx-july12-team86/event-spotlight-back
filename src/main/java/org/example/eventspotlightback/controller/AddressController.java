@@ -33,7 +33,7 @@ public class AddressController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public AddressDto updateAddress(@PathVariable long id,
+    public AddressDto updateAddress(@PathVariable Long id,
                                     @RequestBody @Valid AddAddressDto updateAddressDto) {
         return addressService.updateAddress(id, updateAddressDto);
     }
@@ -41,7 +41,7 @@ public class AddressController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAddress(@PathVariable long id) {
+    public void deleteAddress(@PathVariable Long id) {
         addressService.deleteAddressById(id);
     }
 
@@ -51,7 +51,7 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public AddressDto findAddressById(@PathVariable long id) {
+    public AddressDto findAddressById(@PathVariable Long id) {
         return addressService.findAddressById(id);
     }
 }

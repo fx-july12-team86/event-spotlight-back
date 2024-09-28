@@ -1,11 +1,11 @@
 package org.example.eventspotlightback.controller;
 
-import static org.example.eventspotlightback.utils.CategoryTestUtil.TEST_CATEGORY_ID;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.addCategoryDto;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.getTestListWithCategories;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.testCategoryDto;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.updateCategoryDto;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.updatedCategoryDto;
+import static org.example.eventspotlightback.utils.AddressTestUtil.TEST_ADDRESS_ID;
+import static org.example.eventspotlightback.utils.AddressTestUtil.addAddressDto;
+import static org.example.eventspotlightback.utils.AddressTestUtil.getTestListWithAddresses;
+import static org.example.eventspotlightback.utils.AddressTestUtil.testAddressDto;
+import static org.example.eventspotlightback.utils.AddressTestUtil.updateAddressDto;
+import static org.example.eventspotlightback.utils.AddressTestUtil.updatedAddressDto;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,8 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.sql.DataSource;
 import lombok.SneakyThrows;
-import org.example.eventspotlightback.dto.internal.category.CategoryDto;
-import org.example.eventspotlightback.dto.internal.category.CreateCategoryDto;
+import org.example.eventspotlightback.dto.internal.address.AddressDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -41,7 +40,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CategoryControllerTest {
+public class AddressControllerTest {
     private static MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
@@ -60,7 +59,11 @@ public class CategoryControllerTest {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/category/add_three_categories.sql")
+                    new ClassPathResource("database/city/add_three_cities.sql")
+            );
+            ScriptUtils.executeSqlScript(
+                    connection,
+                    new ClassPathResource("database/address/add_three_addresses.sql")
             );
         }
     }
@@ -78,22 +81,25 @@ public class CategoryControllerTest {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/category/delete_all_categories.sql")
+                    new ClassPathResource("database/address/delete_all_addresses.sql")
+            );
+            ScriptUtils.executeSqlScript(
+                    connection,
+                    new ClassPathResource("database/city/delete_all_cities.sql")
             );
         }
     }
 
     @Sql(scripts = {
-            "classpath:database/category/delete_test_category.sql"
+            "classpath:database/address/delete_test_address.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Create new Category")
-    public void save_CreateCategoryDto_Success() throws Exception {
+    @DisplayName("Create new Address")
+    public void save_AddAddressDto_Success() throws Exception {
         //Given
-        CreateCategoryDto testAddCategoryDto = addCategoryDto;
-        String jsonRequest = objectMapper.writeValueAsString(testAddCategoryDto);
-        MvcResult result = mockMvc.perform(post("/categories")
+        String jsonRequest = objectMapper.writeValueAsString(addAddressDto);
+        MvcResult result = mockMvc.perform(post("/addresses")
                         .content(jsonRequest)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -101,28 +107,27 @@ public class CategoryControllerTest {
                 .andReturn();
 
         //When
-        CategoryDto expected = testCategoryDto;
-        CategoryDto actual = objectMapper.readValue(
-                result.getResponse().getContentAsString(), CategoryDto.class);
+        AddressDto expected = testAddressDto;
+        AddressDto actual = objectMapper.readValue(
+                result.getResponse().getContentAsString(), AddressDto.class);
 
         //Then
         EqualsBuilder.reflectionEquals(expected, actual, "id");
     }
 
     @Sql(scripts = {
-            "classpath:database/category/add_test_category.sql"
+            "classpath:database/address/add_test_address.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/category/delete_updated_test_category.sql"
+            "classpath:database/address/delete_updated_test_address.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Update test Category")
-    public void update_AddCityDto_Success() throws Exception {
+    @DisplayName("Update test Address")
+    public void update_AddAddressDto_Success() throws Exception {
         //Given
-        CreateCategoryDto updateDto = updateCategoryDto;
-        String jsonRequest = objectMapper.writeValueAsString(updateDto);
-        MvcResult result = mockMvc.perform(put("/categories/" + TEST_CATEGORY_ID)
+        String jsonRequest = objectMapper.writeValueAsString(updateAddressDto);
+        MvcResult result = mockMvc.perform(put("/addresses/" + TEST_ADDRESS_ID)
                         .content(jsonRequest)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -130,44 +135,42 @@ public class CategoryControllerTest {
                 .andReturn();
 
         //When
-        CategoryDto expected = updatedCategoryDto;
-        CategoryDto actual = objectMapper.readValue(
-                result.getResponse().getContentAsString(), CategoryDto.class);
+        AddressDto expected = updatedAddressDto;
+        AddressDto actual = objectMapper.readValue(
+                result.getResponse().getContentAsString(), AddressDto.class);
 
         //Then
         EqualsBuilder.reflectionEquals(expected, actual);
     }
 
     @Sql(scripts = {
-            "classpath:database/category/add_test_category.sql"
+            "classpath:database/address/add_test_address.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(scripts = {
-            "classpath:database/category/delete_test_category.sql"
-    }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Delete existing Category")
+    @DisplayName("Delete existing Address")
     public void delete_anyRequest_Success() throws Exception {
-        mockMvc.perform(delete("/categories/" + TEST_CATEGORY_ID))
+        mockMvc.perform(delete("/addresses/" + TEST_ADDRESS_ID))
                 .andExpect(status().isNoContent())
                 .andReturn();
 
-        mockMvc.perform(get("/categories/" + TEST_CATEGORY_ID))
+        mockMvc.perform(get("/addresses/" + TEST_ADDRESS_ID))
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }
 
+    @WithMockUser(username = "testUser", authorities = {"USER"})
     @Test
-    @DisplayName("Test find all categories")
-    public void findAll_Empty_ListOfCityDto() throws Exception {
-        MvcResult result = mockMvc.perform(get("/categories"))
+    @DisplayName("Test find all Addresses")
+    public void findAll_Empty_ListOfAddressDto() throws Exception {
+        MvcResult result = mockMvc.perform(get("/addresses"))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<CategoryDto> expected = getTestListWithCategories();
-        CategoryDto[] actual = objectMapper.readValue(
+        List<AddressDto> expected = getTestListWithAddresses();
+        AddressDto[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                CategoryDto[].class
+                AddressDto[].class
         );
 
         Assertions.assertEquals(3, actual.length);
@@ -175,22 +178,23 @@ public class CategoryControllerTest {
     }
 
     @Sql(scripts = {
-            "classpath:database/category/add_test_category.sql"
+            "classpath:database/address/add_test_address.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/category/delete_test_category.sql"
+            "classpath:database/address/delete_test_address.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @WithMockUser(username = "testUser", authorities = {"USER"})
     @Test
-    @DisplayName("Test find Category by id")
-    public void findById_CityId_CityDto() throws Exception {
-        MvcResult result = mockMvc.perform(get("/categories/" + TEST_CATEGORY_ID))
+    @DisplayName("Test find Address by id")
+    public void findById_AddressId_AddressDto() throws Exception {
+        MvcResult result = mockMvc.perform(get("/addresses/" + TEST_ADDRESS_ID))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        CategoryDto expected = testCategoryDto;
-        CategoryDto actual = objectMapper.readValue(
+        AddressDto expected = testAddressDto;
+        AddressDto actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                CategoryDto.class
+                AddressDto.class
         );
 
         EqualsBuilder.reflectionEquals(expected, actual, "id");

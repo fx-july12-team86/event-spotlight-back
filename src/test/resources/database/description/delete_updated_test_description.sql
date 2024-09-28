@@ -1,0 +1,1 @@
+DELETE FROM descriptions WHERE title = 'update Test Title';

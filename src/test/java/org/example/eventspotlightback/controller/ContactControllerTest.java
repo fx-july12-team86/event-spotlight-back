@@ -1,11 +1,26 @@
 package org.example.eventspotlightback.controller;
 
+import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_ID;
+import static org.example.eventspotlightback.utils.ContactTestUtil.addContactDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.getTestListWithContacts;
+import static org.example.eventspotlightback.utils.ContactTestUtil.testContactDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.updateContactDto;
+import static org.example.eventspotlightback.utils.ContactTestUtil.updatedContactDto;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+import javax.sql.DataSource;
 import lombok.SneakyThrows;
-import org.example.eventspotlightback.dto.internal.city.AddCityDto;
-import org.example.eventspotlightback.dto.internal.city.CityDto;
 import org.example.eventspotlightback.dto.internal.contact.ContactDto;
-import org.example.eventspotlightback.dto.internal.contact.CreateContactDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,32 +38,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
-import static org.example.eventspotlightback.utils.CityTestUtil.addCityDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.getTestListWithCities;
-import static org.example.eventspotlightback.utils.CityTestUtil.testCityDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.updateCityDto;
-import static org.example.eventspotlightback.utils.CityTestUtil.updatedCityDto;
-import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_EMAIL;
-import static org.example.eventspotlightback.utils.ContactTestUtil.TEST_CONTACT_ID;
-import static org.example.eventspotlightback.utils.ContactTestUtil.addContactDto;
-import static org.example.eventspotlightback.utils.ContactTestUtil.getTestListWithContacts;
-import static org.example.eventspotlightback.utils.ContactTestUtil.testContactDto;
-import static org.example.eventspotlightback.utils.ContactTestUtil.updateContactDto;
-import static org.example.eventspotlightback.utils.ContactTestUtil.updatedContactDto;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ContactControllerTest {
@@ -121,9 +110,6 @@ public class ContactControllerTest {
     @Sql(scripts = {
             "classpath:database/contact/add_test_contact.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(scripts = {
-            "classpath:database/contact/delete_updated_test_contact.sql"
-    }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
     @DisplayName("Update test Contact")

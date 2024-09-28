@@ -1,12 +1,10 @@
 package org.example.eventspotlightback.utils;
 
-import org.example.eventspotlightback.dto.internal.city.CityDto;
+import java.util.ArrayList;
+import java.util.List;
 import org.example.eventspotlightback.dto.internal.contact.ContactDto;
 import org.example.eventspotlightback.dto.internal.contact.CreateContactDto;
 import org.example.eventspotlightback.model.Contact;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContactTestUtil {
     public static final Long TEST_CONTACT_ID = 97L;

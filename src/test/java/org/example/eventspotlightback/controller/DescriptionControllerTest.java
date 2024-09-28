@@ -1,11 +1,11 @@
 package org.example.eventspotlightback.controller;
 
-import static org.example.eventspotlightback.utils.CategoryTestUtil.TEST_CATEGORY_ID;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.addCategoryDto;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.getTestListWithCategories;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.testCategoryDto;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.updateCategoryDto;
-import static org.example.eventspotlightback.utils.CategoryTestUtil.updatedCategoryDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.TEST_DESCRIPTION_ID;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.addDescriptionDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.getTestListWithDescriptionDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.testDescriptionDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.updateDescriptionDto;
+import static org.example.eventspotlightback.utils.DescriptionTestUtil.updatedDescriptionDto;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,8 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.sql.DataSource;
 import lombok.SneakyThrows;
-import org.example.eventspotlightback.dto.internal.category.CategoryDto;
-import org.example.eventspotlightback.dto.internal.category.CreateCategoryDto;
+import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -41,7 +40,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CategoryControllerTest {
+public class DescriptionControllerTest {
     private static MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
@@ -60,7 +59,7 @@ public class CategoryControllerTest {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/category/add_three_categories.sql")
+                    new ClassPathResource("database/description/add_three_descriptions.sql")
             );
         }
     }
@@ -78,22 +77,21 @@ public class CategoryControllerTest {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("database/category/delete_all_categories.sql")
+                    new ClassPathResource("database/description/delete_all_descriptions.sql")
             );
         }
     }
 
     @Sql(scripts = {
-            "classpath:database/category/delete_test_category.sql"
+            "classpath:database/description/delete_test_description.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Create new Category")
-    public void save_CreateCategoryDto_Success() throws Exception {
+    @DisplayName("Create new Description")
+    public void save_CreateDescriptionDto_Success() throws Exception {
         //Given
-        CreateCategoryDto testAddCategoryDto = addCategoryDto;
-        String jsonRequest = objectMapper.writeValueAsString(testAddCategoryDto);
-        MvcResult result = mockMvc.perform(post("/categories")
+        String jsonRequest = objectMapper.writeValueAsString(addDescriptionDto);
+        MvcResult result = mockMvc.perform(post("/descriptions")
                         .content(jsonRequest)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -101,28 +99,27 @@ public class CategoryControllerTest {
                 .andReturn();
 
         //When
-        CategoryDto expected = testCategoryDto;
-        CategoryDto actual = objectMapper.readValue(
-                result.getResponse().getContentAsString(), CategoryDto.class);
+        DescriptionDto expected = testDescriptionDto;
+        DescriptionDto actual = objectMapper.readValue(
+                result.getResponse().getContentAsString(), DescriptionDto.class);
 
         //Then
         EqualsBuilder.reflectionEquals(expected, actual, "id");
     }
 
     @Sql(scripts = {
-            "classpath:database/category/add_test_category.sql"
+            "classpath:database/description/add_test_description.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/category/delete_updated_test_category.sql"
+            "classpath:database/description/delete_updated_test_description.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Update test Category")
-    public void update_AddCityDto_Success() throws Exception {
+    @DisplayName("Update test Description")
+    public void update_CreateDescriptionDto_Success() throws Exception {
         //Given
-        CreateCategoryDto updateDto = updateCategoryDto;
-        String jsonRequest = objectMapper.writeValueAsString(updateDto);
-        MvcResult result = mockMvc.perform(put("/categories/" + TEST_CATEGORY_ID)
+        String jsonRequest = objectMapper.writeValueAsString(updateDescriptionDto);
+        MvcResult result = mockMvc.perform(put("/descriptions/" + TEST_DESCRIPTION_ID)
                         .content(jsonRequest)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -130,44 +127,42 @@ public class CategoryControllerTest {
                 .andReturn();
 
         //When
-        CategoryDto expected = updatedCategoryDto;
-        CategoryDto actual = objectMapper.readValue(
-                result.getResponse().getContentAsString(), CategoryDto.class);
+        DescriptionDto expected = updatedDescriptionDto;
+        DescriptionDto actual = objectMapper.readValue(
+                result.getResponse().getContentAsString(), DescriptionDto.class);
 
         //Then
         EqualsBuilder.reflectionEquals(expected, actual);
     }
 
     @Sql(scripts = {
-            "classpath:database/category/add_test_category.sql"
+            "classpath:database/description/add_test_description.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(scripts = {
-            "classpath:database/category/delete_test_category.sql"
-    }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
     @Test
-    @DisplayName("Delete existing Category")
+    @DisplayName("Delete existing Description")
     public void delete_anyRequest_Success() throws Exception {
-        mockMvc.perform(delete("/categories/" + TEST_CATEGORY_ID))
+        mockMvc.perform(delete("/descriptions/" + TEST_DESCRIPTION_ID))
                 .andExpect(status().isNoContent())
                 .andReturn();
 
-        mockMvc.perform(get("/categories/" + TEST_CATEGORY_ID))
+        mockMvc.perform(get("/descriptions/" + TEST_DESCRIPTION_ID))
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }
 
+    @WithMockUser(username = "testUser", authorities = {"USER"})
     @Test
-    @DisplayName("Test find all categories")
-    public void findAll_Empty_ListOfCityDto() throws Exception {
-        MvcResult result = mockMvc.perform(get("/categories"))
+    @DisplayName("Test find all Descriptions")
+    public void findAll_Empty_ListOfDescriptionDto() throws Exception {
+        MvcResult result = mockMvc.perform(get("/descriptions"))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<CategoryDto> expected = getTestListWithCategories();
-        CategoryDto[] actual = objectMapper.readValue(
+        List<DescriptionDto> expected = getTestListWithDescriptionDto();
+        DescriptionDto[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                CategoryDto[].class
+                DescriptionDto[].class
         );
 
         Assertions.assertEquals(3, actual.length);
@@ -175,22 +170,23 @@ public class CategoryControllerTest {
     }
 
     @Sql(scripts = {
-            "classpath:database/category/add_test_category.sql"
+            "classpath:database/description/add_test_description.sql"
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/category/delete_test_category.sql"
+            "classpath:database/description/delete_test_description.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @WithMockUser(username = "testUser", authorities = {"USER"})
     @Test
-    @DisplayName("Test find Category by id")
-    public void findById_CityId_CityDto() throws Exception {
-        MvcResult result = mockMvc.perform(get("/categories/" + TEST_CATEGORY_ID))
+    @DisplayName("Test find Description by id")
+    public void findById_DescriptionId_DescriptionDto() throws Exception {
+        MvcResult result = mockMvc.perform(get("/descriptions/" + TEST_DESCRIPTION_ID))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        CategoryDto expected = testCategoryDto;
-        CategoryDto actual = objectMapper.readValue(
+        DescriptionDto expected = testDescriptionDto;
+        DescriptionDto actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                CategoryDto.class
+                DescriptionDto.class
         );
 
         EqualsBuilder.reflectionEquals(expected, actual, "id");
