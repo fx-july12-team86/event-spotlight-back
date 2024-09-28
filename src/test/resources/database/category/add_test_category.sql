@@ -1,0 +1,1 @@
+INSERT INTO categories (id, name) VALUES (98, 'Test Category Name');

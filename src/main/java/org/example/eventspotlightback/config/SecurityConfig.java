@@ -56,6 +56,7 @@ public class SecurityConfig {
                                         "/events",
                                         "/events/**",
                                         "/categories",
+                                        "/categories/**",
                                         "/cities",
                                         "/cities/**",
                                         "/photos")
