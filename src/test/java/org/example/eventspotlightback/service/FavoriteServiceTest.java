@@ -86,7 +86,7 @@ public class FavoriteServiceTest {
                 .setAddress(testAddress)
                 .setDescription(testDescription)
                 .setUser(testUser)
-                .setAccepted(false);
+                .setIsAccepted(false);
 
         when(favoriteRepository.findByUserId(TEST_USER_ID)).thenReturn(Optional.of(testFavorite));
         when(eventRepository.findEventWithFavoriteById(TEST_EVENT_ID))
@@ -163,7 +163,7 @@ public class FavoriteServiceTest {
                 .setAddress(testAddress)
                 .setDescription(testDescription)
                 .setUser(testUser)
-                .setAccepted(false);
+                .setIsAccepted(false);
 
         testFavorite.getEvents().add(testEvent);
         testEvent.getFavorites().add(testFavorite);

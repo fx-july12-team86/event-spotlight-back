@@ -287,7 +287,7 @@ public class EventServiceTest {
     public void acceptEvent_validEventId_SimpleEventDto() {
         //Given
         when(eventRepository.findById(anyLong()))
-                .thenReturn(Optional.of(testEvent.setAccepted(false)));
+                .thenReturn(Optional.of(testEvent.setIsAccepted(false)));
         when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
         when(eventMapper.toSimpleDto(testEvent)).thenReturn(testSimpleEventDto);
 

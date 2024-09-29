@@ -25,5 +25,5 @@ public class EventDto {
     private Set<CategoryDto> categories = new HashSet<>();
     private LocalDateTime startTime;
     private BigDecimal price;
-    private boolean isOnline;
+    private Boolean isOnline;
 }

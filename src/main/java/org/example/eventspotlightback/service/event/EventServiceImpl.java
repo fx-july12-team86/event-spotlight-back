@@ -64,7 +64,7 @@ public class EventServiceImpl implements EventService {
         Event event = eventRepository.findById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find event with id: " + eventId)
         );
-        event.setAccepted(true);
+        event.setIsAccepted(true);
         return eventMapper.toSimpleDto(eventRepository.save(event));
     }
 
@@ -75,7 +75,7 @@ public class EventServiceImpl implements EventService {
                 () -> new EntityNotFoundException("Can't find event with id: " + id)
         );
         updateModelFromDto(existingEvent, updateEventDto);
-        existingEvent.setAccepted(false);
+        existingEvent.setIsAccepted(false);
         Event savedEvent = eventRepository.save(existingEvent);
         return eventMapper.toDto(savedEvent);
     }
@@ -112,7 +112,7 @@ public class EventServiceImpl implements EventService {
         event.setTitle(createEventDto.getTitle());
         event.setStartTime(createEventDto.getStartTime());
         event.setPrice(createEventDto.getPrice());
-        event.setOnline(createEventDto.isOnline());
+        event.setIsOnline(createEventDto.getIsOnline());
 
         Set<Photo> eventPhotos = photoRepository.findAllByIdIn(createEventDto.getPhotoIds());
         event.setPhotos(eventPhotos);

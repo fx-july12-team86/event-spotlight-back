@@ -125,7 +125,7 @@ public class MyEventsServiceTest {
                 .setAddress(testAddress)
                 .setDescription(testDescription)
                 .setUser(testUser)
-                .setAccepted(false);
+                .setIsAccepted(false);
 
         when(myEventsRepository.findMyEventsById(TEST_USER_ID))
                 .thenReturn(Optional.of(testMyEvents));
@@ -207,7 +207,7 @@ public class MyEventsServiceTest {
                 .setAddress(testAddress)
                 .setDescription(testDescription)
                 .setUser(testUser)
-                .setAccepted(false);
+                .setIsAccepted(false);
 
         testMyEvents.getEvents().add(testEvent);
         testEvent.getMyEvents().add(testMyEvents);
@@ -263,7 +263,7 @@ public class MyEventsServiceTest {
                 .setAddress(testAddress)
                 .setDescription(testDescription)
                 .setUser(testUser2)
-                .setAccepted(false);
+                .setIsAccepted(false);
 
         testMyEvents.getEvents().add(testEvent);
         testEvent.getMyEvents().add(testMyEvents);
