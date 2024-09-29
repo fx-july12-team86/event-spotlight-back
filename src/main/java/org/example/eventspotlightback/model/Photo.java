@@ -9,11 +9,13 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "photos")
+@Accessors(chain = true)
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

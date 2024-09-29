@@ -45,7 +45,7 @@ public class PhotoController {
     @PermitAll
     @GetMapping("/{id}")
     public PhotoDto getPhoto(@PathVariable Long id) {
-        return photoService.getPhoto(id);
+        return photoService.findPhotoById(id);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

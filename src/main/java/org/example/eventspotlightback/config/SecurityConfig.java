@@ -1,6 +1,7 @@
 package org.example.eventspotlightback.config;
 
 import lombok.RequiredArgsConstructor;
+import org.example.eventspotlightback.security.JwtAuthenticationEntryPoint;
 import org.example.eventspotlightback.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -54,12 +56,16 @@ public class SecurityConfig {
                                         "/events",
                                         "/events/**",
                                         "/categories",
+                                        "/categories/**",
                                         "/cities",
                                         "/cities/**",
                                         "/photos")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
+                )
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 )
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session
@@ -74,6 +80,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:5173");
+        config.addAllowedOrigin("https://fx-july12-team86.github.io");
         config.addAllowedOrigin("http://localhost:4173");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");

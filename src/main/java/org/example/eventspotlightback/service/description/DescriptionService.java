@@ -5,9 +5,9 @@ import org.example.eventspotlightback.dto.internal.description.CreateDescription
 import org.example.eventspotlightback.dto.internal.description.DescriptionDto;
 
 public interface DescriptionService {
-    DescriptionDto add(CreateDescriptionDto descriptionDto);
+    DescriptionDto addDescription(CreateDescriptionDto descriptionDto);
 
-    DescriptionDto update(Long id, CreateDescriptionDto descriptionDto);
+    DescriptionDto updateById(Long id, CreateDescriptionDto descriptionDto);
 
     void deleteById(Long id);
 

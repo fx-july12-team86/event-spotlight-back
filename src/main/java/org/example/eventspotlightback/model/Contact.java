@@ -8,11 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 @Data
 @EqualsAndHashCode(exclude = {"id"})
 @Entity
 @Table(name = "contacts")
+@Accessors(chain = true)
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

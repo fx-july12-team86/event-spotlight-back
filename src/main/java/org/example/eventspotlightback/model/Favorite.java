@@ -8,16 +8,19 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @Entity
 @EqualsAndHashCode(exclude = {"id", "events"})
 @Table(name = "favorites")
+@Accessors(chain = true)
 public class Favorite {
     @Id
     private Long id;
@@ -26,5 +29,5 @@ public class Favorite {
     @JoinColumn(nullable = false, name = "id")
     private User user;
     @ManyToMany(mappedBy = "favorites", fetch = FetchType.LAZY)
-    private Set<Event> events;
+    private Set<Event> events = new HashSet<>();
 }

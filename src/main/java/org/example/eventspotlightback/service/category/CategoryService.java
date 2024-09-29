@@ -5,9 +5,9 @@ import org.example.eventspotlightback.dto.internal.category.CategoryDto;
 import org.example.eventspotlightback.dto.internal.category.CreateCategoryDto;
 
 public interface CategoryService {
-    CategoryDto add(CreateCategoryDto requestDto);
+    CategoryDto addCategory(CreateCategoryDto requestDto);
 
-    CategoryDto update(Long id, CreateCategoryDto dto);
+    CategoryDto updateCategory(Long id, CreateCategoryDto dto);
 
     void deleteById(Long id);
 

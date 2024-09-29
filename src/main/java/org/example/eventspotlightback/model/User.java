@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +29,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Where(clause = "is_deleted=false")
 @EqualsAndHashCode(exclude = {"id", "roles", "favorite", "myEvents", "isDeleted"})
 @Table(name = "users")
+@Accessors(chain = true)
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,7 +21,7 @@ public class DropboxAuthServiceImpl implements DropboxAuthService {
     private static final String TOKEN_URL = "https://api.dropboxapi.com/oauth2/token";
     private final DropboxTokenProperties dropboxTokenProperties;
     private String accessToken;
-    private long expiryTime;
+    private Long expiryTime;
 
     @Override
     public String getAccessToken() {

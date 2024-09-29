@@ -36,6 +36,7 @@ public class EventController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEvent(@PathVariable Long id) {
         eventService.deleteEventById(id);
     }

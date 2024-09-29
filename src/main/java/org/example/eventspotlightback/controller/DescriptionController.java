@@ -28,14 +28,14 @@ public class DescriptionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public DescriptionDto addDescription(@RequestBody @Valid CreateDescriptionDto descriptionDto) {
-        return descriptionService.add(descriptionDto);
+        return descriptionService.addDescription(descriptionDto);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("{id}")
     public DescriptionDto update(@PathVariable Long id,
                                  @RequestBody @Valid CreateDescriptionDto updateDto) {
-        return descriptionService.update(id, updateDto);
+        return descriptionService.updateById(id, updateDto);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

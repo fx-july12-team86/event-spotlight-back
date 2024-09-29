@@ -8,12 +8,14 @@ import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.ContactMapper;
 import org.example.eventspotlightback.model.Contact;
 import org.example.eventspotlightback.repository.ContactRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
+    @Qualifier
     private final ContactMapper contactMapper;
 
     @Override
@@ -38,15 +40,15 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public List<ContactDto> findAllContacts() {
+        return contactMapper.toDto(contactRepository.findAll());
+    }
+
+    @Override
     public ContactDto findContactById(Long id) {
         Contact contact = contactRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find contact with id: " + id)
         );
         return contactMapper.toDto(contact);
-    }
-
-    @Override
-    public List<ContactDto> findAllContacts() {
-        return contactMapper.toDto(contactRepository.findAll());
     }
 }

@@ -17,14 +17,14 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryMapper categoryMapper;
 
     @Override
-    public CategoryDto add(CreateCategoryDto requestDto) {
+    public CategoryDto addCategory(CreateCategoryDto requestDto) {
         Category category = categoryMapper.toModel(requestDto);
         category = categoryRepository.save(category);
         return categoryMapper.toDto(category);
     }
 
     @Override
-    public CategoryDto update(Long id, CreateCategoryDto dto) {
+    public CategoryDto updateCategory(Long id, CreateCategoryDto dto) {
         Category newCategory = categoryMapper.toModel(dto);
         newCategory.setId(id);
         categoryRepository.findById(id).orElseThrow(

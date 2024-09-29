@@ -9,12 +9,14 @@ import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @Entity
 @EqualsAndHashCode(exclude = {"id"})
 @Table(name = "categories")
+@Accessors(chain = true)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
