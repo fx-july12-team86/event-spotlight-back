@@ -1,5 +1,7 @@
 package org.example.eventspotlightback.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "City management", description = "Endpoint for managing Cities")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/cities")
 public class CityController {
     private final CityService cityService;
 
+    @Operation(
+            summary = "Add new City"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,6 +37,9 @@ public class CityController {
         return cityService.addCity(dto);
     }
 
+    @Operation(
+            summary = "Update exists City"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("{id}")
     public CityDto update(@PathVariable Long id,
@@ -38,6 +47,9 @@ public class CityController {
         return cityService.updateCityById(id, dto);
     }
 
+    @Operation(
+            summary = "Delete City"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -45,11 +57,17 @@ public class CityController {
         cityService.deleteCityById(id);
     }
 
+    @Operation(
+            summary = "Find all Cities"
+    )
     @GetMapping
     public List<CityDto> findAll() {
         return cityService.findAllCities();
     }
 
+    @Operation(
+            summary = "Find City by id"
+    )
     @GetMapping("/{id}")
     public CityDto findById(@PathVariable Long id) {
         return cityService.findCityById(id);

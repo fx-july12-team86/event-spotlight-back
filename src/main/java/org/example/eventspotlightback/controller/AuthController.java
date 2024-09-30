@@ -1,5 +1,7 @@
 package org.example.eventspotlightback.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.user.UserLoginRequestDto;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Auth management", description = "Endpoint for registrations")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -26,6 +29,9 @@ public class AuthController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
+    @Operation(
+            summary = "Register new user"
+    )
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponseDto registerUser(@RequestBody @Valid UserRegistrationRequestDto requestDto)
@@ -33,11 +39,17 @@ public class AuthController {
         return userService.register(requestDto);
     }
 
+    @Operation(
+            summary = "Login exists user"
+    )
     @PostMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);
     }
 
+    @Operation(
+            summary = "Delete exists user"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

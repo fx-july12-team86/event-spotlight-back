@@ -1,5 +1,7 @@
 package org.example.eventspotlightback.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +23,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Event management", description = "Endpoint for managing Events")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/events")
 public class EventController {
     private final EventService eventService;
 
+    @Operation(
+            summary = "Accept existing Event"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/accept/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -34,6 +40,9 @@ public class EventController {
         return eventService.acceptEvent(id);
     }
 
+    @Operation(
+            summary = "Delete Event"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -41,6 +50,9 @@ public class EventController {
         eventService.deleteEventById(id);
     }
 
+    @Operation(
+            summary = "Add new Event"
+    )
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -48,6 +60,9 @@ public class EventController {
         return eventService.addEvent(createEventDto);
     }
 
+    @Operation(
+            summary = "Update exists Event"
+    )
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PutMapping("/{id}")
     public EventDto updateEvent(
@@ -56,16 +71,25 @@ public class EventController {
         return eventService.updateEvent(id, eventDto);
     }
 
+    @Operation(
+            summary = "Find all Events"
+    )
     @GetMapping
     public List<SimpleEventDto> getAllEvents(Pageable pageable) {
         return eventService.findAllEvents(pageable);
     }
 
+    @Operation(
+            summary = "Find Event by id"
+    )
     @GetMapping("/{id}")
     public EventDto findEventById(@PathVariable Long id) {
         return eventService.findEventById(id);
     }
 
+    @Operation(
+            summary = "Search Event with parameters"
+    )
     @GetMapping("/search")
     public List<SimpleEventDto> searchEvents(
             Pageable pageable,

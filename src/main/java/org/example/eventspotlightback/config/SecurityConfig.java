@@ -50,7 +50,8 @@ public class SecurityConfig {
                                         "/auth/register",
                                         "/auth/login",
                                         "/v3/api-docs/**",
-                                        "/swagger-ui/**")
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.GET,
                                         "/events",

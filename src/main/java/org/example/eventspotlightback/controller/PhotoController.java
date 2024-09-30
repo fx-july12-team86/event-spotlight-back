@@ -1,5 +1,7 @@
 package org.example.eventspotlightback.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.security.PermitAll;
 import java.util.List;
 import java.util.Set;
@@ -18,12 +20,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+@Tag(name = "Photo management", description = "Endpoint for managing Photos")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/photos")
 public class PhotoController {
     private final PhotoService photoService;
 
+    @Operation(
+            summary = "Upload new Photo"
+    )
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,23 +37,37 @@ public class PhotoController {
         return photoService.uploadPhoto(photo);
     }
 
+    @Operation(
+            summary = "Upload new several Photos"
+    )
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PostMapping("/several")
     public Set<PhotoDto> uploadPhotos(@RequestParam("photos") List<MultipartFile> photos) {
         return photoService.uploadPhotos(photos);
     }
 
+    @Operation(
+            summary = "Find all Photos"
+    )
     @GetMapping
     public List<PhotoDto> findAllPhotos() {
         return photoService.findAllPhotos();
     }
 
+    @Operation(
+            summary = "Find photo",
+            description = "Find photo by id"
+    )
     @PermitAll
     @GetMapping("/{id}")
     public PhotoDto getPhoto(@PathVariable Long id) {
         return photoService.findPhotoById(id);
     }
 
+    @Operation(
+            summary = "Delete photo by id",
+            description = "Delete photo by id"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -1,5 +1,7 @@
 package org.example.eventspotlightback.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Description management", description = "Endpoint for managing Descriptions")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/descriptions")
 public class DescriptionController {
     private final DescriptionService descriptionService;
 
+    @Operation(
+            summary = "Add new Description"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,6 +37,9 @@ public class DescriptionController {
         return descriptionService.addDescription(descriptionDto);
     }
 
+    @Operation(
+            summary = "Update exists Description"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("{id}")
     public DescriptionDto update(@PathVariable Long id,
@@ -38,6 +47,9 @@ public class DescriptionController {
         return descriptionService.updateById(id, updateDto);
     }
 
+    @Operation(
+            summary = "Delete Description"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -45,11 +57,17 @@ public class DescriptionController {
         descriptionService.deleteById(id);
     }
 
+    @Operation(
+            summary = "Find all Descriptions"
+    )
     @GetMapping
     public List<DescriptionDto> findAll() {
         return descriptionService.findAll();
     }
 
+    @Operation(
+            summary = "Find Description by id"
+    )
     @GetMapping("/{id}")
     public DescriptionDto findById(@PathVariable Long id) {
         return descriptionService.findById(id);

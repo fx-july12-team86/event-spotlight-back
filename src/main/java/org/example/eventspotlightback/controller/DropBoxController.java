@@ -1,5 +1,6 @@
 package org.example.eventspotlightback.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.service.dropbox.DropboxService;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+@Tag(name = "File management", description = "Endpoint for managing files from DropBox")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/dropbox")
