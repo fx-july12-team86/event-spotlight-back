@@ -1,5 +1,6 @@
 services:
   mysqldb:
+    platform: linux/arm64
     container_name: mysqldb
     image: mysql
     env_file: ./.env
@@ -13,7 +14,7 @@ services:
 
   event-spotlight:
     container_name: event-spotlight-back
-    image: shumyevh/event-spotlight-back:1.0
+    image: shumyevh/event-spotlight-back:1.4
     depends_on:
       - mysqldb
     environment:
@@ -31,6 +32,8 @@ services:
       - dropbox.app-key=$DROPBOX_APP_KEY
       - dropbox.app-secret=$DROPBOX_APP_PASSWORD
       - dropbox.refresh-token=$DROPBOX_REFRESH_TOKEN
+      - server.servlet.context-path=/api
+      - springdoc.swagger-ui.enabled=true
     ports:
       - "$SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT"
     restart: on-failure
