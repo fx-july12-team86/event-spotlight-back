@@ -2,7 +2,7 @@ services:
   mysqldb:
     platform: linux/arm64
     container_name: mysqldb
-    image: mysql
+    image: mysql:8.0
     env_file: ./.env
     environment:
       - MYSQL_DB=$MYSQL_DATABASE

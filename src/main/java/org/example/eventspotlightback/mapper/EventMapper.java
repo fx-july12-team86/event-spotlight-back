@@ -34,6 +34,7 @@ public interface EventMapper {
     @Mapping(target = "photos", ignore = true)
     @Mapping(target = "contact", ignore = true)
     @Mapping(target = "deleted", ignore = true)
+    @Mapping(target = "isOnline", defaultValue = "false")
     Event toModel(CreateEventDto eventDto);
 
     SimpleEventDto toSimpleDto(Event event);

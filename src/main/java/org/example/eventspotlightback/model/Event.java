@@ -104,5 +104,5 @@ public class Event {
 
     @Column(name = "is_deleted")
     @EqualsAndHashCode.Exclude
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 }

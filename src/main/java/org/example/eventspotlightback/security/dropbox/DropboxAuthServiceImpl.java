@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DropboxAuthServiceImpl implements DropboxAuthService {
 
-    private static final String TOKEN_URL = "https://api.dropboxapi.com/oauth2/token";
+    private static final String TOKEN_URL = "https://api.dropbox.com/oauth2/token";
     private final DropboxTokenProperties dropboxTokenProperties;
     private String accessToken;
     private Long expiryTime;
@@ -59,7 +59,7 @@ public class DropboxAuthServiceImpl implements DropboxAuthService {
 
     private HttpRequest buildHttpRequest(String encodedAuth, String refreshToken) {
         return HttpRequest.newBuilder()
-                .uri(URI.create("https://api.dropbox.com/oauth2/token"))
+                .uri(URI.create(TOKEN_URL))
                 .header("Authorization", "Basic " + encodedAuth)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .POST(HttpRequest.BodyPublishers
