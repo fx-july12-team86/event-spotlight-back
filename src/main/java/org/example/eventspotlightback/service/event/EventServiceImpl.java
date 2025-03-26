@@ -86,8 +86,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<SimpleEventDto> findAllEvents(Pageable pageable) {
-        return eventMapper.toSimpleDto(eventRepository.findAll(pageable).toList());
+    public List<EventDto> findAllEvents(Pageable pageable) {
+        return eventMapper.toDto(eventRepository.findAll(pageable).toList());
     }
 
     @Override

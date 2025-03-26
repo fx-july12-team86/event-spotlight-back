@@ -1,6 +1,7 @@
 package org.example.eventspotlightback.utils;
 
 import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
+import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_NAME;
 import static org.example.eventspotlightback.utils.CityTestUtil.testCity;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class AddressTestUtil {
     public static final AddressDto testAddressDto = new AddressDto()
             .setId(TEST_ADDRESS_ID)
             .setCityId(TEST_CITY_ID)
+            .setCityName(TEST_CITY_NAME)
             .setStreet(TEST_ADDRESS_STREET)
             .setNumber(TEST_ADDRESS_NUMBER);
     public static final AddAddressDto addAddressDto = new AddAddressDto()
@@ -44,16 +46,19 @@ public class AddressTestUtil {
         AddressDto first = new AddressDto()
                 .setId(1L)
                 .setCityId(TEST_CITY_ID)
+                .setCityName(TEST_CITY_NAME)
                 .setStreet("first Test Street")
                 .setNumber("first Test Number");
         AddressDto second = new AddressDto()
                 .setId(2L)
                 .setCityId(TEST_CITY_ID)
+                .setCityName(TEST_CITY_NAME)
                 .setStreet("second Test Street")
                 .setNumber("second Test Number");
         AddressDto third = new AddressDto()
                 .setId(3L)
                 .setCityId(TEST_CITY_ID)
+                .setCityName(TEST_CITY_NAME)
                 .setStreet("third Test Street")
                 .setNumber("third Test Number");
         List<AddressDto> testList = new ArrayList<>();

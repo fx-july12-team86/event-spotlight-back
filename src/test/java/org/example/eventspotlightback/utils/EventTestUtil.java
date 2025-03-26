@@ -122,4 +122,42 @@ public class EventTestUtil {
         testList.add(third);
         return testList;
     }
+
+    public static List<EventDto> getTestListWithEventDto() {
+        EventDto first = new EventDto()
+                .setId(1L)
+                .setTitle("first Test Event Title")
+                .setStartTime(LocalDateTime.of(2024, 11, 19, 6, 0))
+                .setPrice(new BigDecimal("100.00"))
+                .setContact(testContactDto)
+                .setAddress(testAddressDto)
+                .setUserId(TEST_USER_ID)
+                .setDescription(testDescriptionDto)
+                .setIsOnline(false);
+        EventDto second = new EventDto()
+                .setId(2L)
+                .setTitle("second Test Event Title")
+                .setStartTime(LocalDateTime.of(2024, 11, 20, 6, 0))
+                .setPrice(new BigDecimal("200.00"))
+                .setContact(testContactDto)
+                .setAddress(testAddressDto)
+                .setUserId(TEST_USER_ID)
+                .setDescription(testDescriptionDto)
+                .setIsOnline(true);
+        EventDto third = new EventDto()
+                .setId(3L)
+                .setTitle("third Test Event Title")
+                .setStartTime(LocalDateTime.of(2024, 11, 21, 6, 0))
+                .setPrice(new BigDecimal("300.00"))
+                .setContact(testContactDto)
+                .setAddress(testAddressDto)
+                .setUserId(TEST_USER_ID)
+                .setDescription(testDescriptionDto)
+                .setIsOnline(false);
+        List<EventDto> testList = new ArrayList<>();
+        testList.add(first);
+        testList.add(second);
+        testList.add(third);
+        return testList;
+    }
 }

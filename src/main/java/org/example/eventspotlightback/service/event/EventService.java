@@ -16,7 +16,7 @@ public interface EventService {
 
     SimpleEventDto acceptEvent(Long eventId);
 
-    List<SimpleEventDto> findAllEvents(Pageable pageable);
+    List<EventDto> findAllEvents(Pageable pageable);
 
     EventDto findEventById(Long id);
 

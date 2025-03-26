@@ -15,15 +15,27 @@ import org.springframework.stereotype.Repository;
 public interface EventRepository extends
         JpaRepository<Event, Long>,
         JpaSpecificationExecutor<Event> {
-    @EntityGraph(attributePaths = {"description", "address", "photos", "categories"})
+    @EntityGraph(attributePaths = {
+            "description",
+            "contact",
+            "address",
+            "address.city",
+            "photos",
+            "categories",
+            "favorites",
+            "myEvents"
+    })
     List<Event> findAll();
 
     @EntityGraph(attributePaths = {
             "description",
             "contact",
             "address",
+            "address.city",
             "photos",
-            "categories"
+            "categories",
+            "favorites",
+            "myEvents"
     })
     Page<Event> findAll(Pageable pageable);
 
@@ -31,8 +43,11 @@ public interface EventRepository extends
             "description",
             "contact",
             "address",
+            "address.city",
             "photos",
-            "categories"
+            "categories",
+            "favorites",
+            "myEvents"
     })
     Page<Event> findAll(Specification specification, Pageable pageable);
 

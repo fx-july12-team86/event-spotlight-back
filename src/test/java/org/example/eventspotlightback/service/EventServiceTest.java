@@ -377,11 +377,11 @@ public class EventServiceTest {
         Page<Event> eventsPage = new PageImpl<>(testEventList, pageable, testEventList.size());
 
         when(eventRepository.findAll(pageable)).thenReturn(eventsPage);
-        when(eventMapper.toSimpleDto(testEventList)).thenReturn(List.of(testSimpleEventDto));
+        when(eventMapper.toDto(testEventList)).thenReturn(List.of(testEventDto));
 
         //When
-        List<SimpleEventDto> expected = List.of(testSimpleEventDto);
-        List<SimpleEventDto> actual = eventService.findAllEvents(pageable);
+        List<EventDto> expected = List.of(testEventDto);
+        List<EventDto> actual = eventService.findAllEvents(pageable);
 
         //Then
         assertEquals(expected, actual);

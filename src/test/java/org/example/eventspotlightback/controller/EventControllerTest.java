@@ -3,6 +3,7 @@ package org.example.eventspotlightback.controller;
 import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
 import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
 import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.getTestListWithEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.getTestListWithSimpleEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.testEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
@@ -228,10 +229,10 @@ public class EventControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<SimpleEventDto> expected = getTestListWithSimpleEventDto();
-        SimpleEventDto[] actual = objectMapper.readValue(
+        List<EventDto> expected = getTestListWithEventDto();
+        EventDto[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                SimpleEventDto[].class
+                EventDto[].class
         );
 
         Assertions.assertEquals(3, actual.length);

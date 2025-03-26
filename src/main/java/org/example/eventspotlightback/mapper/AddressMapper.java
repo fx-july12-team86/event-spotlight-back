@@ -11,6 +11,7 @@ import org.mapstruct.Mapping;
 @Mapper(config = MapperConfig.class)
 public interface AddressMapper {
     @Mapping(source = "city.id", target = "cityId")
+    @Mapping(source = "city.name", target = "cityName")
     AddressDto toDto(Address address);
 
     List<AddressDto> toDto(List<Address> addresses);

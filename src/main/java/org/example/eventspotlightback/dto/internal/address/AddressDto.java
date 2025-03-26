@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 public class AddressDto {
     private Long id;
     private Long cityId;
+    private String cityName;
     private String street;
     private String number;
 }

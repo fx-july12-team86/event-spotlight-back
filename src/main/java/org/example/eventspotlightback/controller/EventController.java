@@ -75,7 +75,7 @@ public class EventController {
             summary = "Find all Events"
     )
     @GetMapping
-    public List<SimpleEventDto> getAllEvents(Pageable pageable) {
+    public List<EventDto> getAllEvents(Pageable pageable) {
         return eventService.findAllEvents(pageable);
     }
 
