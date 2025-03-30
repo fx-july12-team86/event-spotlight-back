@@ -46,15 +46,15 @@ public class Event {
 
     @EqualsAndHashCode.Exclude
     @Column(name = "is_online")
-    private Boolean isOnline;
+    private Boolean isOnline = false;
 
     @EqualsAndHashCode.Exclude
     @Column(name = "is_top")
-    private Boolean isTop;
+    private Boolean isTop = false;
 
     @EqualsAndHashCode.Exclude
     @Column(name = "is_accepted")
-    private Boolean isAccepted;
+    private Boolean isAccepted = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "description_id")

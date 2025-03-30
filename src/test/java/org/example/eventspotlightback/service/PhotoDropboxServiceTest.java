@@ -8,8 +8,11 @@ import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhotoDto;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -55,9 +58,12 @@ public class PhotoDropboxServiceTest {
         when(photoRepository.save(any(Photo.class))).thenReturn(testPhoto);
         when(photoMapper.toDto(testPhoto)).thenReturn(testPhotoDto);
 
+        PhotoDropboxServiceImpl spyService = spy(photoDropboxService);
+        doReturn(testPhotoFile).when(spyService).resizeImage(any(MultipartFile.class), anyInt(), anyInt());
+
         //When
         PhotoDto expected = testPhotoDto;
-        PhotoDto actual = photoDropboxService.uploadPhoto(testPhotoFile);
+        PhotoDto actual = spyService.uploadPhoto(testPhotoFile);
 
         //Then
         assertEquals(expected, actual);

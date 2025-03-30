@@ -30,5 +30,5 @@ public class CreateEventDto {
     @NotNull
     @Positive
     private BigDecimal price;
-    private Boolean isOnline;
+    private Boolean isOnline = false;
 }

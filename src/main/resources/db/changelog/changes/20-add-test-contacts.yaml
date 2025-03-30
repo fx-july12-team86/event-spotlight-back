@@ -1,0 +1,165 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_new_contacts
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380501234567"}
+              - column: {name: email, value: "contact1@example.com"}
+              - column: {name: instagram, value: "contact1_insta"}
+              - column: {name: telegram, value: "contact1_telegram"}
+              - column: {name: facebook, value: "contact1_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380502345678"}
+              - column: {name: email, value: "contact2@example.com"}
+              - column: {name: instagram, value: "contact2_insta"}
+              - column: {name: telegram, value: "contact2_telegram"}
+              - column: {name: facebook, value: "contact2_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380503456789"}
+              - column: {name: email, value: "contact3@example.com"}
+              - column: {name: instagram, value: "contact3_insta"}
+              - column: {name: telegram, value: "contact3_telegram"}
+              - column: {name: facebook, value: "contact3_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380504567890"}
+              - column: {name: email, value: "contact4@example.com"}
+              - column: {name: instagram, value: "contact4_insta"}
+              - column: {name: telegram, value: "contact4_telegram"}
+              - column: {name: facebook, value: "contact4_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380505678901"}
+              - column: {name: email, value: "contact5@example.com"}
+              - column: {name: instagram, value: "contact5_insta"}
+              - column: {name: telegram, value: "contact5_telegram"}
+              - column: {name: facebook, value: "contact5_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380506789012"}
+              - column: {name: email, value: "contact6@example.com"}
+              - column: {name: instagram, value: "contact6_insta"}
+              - column: {name: telegram, value: "contact6_telegram"}
+              - column: {name: facebook, value: "contact6_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380507890123"}
+              - column: {name: email, value: "contact7@example.com"}
+              - column: {name: instagram, value: "contact7_insta"}
+              - column: {name: telegram, value: "contact7_telegram"}
+              - column: {name: facebook, value: "contact7_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380508901234"}
+              - column: {name: email, value: "contact8@example.com"}
+              - column: {name: instagram, value: "contact8_insta"}
+              - column: {name: telegram, value: "contact8_telegram"}
+              - column: {name: facebook, value: "contact8_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380509012345"}
+              - column: {name: email, value: "contact9@example.com"}
+              - column: {name: instagram, value: "contact9_insta"}
+              - column: {name: telegram, value: "contact9_telegram"}
+              - column: {name: facebook, value: "contact9_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380501234568"}
+              - column: {name: email, value: "contact10@example.com"}
+              - column: {name: instagram, value: "contact10_insta"}
+              - column: {name: telegram, value: "contact10_telegram"}
+              - column: {name: facebook, value: "contact10_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380502345679"}
+              - column: {name: email, value: "contact11@example.com"}
+              - column: {name: instagram, value: "contact11_insta"}
+              - column: {name: telegram, value: "contact11_telegram"}
+              - column: {name: facebook, value: "contact11_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380503456780"}
+              - column: {name: email, value: "contact12@example.com"}
+              - column: {name: instagram, value: "contact12_insta"}
+              - column: {name: telegram, value: "contact12_telegram"}
+              - column: {name: facebook, value: "contact12_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380504567891"}
+              - column: {name: email, value: "contact13@example.com"}
+              - column: {name: instagram, value: "contact13_insta"}
+              - column: {name: telegram, value: "contact13_telegram"}
+              - column: {name: facebook, value: "contact13_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380505678902"}
+              - column: {name: email, value: "contact14@example.com"}
+              - column: {name: instagram, value: "contact14_insta"}
+              - column: {name: telegram, value: "contact14_telegram"}
+              - column: {name: facebook, value: "contact14_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380506789013"}
+              - column: {name: email, value: "contact15@example.com"}
+              - column: {name: instagram, value: "contact15_insta"}
+              - column: {name: telegram, value: "contact15_telegram"}
+              - column: {name: facebook, value: "contact15_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380507890124"}
+              - column: {name: email, value: "contact16@example.com"}
+              - column: {name: instagram, value: "contact16_insta"}
+              - column: {name: telegram, value: "contact16_telegram"}
+              - column: {name: facebook, value: "contact16_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380508901235"}
+              - column: {name: email, value: "contact17@example.com"}
+              - column: {name: instagram, value: "contact17_insta"}
+              - column: {name: telegram, value: "contact17_telegram"}
+              - column: {name: facebook, value: "contact17_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380509012346"}
+              - column: {name: email, value: "contact18@example.com"}
+              - column: {name: instagram, value: "contact18_insta"}
+              - column: {name: telegram, value: "contact18_telegram"}
+              - column: {name: facebook, value: "contact18_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380501234569"}
+              - column: {name: email, value: "contact19@example.com"}
+              - column: {name: instagram, value: "contact19_insta"}
+              - column: {name: telegram, value: "contact19_telegram"}
+              - column: {name: facebook, value: "contact19_fb"}
+        - insert:
+            tableName: contacts
+            columns:
+              - column: {name: phone_number, value: "+380502345680"}
+              - column: {name: email, value: "contact20@example.com"}
+              - column: {name: instagram, value: "contact20_insta"}
+              - column: {name: telegram, value: "contact20_telegram"}
+              - column: {name: facebook, value: "contact20_fb"}

@@ -33,5 +33,22 @@ databaseChangeLog:
       file: db/changelog/changes/16-create-events-favorites-table.yaml
   - include:
       file: db/changelog/changes/17-create-events-my-events-table.yaml
-
+  - include:
+      file: db/changelog/changes/18-add-test-cities.yaml
+  - include:
+      file: db/changelog/changes/19-add-test-addresses.yaml
+  - include:
+      file: db/changelog/changes/20-add-test-contacts.yaml
+  - include:
+      file: db/changelog/changes/21-add-test-descriptions.yaml
+  - include:
+      file: db/changelog/changes/22-add-new-categories.yaml
+  - include:
+      file: db/changelog/changes/23-add-new-photos.yaml
+  - include:
+      file: db/changelog/changes/24-add-test-users.yaml
+  - include:
+      file: db/changelog/changes/25-add-test-events.yaml
+  - include:
+      file: db/changelog/changes/26-add-events-photos.yaml
 

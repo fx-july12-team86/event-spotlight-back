@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_new_city
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Київ"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Львів"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Одеса"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Дніпро"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Харків"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Запоріжжя"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Вінниця"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Чернівці"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Івано-Франківськ"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Тернопіль"}
+        - insert:
+            tableName: cities
+            columns:
+              - column: {name: name, value: "Полтава"}

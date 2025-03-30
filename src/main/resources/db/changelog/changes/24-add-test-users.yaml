@@ -1,0 +1,198 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_new_users
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user1"}
+              - column: {name: email, value: "user1@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user2"}
+              - column: {name: email, value: "user2@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user3"}
+              - column: {name: email, value: "user3@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user4"}
+              - column: {name: email, value: "user4@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user5"}
+              - column: {name: email, value: "user5@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user6"}
+              - column: {name: email, value: "user6@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user7"}
+              - column: {name: email, value: "user7@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user8"}
+              - column: {name: email, value: "user8@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user9"}
+              - column: {name: email, value: "user9@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: user_name, value: "user10"}
+              - column: {name: email, value: "user10@example.com"}
+              - column: {name: password, value: "$2a$10$wJ5PHlmdyXuY3Vu1mAlMYuXgLUpH4byX5d3oQjOLPqzFlAIT8JvjO"}
+
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 2}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 3}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 4}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 5}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 6}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 7}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 8}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 9}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 10}
+        - insert:
+            tableName: favorites
+            columns:
+              - column: {name: id, value: 11}
+
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 2 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 3 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 4 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 5 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 6 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 7 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 8 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 9 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 10 }
+        - insert:
+            tableName: my_events
+            columns:
+              - column: { name: id, value: 11 }
+
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 2}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 3}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 4}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 5}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 6}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 7}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 8}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 9}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 10}
+              - column: {name: role_id, value: 2}
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: {name: user_id, value: 11}
+              - column: {name: role_id, value: 2}

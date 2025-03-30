@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_new_categories
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Миловаріння"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Кулінарія"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Малювання"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Фотографія"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Гончарство"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Йога"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Акторська майстерність"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Музика"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Наука"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Благодійність"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Вулична їжа"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Кіно"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Комікси і косплей"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Осінній ярмарок"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Бізнес"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Настільні ігри"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Відкритий мікрофон"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Виживання"}
+        - insert:
+            tableName: categories
+            columns:
+              - column: {name: name, value: "Література"}

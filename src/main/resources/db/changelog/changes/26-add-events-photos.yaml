@@ -1,0 +1,150 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_events_photos
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 1}
+              - column: {name: photo_id, value: 1}  #/mulovarinnya2.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 1}
+              - column: {name: photo_id, value: 2}  #/mulovarinnya3.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 2}
+              - column: {name: photo_id, value: 3}  #/cooking1.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 2}
+              - column: {name: photo_id, value: 4}  #/cooking3.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 2}
+              - column: {name: photo_id, value: 5}  #/cooking3.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 3}
+              - column: {name: photo_id, value: 6}  #/painting.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 4}
+              - column: {name: photo_id, value: 7}  #/photography.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 5}
+              - column: {name: photo_id, value: 8}  #/pottery.png
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 6}
+              - column: {name: photo_id, value: 9}  #/yoga1.jpeg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 6}
+              - column: {name: photo_id, value: 10} #/yoga2.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 7}
+              - column: {name: photo_id, value: 11} #/actor1.png
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 8}
+              - column: {name: photo_id, value: 12} #/open-air-concert1.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 8}
+              - column: {name: photo_id, value: 13} #/open-air-concert2.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 9}
+              - column: {name: photo_id, value: 14} #/science2.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 9}
+              - column: {name: photo_id, value: 15} #/science1.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 10}
+              - column: {name: photo_id, value: 16} #/marathon.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 11}
+              - column: {name: photo_id, value: 17} #/eating-festival.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 12}
+              - column: {name: photo_id, value: 18} #/film-night1.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 12}
+              - column: {name: photo_id, value: 19} #/film-night2.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 12}
+              - column: {name: photo_id, value: 20} #/film-night3.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 13}
+              - column: {name: photo_id, value: 21} #/comic-con1.jpeg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 13}
+              - column: {name: photo_id, value: 22} #/comic-con2.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 14}
+              - column: {name: photo_id, value: 23} #/yarmarok1.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 14}
+              - column: {name: photo_id, value: 24} #/yarmarok2.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 15}
+              - column: {name: photo_id, value: 25} #/business-forum.png
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 16}
+              - column: {name: photo_id, value: 26} #/warhammertable1.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 17}
+              - column: {name: photo_id, value: 27} #/open-microphone.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 18}
+              - column: {name: photo_id, value: 28} #/wild-nature.jpg
+        - insert:
+            tableName: events_photos
+            columns:
+              - column: {name: event_id, value: 19}
+              - column: {name: photo_id, value: 29} #/literature-evening.jpg

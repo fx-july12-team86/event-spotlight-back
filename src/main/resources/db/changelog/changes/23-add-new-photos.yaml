@@ -1,0 +1,179 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_new_photos
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/mulovarinnya2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/k1wisw33bfp3hxdjftajz/Mulovarinnya2.jpg?rlkey=wlt1i0qtlvk6kwafpc1e6hu21&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T20:56:47.573619"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/mulovarinnya3.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/6w7quoewnjxwxgxkfy64h/Mulovarinnya3.jpg?rlkey=54hwb8r0dfsy3apzejgw5e582&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T20:56:49.779294"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/cooking1.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/fa1ttf57gbd8s288dfn40/Cooking1.jpg?rlkey=raopoo39ugb45k0ifvmnbfmb6&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:01:28.489714"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/cooking2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/zcy5lsdyiqap6cealsodo/Cooking2.jpg?rlkey=gnqm3hpdw4mc905dpbkn2mshy&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:01:32.937255"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/cooking3.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/5j8bwe6xwin3icsdcey47/Cooking3.jpg?rlkey=bzusrjhl6mdperjd99de7xzhf&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:01:36.231900"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/painting.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/oqb84mhld5h5nuhx04ze9/Painting.jpg?rlkey=y59gv6waaj6tg0ovfp6phrcr3&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:03:40.654320"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/photography.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/9bsss4c1p6xvtdmlmk4sg/Photography.jpg?rlkey=698x7b7713g56md2gfpve218d&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:03:44.220776"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/pottery.png"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/nvp0ahtykgd5aak0xicpv/Pottery.png?rlkey=r7phg45ha3ui63o2zj1cwzzvl&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:03:47.551422"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/yoga1.jpeg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/g3qsj9fz8it52b5d4jh7x/Yoga1.jpeg?rlkey=i1sk1wy181jcjmyhv0d7h6gfp&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:03:54.139163"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/yoga2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/oow01l3otnx33f1r849mw/Yoga2.jpg?rlkey=cqevsrox5zuqdayufbiubx0kq&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:04:00.342664"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/actor1.png"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/73yvmookf8l54poyxi1zm/Actor1.png?rlkey=1eyausu8y1wzitui7ze24wz9r&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:03.809366"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/open-air-concert1.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/6cop09z4gmolmhcdkfgln/open-air-concert1.jpg?rlkey=05zhbwcwrrjp4hb86atieo2hb&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:07.134734"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/open-air-concert2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/zowppek5u4sok5gpif7hf/open-air-concert2.jpg?rlkey=05qqj56vh4b7fnv4fsy1etojd&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:11.675384"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/science2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/il4axtyn481hqp5xmp0uc/science2.jpg?rlkey=zhr2evopp673rfxul2ylcykrj&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:15.453023"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/science1.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/s7trdojm6i0uohbipr74t/science1.jpg?rlkey=3nbobcbf2zoc7uo34rzlytmnv&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:18.945084"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/marathon.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/4mhsujrnb9y09tcm9dbgo/Marathon.jpg?rlkey=mbr2vjyexdeom4r8c0j5o1dv2&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:22.429274"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/eating-festival.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/hnj34muqqnl3ecqckgnq6/eating-festival.jpg?rlkey=uom94xl6p96tvcactthxnkry6&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:27.455303"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/film-night1.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/ddce4opbtq6h4qaytistb/film-Night1.jpg?rlkey=38qngac23eqjqrrm9vz0etzv6&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:31.546547"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/film-night2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/bahwgkv2i7ukztmcuepgy/film-Night2.jpg?rlkey=yzyy9w9fo0mkzmxc26b0j7zq0&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:34.872401"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/film-night3.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/kantlz6ro64894jcpy8l9/film-Night3.jpg?rlkey=0xyct3dr3x6r0wsc0sqfyi1xc&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:05:38.801769"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/comic-con1.jpeg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/91zeijn6b582m7hasij2f/comic-con1.jpeg?rlkey=48rug10dwcwp3n8t7m04xaqjj&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:07:43.850166"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/comic-con2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/2121vj2dft15rrfo2va5c/comic-con2.jpg?rlkey=wqcglilrrqe6m0bfd7nhogrpg&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:07:47.723016"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/yarmarok1.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/k2ocpak0al9euxyp82w84/YArmarok1.jpg?rlkey=gq1ihaxclrap7s6s2m51yiynk&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:07:50.936571"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/yarmarok2.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/xvwy56cm9hdk9nsox55la/YArmarok2.jpg?rlkey=i5ifxvebb721g54385rrrwqt9&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:07:54.217154"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/business-forum.png"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/j2r3tb3cmhrogu6quvgt0/Business-forum.png?rlkey=o3n6w0zrw22jzdrsr45r4fnmz&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:07:57.072563"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/warhammertable1.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/lmyuas8bhbxl0zli90hm4/warhammerTable1.jpg?rlkey=7axjafe08evr3c8ptqr46ozr3&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:08:02.316397"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/open-microphone.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/uubadsyij1vdsqi9qh706/open-microphone.jpg?rlkey=f8v81am93yhkl8k7w8raggfav&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:08:05.848028"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/wild-nature.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/j29sh9v9ayi1o37vodnug/wild-nature.jpg?rlkey=820j8dgteo2v8grgec125hnr4&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:08:10.035597"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: {name: path, value: "/literature-evening.jpg"}
+              - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/9ac5ndlkw22hd3nlvfwn1/literature-evening.jpg?rlkey=04glfgeyd8gd9fwby8gmaigrg&dl=0"}
+              - column: {name: created_at, valueDate: "2025-03-30T21:08:13.727036"}

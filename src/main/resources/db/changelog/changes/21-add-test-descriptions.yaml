@@ -1,0 +1,100 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_new_descriptions
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Майстер-клас з миловаріння"}
+              - column: {name: description, value: "🧼 Відкрийте для себе мистецтво створення натурального мила..."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Кулінарний майстер-клас"}
+              - column: {name: description, value: "🍳 Запрошуємо вас на кулінарний майстер-клас..."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Майстер-клас з малювання"}
+              - column: {name: description, value: "🎨 Відкрийте для себе світ мистецтва на нашому майстер-класі..."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Майстер-клас з фотографії"}
+              - column: {name: description, value: "📸 Запрошуємо вас на майстер-клас з фотографії..."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Майстер-клас з гончарства"}
+              - column: {name: description, value: "🌀 Запрошуємо вас на майстер-клас з гончарства..."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Йога для початківців"}
+              - column: {name: description, value: "🧘‍♀️ Дізнайтеся основи йоги та знайдіть внутрішній спокій..."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Курс з акторської майстерності"}
+              - column: {name: description, value: "🎭 Навчіться мистецтву перевтілення та впевненого виступу..."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Музичний концерт просто неба"}
+              - column: {name: description, value: "🎶 Проведіть вечір у компанії живої музики просто неба. Насолоджуйтесь виступами талановитих музикантів і атмосферою свободи та гармонії."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Науковий фестиваль"}
+              - column: {name: description, value: "🔬 Відкрийте для себе світ науки на фестивалі, де ви зможете взяти участь у інтерактивних експериментах, відвідати лекції та поспілкуватися з провідними вченими."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Благодійний марафон"}
+              - column: {name: description, value: "🏃‍♂️ Долучайтеся до благодійного марафону та допоможіть зібрати кошти для важливої справи. Виберіть зручну дистанцію та станьте частиною доброго вчинку."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Фестиваль вуличної їжі"}
+              - column: {name: description, value: "🍔 Скуштуйте найкращі страви вуличної кухні на великому гастрономічному фестивалі. Величезний вибір смаколиків від кращих кухарів міста!"}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Кіноніч під відкритим небом"}
+              - column: {name: description, value: "🎥 Проведіть чарівний вечір, переглядаючи культові фільми під відкритим небом. Зручні місця, смачний попкорн та неймовірна атмосфера гарантовані!"}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Фестиваль коміксів і косплею"}
+              - column: {name: description, value: "🦸‍♂️ Пориньте у світ супергероїв, аніме та поп-культури! Візьміть участь у конкурсі косплею або знайдіть рідкісні комікси."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Осінній ярмарок"}
+              - column: {name: description, value: "🍁 Насолоджуйтесь традиційними стравами, майстер-класами та атмосферою осіннього ярмарку з живою музикою та сувенірами."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Бізнес-форум"}
+              - column: {name: description, value: "📊 Відвідайте бізнес-форум, щоб дізнатися про нові тренди в підприємництві та знайти корисні контакти."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Турнір з настільних ігор"}
+              - column: {name: description, value: "🎲 Долучайтеся до змагань у найкращі настільні ігри, спілкуйтесь з однодумцями та вигравайте призи!"}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Відкритий мікрофон"}
+              - column: {name: description, value: "🎤 Спробуйте себе у стендапі, поезії чи музиці! Відкритий мікрофон – ідеальна нагода проявити себе перед публікою."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Курс виживання в дикій природі"}
+              - column: {name: description, value: "🏕️ Дізнайтеся, як орієнтуватися на місцевості, розпалювати вогонь та виживати в природі без сучасних зручностей."}
+        - insert:
+            tableName: descriptions
+            columns:
+              - column: {name: title, value: "Літературний вечір"}
+              - column: {name: description, value: "📖 Проведіть вечір у компанії улюблених авторів, обговоріть книги та поділіться враженнями."}
