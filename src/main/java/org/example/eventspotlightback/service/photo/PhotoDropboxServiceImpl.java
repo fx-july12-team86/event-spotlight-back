@@ -6,14 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -61,7 +58,8 @@ public class PhotoDropboxServiceImpl implements PhotoService {
 
             String formatName = getFileExtension(file.getOriginalFilename());
             if (!ALLOWED_FORMATS.contains(formatName)) {
-                throw new RuntimeException("Unsupported file format: " + formatName + ". Allowed formats: JPG, PNG");
+                throw new RuntimeException("Unsupported file format: "
+                        + formatName + ". Allowed formats: JPG, PNG");
             }
 
             BufferedImage resizedImage = Thumbnails.of(originalImage)
@@ -74,7 +72,11 @@ public class PhotoDropboxServiceImpl implements PhotoService {
                 ImageIO.write(resizedImage, formatName, outputStream);
                 byte[] resizedBytes = outputStream.toByteArray();
 
-                return new ByteArrayMultipartFile(resizedBytes, file.getOriginalFilename(), file.getContentType());
+                return new ByteArrayMultipartFile(
+                        resizedBytes,
+                        file.getOriginalFilename(),
+                        file.getContentType()
+                );
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to resize image", e);

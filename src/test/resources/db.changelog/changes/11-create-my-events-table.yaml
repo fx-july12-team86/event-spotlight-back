@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-my-events-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: my_events
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    foreignKeyName: fk_users_my_events
+                    referencedTableName: users
+                    referencedColumnNames: id
+                    primaryKey: true
+                    nullable: false

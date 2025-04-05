@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-events-my-events-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: events_my_events
+            columns:
+              - column:
+                  name: event_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_my_events_events
+                    referencedTableName: events
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: my_event_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_my_events_my_events
+                    referencedTableName: my_events
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true

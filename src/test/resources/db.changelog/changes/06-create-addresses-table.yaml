@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-addresses-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: city_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_address_city
+                    referencedTableName: cities
+                    referencedColumnNames: id
+                    nullable: false
+              - column:
+                  name: street
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: number
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false

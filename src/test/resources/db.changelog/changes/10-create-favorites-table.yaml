@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-favorites-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: favorites
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    foreignKeyName: fk_users_favorites
+                    referencedTableName: users
+                    referencedColumnNames: id
+                    primaryKey: true
+                    nullable: false

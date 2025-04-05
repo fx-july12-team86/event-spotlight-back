@@ -59,7 +59,8 @@ public class PhotoDropboxServiceTest {
         when(photoMapper.toDto(testPhoto)).thenReturn(testPhotoDto);
 
         PhotoDropboxServiceImpl spyService = spy(photoDropboxService);
-        doReturn(testPhotoFile).when(spyService).resizeImage(any(MultipartFile.class), anyInt(), anyInt());
+        doReturn(testPhotoFile).when(spyService)
+                .resizeImage(any(MultipartFile.class), anyInt(), anyInt());
 
         //When
         PhotoDto expected = testPhotoDto;

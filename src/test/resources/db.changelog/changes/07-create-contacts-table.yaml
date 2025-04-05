@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-contacts-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: contacts
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: instagram
+                  type: VARCHAR(255)
+              - column:
+                  name: telegram
+                  type: VARCHAR(255)
+              - column:
+                  name: facebook
+                  type: VARCHAR(255)

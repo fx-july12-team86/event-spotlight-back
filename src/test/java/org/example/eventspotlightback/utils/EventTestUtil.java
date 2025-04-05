@@ -17,7 +17,6 @@ import static org.example.eventspotlightback.utils.UserTestUtil.testUser;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
@@ -96,26 +95,32 @@ public class EventTestUtil {
                 .setId(1L)
                 .setTitle("first Test Event Title")
                 .setStartTime(LocalDateTime.of(2024, 11, 19, 6, 0))
+                .setUserId(TEST_USER_ID)
                 .setPrice(new BigDecimal("100.00"))
                 .setAddress(testAddressDto)
-                .setPhotosIds(Collections.emptyList())
-                .setCategoryIds(Collections.emptySet());
+                .setPhoto(null)
+                .setCategory(null)
+                .setIsOnline(false);
         SimpleEventDto second = new SimpleEventDto()
                 .setId(2L)
                 .setTitle("second Test Event Title")
                 .setStartTime(LocalDateTime.of(2024, 11, 20, 6, 0))
+                .setUserId(TEST_USER_ID)
                 .setPrice(new BigDecimal("200.00"))
                 .setAddress(testAddressDto)
-                .setPhotosIds(Collections.emptyList())
-                .setCategoryIds(Collections.emptySet());
+                .setPhoto(null)
+                .setCategory(null)
+                .setIsOnline(true);
         SimpleEventDto third = new SimpleEventDto()
                 .setId(3L)
                 .setTitle("third Test Event Title")
                 .setStartTime(LocalDateTime.of(2024, 11, 21, 6, 0))
+                .setUserId(TEST_USER_ID)
                 .setPrice(new BigDecimal("300.00"))
                 .setAddress(testAddressDto)
-                .setPhotosIds(Collections.emptyList())
-                .setCategoryIds(Collections.emptySet());
+                .setPhoto(null)
+                .setCategory(null)
+                .setIsOnline(false);
         List<SimpleEventDto> testList = new ArrayList<>();
         testList.add(first);
         testList.add(second);

@@ -3,7 +3,6 @@ package org.example.eventspotlightback.controller;
 import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
 import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
 import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
-import static org.example.eventspotlightback.utils.EventTestUtil.getTestListWithEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.getTestListWithSimpleEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.testEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
@@ -25,6 +24,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import lombok.SneakyThrows;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
+import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -229,10 +229,10 @@ public class EventControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<EventDto> expected = getTestListWithEventDto();
-        EventDto[] actual = objectMapper.readValue(
+        List<SimpleEventDto> expected = getTestListWithSimpleEventDto();
+        SimpleEventDto[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                EventDto[].class
+                SimpleEventDto[].class
         );
 
         Assertions.assertEquals(3, actual.length);
@@ -266,25 +266,40 @@ public class EventControllerTest {
     @Test
     @DisplayName("Test search Event by Event search parameters")
     public void search_EventSearchParametersAndPageable_ListOfSimpleEventDto() throws Exception {
+
+        // Побудова URL з query параметрами для Pageable
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromPath("/events/search")
                 .queryParam("page", 0)
                 .queryParam("size", 10)
-                .queryParam("cities", TEST_CITY_ID)
-                .queryParam("onlineStatus", true);
+                .queryParam("sort", "startTime,asc"); // Додаємо сортування
 
         String searchQuery = uriBuilder.toUriString();
 
-        MvcResult result = mockMvc.perform(get(searchQuery))
+        // Створюємо об'єкт EventSearchParameters
+        EventSearchParameters eventSearchParameters = new EventSearchParameters(
+                null, null, new String[]{"true"}, new String[]{TEST_CITY_ID.toString()});
+
+        // Конвертуємо об'єкт у JSON
+        String requestBody = objectMapper.writeValueAsString(eventSearchParameters);
+
+        // Виконуємо POST-запит з queryParams + requestBody
+        MvcResult result = mockMvc.perform(post(searchQuery)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody)) // Передаємо JSON у body
                 .andExpect(status().isOk())
                 .andReturn();
 
+        // Очікуваний результат
         List<SimpleEventDto> expected = new ArrayList<>();
         expected.add(getTestListWithSimpleEventDto().get(1));
+
+        // Перетворюємо відповідь у масив об'єктів
         SimpleEventDto[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
                 SimpleEventDto[].class
         );
 
+        // Перевіряємо, що повернуто 1 об'єкт і що він відповідає очікуваному
         Assertions.assertEquals(1, actual.length);
         Assertions.assertEquals(expected, Arrays.stream(actual).toList());
     }

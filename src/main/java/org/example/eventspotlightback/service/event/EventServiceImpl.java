@@ -84,10 +84,10 @@ public class EventServiceImpl implements EventService {
     public void deleteEventById(Long id) {
         eventRepository.deleteById(id);
     }
-
+    
     @Override
-    public List<EventDto> findAllEvents(Pageable pageable) {
-        return eventMapper.toDto(eventRepository.findAll(pageable).toList());
+    public List<SimpleEventDto> findAllEvents(Pageable pageable) {
+        return eventMapper.toSimpleDto(eventRepository.findAll(pageable).toList());
     }
 
     @Override

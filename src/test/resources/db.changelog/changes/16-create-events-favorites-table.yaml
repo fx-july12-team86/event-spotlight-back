@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-events-favorites-table
+      author: shumYevh
+      changes:
+        - createTable:
+            tableName: events_favorites
+            columns:
+              - column:
+                  name: event_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_favorites_events
+                    referencedTableName: events
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: favorite_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_events_favorites_favorites
+                    referencedTableName: favorites
+                    referencedColumnNames: id
+                    nullable: false
+                    primaryKey: true
