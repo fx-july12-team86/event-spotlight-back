@@ -22,7 +22,7 @@ public class CategorySpecificationProvider implements SpecificationProvider<Even
         return (root, query, criteriaBuilder) -> {
             Join<Event, Category> categoryJoin = root.join(KEY);
             return criteriaBuilder.and(
-                    categoryJoin.get("id").in(Arrays.stream(params).toArray()));
+                    categoryJoin.get("name").in(Arrays.stream(params).toArray()));
         };
     }
 }

@@ -133,7 +133,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Благодійний марафон"}
-              - column: {name: start_time, valueDate: "2025-04-10T19:00:00"}
+              - column: {name: start_time, valueDate: "2025-05-10T19:00:00"}
               - column: {name: price, valueNumeric: 700.00}
               - column: {name: contact_id, value: 10}
               - column: {name: address_id, value: 10}
@@ -147,7 +147,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Фестиваль вуличної їжі"}
-              - column: {name: start_time, valueDate: "2025-04-11T20:00:00"}
+              - column: {name: start_time, valueDate: "2025-05-11T20:00:00"}
               - column: {name: price, valueNumeric: 800.00}
               - column: {name: contact_id, value: 1}
               - column: {name: address_id, value: 1}
@@ -161,7 +161,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Кіноніч під відкритим небом"}
-              - column: {name: start_time, valueDate: "2025-04-12T21:00:00"}
+              - column: {name: start_time, valueDate: "2025-05-12T21:00:00"}
               - column: {name: price, valueNumeric: 900.00}
               - column: {name: contact_id, value: 2}
               - column: {name: address_id, value: 2}
@@ -175,7 +175,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Фестиваль коміксів і косплею"}
-              - column: {name: start_time, valueDate: "2025-04-13T22:00:00"}
+              - column: {name: start_time, valueDate: "2025-05-13T22:00:00"}
               - column: {name: price, valueNumeric: 1000.00}
               - column: {name: contact_id, value: 3}
               - column: {name: address_id, value: 3}
@@ -189,7 +189,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Осінній ярмарок"}
-              - column: {name: start_time, valueDate: "2025-04-14T23:00:00"}
+              - column: {name: start_time, valueDate: "2025-05-14T23:00:00"}
               - column: {name: price, valueNumeric: 1100.00}
               - column: {name: contact_id, value: 4}
               - column: {name: address_id, value: 4}
@@ -203,7 +203,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Бізнес-форум"}
-              - column: {name: start_time, valueDate: "2025-04-15T10:00:00"}
+              - column: {name: start_time, valueDate: "2025-05-15T10:00:00"}
               - column: {name: price, valueNumeric: 1200.00}
               - column: {name: contact_id, value: 5}
               - column: {name: address_id, value: 5}
@@ -217,7 +217,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Турнір з настільних ігор"}
-              - column: {name: start_time, valueDate: "2025-04-16T11:00:00"}
+              - column: {name: start_time, valueDate: "2025-06-16T11:00:00"}
               - column: {name: price, valueNumeric: 1300.00}
               - column: {name: contact_id, value: 6}
               - column: {name: address_id, value: 6}
@@ -231,7 +231,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Відкритий мікрофон"}
-              - column: {name: start_time, valueDate: "2025-04-17T12:00:00"}
+              - column: {name: start_time, valueDate: "2025-06-17T12:00:00"}
               - column: {name: price, valueNumeric: 1400.00}
               - column: {name: contact_id, value: 7}
               - column: {name: address_id, value: 7}
@@ -245,7 +245,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Курс виживання в дикій природі"}
-              - column: {name: start_time, valueDate: "2025-04-18T13:00:00"}
+              - column: {name: start_time, valueDate: "2025-06-18T13:00:00"}
               - column: {name: price, valueNumeric: 1500.00}
               - column: {name: contact_id, value: 8}
               - column: {name: address_id, value: 8}
@@ -259,7 +259,7 @@ databaseChangeLog:
             tableName: events
             columns:
               - column: {name: title, value: "Літературний вечір"}
-              - column: {name: start_time, valueDate: "2025-04-19T14:00:00"}
+              - column: {name: start_time, valueDate: "2025-06-19T14:00:00"}
               - column: {name: price, valueNumeric: 1600.00}
               - column: {name: contact_id, value: 9}
               - column: {name: address_id, value: 9}

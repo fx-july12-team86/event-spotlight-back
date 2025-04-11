@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.eventspotlightback.dto.internal.address.AddressDto;
-import org.example.eventspotlightback.dto.internal.category.CategoryDto;
 import org.example.eventspotlightback.dto.internal.photo.PhotoDto;
 
 @Data
@@ -16,7 +15,7 @@ public class SimpleEventDto {
     private Long userId;
     private AddressDto address;
     private PhotoDto photo;
-    private CategoryDto category;
+    private String categoryName;
     private LocalDateTime startTime;
     private BigDecimal price;
     private Boolean isOnline;

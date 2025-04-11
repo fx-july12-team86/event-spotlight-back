@@ -23,7 +23,7 @@ public class CitySpecificationProvider implements SpecificationProvider<Event> {
         return (root, query, criteriaBuilder) -> {
             Join<Event, Address> addressJoin = root.join("address");
             Join<Address, City> cityJoin = addressJoin.join("city");
-            return criteriaBuilder.and(cityJoin.get("id").in(Arrays.stream(params).toArray()));
+            return criteriaBuilder.and(cityJoin.get("name").in(Arrays.stream(params).toArray()));
         };
     }
 }

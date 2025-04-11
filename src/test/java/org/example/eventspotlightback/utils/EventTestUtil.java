@@ -99,7 +99,7 @@ public class EventTestUtil {
                 .setPrice(new BigDecimal("100.00"))
                 .setAddress(testAddressDto)
                 .setPhoto(null)
-                .setCategory(null)
+                .setCategoryName(null)
                 .setIsOnline(false);
         SimpleEventDto second = new SimpleEventDto()
                 .setId(2L)
@@ -109,7 +109,7 @@ public class EventTestUtil {
                 .setPrice(new BigDecimal("200.00"))
                 .setAddress(testAddressDto)
                 .setPhoto(null)
-                .setCategory(null)
+                .setCategoryName(null)
                 .setIsOnline(true);
         SimpleEventDto third = new SimpleEventDto()
                 .setId(3L)
@@ -119,7 +119,7 @@ public class EventTestUtil {
                 .setPrice(new BigDecimal("300.00"))
                 .setAddress(testAddressDto)
                 .setPhoto(null)
-                .setCategory(null)
+                .setCategoryName(null)
                 .setIsOnline(false);
         List<SimpleEventDto> testList = new ArrayList<>();
         testList.add(first);

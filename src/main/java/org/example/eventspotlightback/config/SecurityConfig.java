@@ -63,7 +63,8 @@ public class SecurityConfig {
                                         "/photos")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.POST,
-                                        "/events/search")
+                                        "/events/search",
+                                        "/events/search/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

@@ -35,7 +35,9 @@ public interface EventRepository extends
             "photos",
             "categories",
             "favorites",
-            "myEvents"
+            "myEvents",
+            "user",
+            "user.favorite"
     })
     Page<Event> findAll(Pageable pageable);
 
@@ -47,7 +49,9 @@ public interface EventRepository extends
             "photos",
             "categories",
             "favorites",
-            "myEvents"
+            "myEvents",
+            "user",
+            "user.favorite"
     })
     Page<Event> findAll(Specification specification, Pageable pageable);
 
@@ -59,7 +63,9 @@ public interface EventRepository extends
             "photos",
             "categories",
             "favorites",
-            "myEvents"
+            "myEvents",
+            "user",
+            "user.favorite"
     })
     Optional<Event> findById(Long id);
 

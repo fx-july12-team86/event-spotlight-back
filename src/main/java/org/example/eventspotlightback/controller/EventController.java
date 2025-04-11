@@ -9,6 +9,7 @@ import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
+import org.example.eventspotlightback.dto.internal.event.EventResponseDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.example.eventspotlightback.service.event.EventService;
@@ -33,6 +34,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/events")
 public class EventController {
+    private static final Integer DEFAULT_SIZE = 24;
+    private static final Integer DEFAULT_PAGE = 0;
+    private static final String[] DEFAULT_SORT = {"startTime,asc"};
     private final EventService eventService;
 
     @Operation(
@@ -104,6 +108,19 @@ public class EventController {
     ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(parseSort(sort)));
         return eventService.search(eventSearchParameters, pageable);
+    }
+
+    @Operation(
+            summary = "Search Event with parameters grouped by month"
+    )
+    @PostMapping("/search/grouped-by-month")
+    public EventResponseDto searchEvents(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "24") int size,
+            @RequestBody EventSearchParameters eventSearchParameters
+    ) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(parseSort(DEFAULT_SORT)));
+        return eventService.searchEventsGroupedByMonth(eventSearchParameters, pageable);
     }
 
     private List<Sort.Order> parseSort(String[] sort) {

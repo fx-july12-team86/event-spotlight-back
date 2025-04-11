@@ -1,6 +1,6 @@
 package org.example.eventspotlightback.controller;
 
-import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_ID;
+import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_NAME;
 import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
 import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.getTestListWithSimpleEventDto;
@@ -277,7 +277,7 @@ public class EventControllerTest {
 
         // Створюємо об'єкт EventSearchParameters
         EventSearchParameters eventSearchParameters = new EventSearchParameters(
-                null, null, new String[]{"true"}, new String[]{TEST_CITY_ID.toString()});
+                null, null, new String[]{"true"}, new String[]{TEST_CITY_NAME});
 
         // Конвертуємо об'єкт у JSON
         String requestBody = objectMapper.writeValueAsString(eventSearchParameters);

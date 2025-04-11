@@ -1,11 +1,18 @@
 package org.example.eventspotlightback.service.event;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
+import org.example.eventspotlightback.dto.internal.event.EventResponseDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
+import org.example.eventspotlightback.dto.internal.event.GroupedSimpleEventDto;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.EventMapper;
@@ -26,6 +33,7 @@ import org.example.eventspotlightback.repository.MyEventsRepository;
 import org.example.eventspotlightback.repository.PhotoRepository;
 import org.example.eventspotlightback.repository.UserRepository;
 import org.example.eventspotlightback.repository.specification.SpecificationBuilder;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -34,6 +42,21 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class EventServiceImpl implements EventService {
+    private static final Map<Month, String> UKRAINIAN_MONTHS = Map.ofEntries(
+            Map.entry(Month.JANUARY, "Січень"),
+            Map.entry(Month.FEBRUARY, "Лютий"),
+            Map.entry(Month.MARCH, "Березень"),
+            Map.entry(Month.APRIL, "Квітень"),
+            Map.entry(Month.MAY, "Травень"),
+            Map.entry(Month.JUNE, "Червень"),
+            Map.entry(Month.JULY, "Липень"),
+            Map.entry(Month.AUGUST, "Серпень"),
+            Map.entry(Month.SEPTEMBER, "Вересень"),
+            Map.entry(Month.OCTOBER, "Жовтень"),
+            Map.entry(Month.NOVEMBER, "Листопад"),
+            Map.entry(Month.DECEMBER, "Грудень")
+    );
+
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
     private final ContactRepository contactRepository;
@@ -106,6 +129,35 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findAll(specification, pageable).stream()
                 .map(eventMapper::toSimpleDto)
                 .toList();
+    }
+
+    @Override
+    public EventResponseDto searchEventsGroupedByMonth(
+            EventSearchParameters eventSearchParameters,
+            Pageable pageable
+    ) {
+        Specification<Event> specification = specificationBuilder.build(eventSearchParameters);
+        Page<Event> page = eventRepository.findAll(specification, pageable);
+
+        Map<Month, List<SimpleEventDto>> groupedByMonth = page.getContent()
+                .stream()
+                .map(eventMapper::toSimpleDto)
+                .collect(Collectors.groupingBy(dto -> dto.getStartTime().getMonth()));
+
+        List<GroupedSimpleEventDto> groupedDtos = groupedByMonth.entrySet()
+                .stream()
+                .map(entry -> new GroupedSimpleEventDto()
+                        .setField(UKRAINIAN_MONTHS.get(entry.getKey()))
+                        .setEvents(entry.getValue()))
+                .sorted(Comparator.comparing(dto ->
+                        dto.getEvents().stream()
+                                .map(SimpleEventDto::getStartTime)
+                                .min(Comparator.naturalOrder())
+                                .orElse(LocalDateTime.MIN) // Безпечне сортування
+                ))
+                .toList();
+
+        return new EventResponseDto(page.getTotalPages(), groupedDtos);
     }
 
     private void updateModelFromDto(Event event, CreateEventDto createEventDto) {
