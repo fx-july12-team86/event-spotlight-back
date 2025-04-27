@@ -123,3 +123,123 @@ databaseChangeLog:
               - column: {name: city_id, value: 9}
               - column: {name: street, value: "Грушевського"}
               - column: {name: number, value: "20"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 2}
+              - column: { name: street, value: "Лесі Українки"}
+              - column: {name: number, value: "10"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 4}
+              - column: {name: street, value: "Перемоги"}
+              - column: {name: number, value: "22Б"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 7 }
+              - column: {name: street, value: "Дніпровська" }
+              - column: {name: number, value: "31"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 9 }
+              - column: {name: street, value: "Соборна" }
+              - column: {name: number, value: "5А"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 11 }
+              - column: {name: street, value: "Володимирська" }
+              - column: {name: number, value: "44"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 6 }
+              - column: {name: street, value: "Пушкіна"}
+              - column: {name: number, value: "13"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 8 }
+              - column: {name: street, value: "Миру"}
+              - column: {name: number, value: "7"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 1 }
+              - column: {name: street, value: "Івана Франка"}
+              - column: {name: number, value: "109"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 3 }
+              - column: {name: street, value: "Гагаріна"}
+              - column: {name: number, value: "12/1"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 5 }
+              - column: {name: street, value: "Свободи"}
+              - column: {name: number, value: "99"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 10 }
+              - column: {name: street, value: "Чорновола"}
+              - column: {name: number, value: "20"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 4}
+              - column: {name: street, value: "Козацька"}
+              - column: {name: number, value: "6А"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 2}
+              - column: {name: street, value: "Залізнична"}
+              - column: {name: number, value: "1"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 11}
+              - column: {name: street, value: "Хрещатик"}
+              - column: {name: number, value: "18Б"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 7}
+              - column: {name: street, value: "Бандери"}
+              - column: {name: number, value: "73"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 9}
+              - column: {name: street, value: "Жовтнева"}
+              - column: {name: number, value: "2Г"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 6}
+              - column: {name: street, value: "Центральна"}
+              - column: {name: number, value: "58"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 1}
+              - column: {name: street, value: "Революції"}
+              - column: {name: number, value: "100"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 3}
+              - column: {name: street, value: "Лугова"}
+              - column: {name: number, value: "3"}
+        - insert:
+            tableName: addresses
+            columns:
+              - column: {name: city_id, value: 10}
+              - column: {name: street, value: "Одеська"}
+              - column: {name: number, value: "4"}

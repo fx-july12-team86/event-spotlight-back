@@ -34,6 +34,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
+    @Column(name = "title", length = 14)
     private String title;
     private LocalDateTime startTime;
     private BigDecimal price;

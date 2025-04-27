@@ -25,13 +25,13 @@ import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
 import org.example.eventspotlightback.model.Event;
 
 public class EventTestUtil {
-    public static final Long TEST_EVENT_ID = 93L;
-    public static final String TEST_EVENT_TITLE = "Test Event Title";
+    public static final Long TEST_EVENT_ID = 9993L;
+    public static final String TEST_EVENT_TITLE = "TestTitle";
     public static final LocalDateTime TEST_EVENT_START_TIME = LocalDateTime
             .of(2024, 11, 19, 6, 0);
     public static final BigDecimal TEST_EVENT_PRICE = BigDecimal.valueOf(100.0);
 
-    public static final String TEST_UPDATE_EVENT_TITLE = "Test Updated Event Title";
+    public static final String TEST_UPDATE_EVENT_TITLE = "UpdatedTitle";
 
     public static final Event testEvent = new Event()
             .setId(TEST_EVENT_ID)
@@ -92,8 +92,8 @@ public class EventTestUtil {
 
     public static List<SimpleEventDto> getTestListWithSimpleEventDto() {
         SimpleEventDto first = new SimpleEventDto()
-                .setId(1L)
-                .setTitle("first Test Event Title")
+                .setId(9997L)
+                .setTitle("1TestTitle")
                 .setStartTime(LocalDateTime.of(2024, 11, 19, 6, 0))
                 .setUserId(TEST_USER_ID)
                 .setPrice(new BigDecimal("100.00"))
@@ -102,8 +102,8 @@ public class EventTestUtil {
                 .setCategoryName(null)
                 .setIsOnline(false);
         SimpleEventDto second = new SimpleEventDto()
-                .setId(2L)
-                .setTitle("second Test Event Title")
+                .setId(9998L)
+                .setTitle("2TestTitle")
                 .setStartTime(LocalDateTime.of(2024, 11, 20, 6, 0))
                 .setUserId(TEST_USER_ID)
                 .setPrice(new BigDecimal("200.00"))
@@ -112,8 +112,8 @@ public class EventTestUtil {
                 .setCategoryName(null)
                 .setIsOnline(true);
         SimpleEventDto third = new SimpleEventDto()
-                .setId(3L)
-                .setTitle("third Test Event Title")
+                .setId(9999L)
+                .setTitle("3TestTitle")
                 .setStartTime(LocalDateTime.of(2024, 11, 21, 6, 0))
                 .setUserId(TEST_USER_ID)
                 .setPrice(new BigDecimal("300.00"))
@@ -131,7 +131,7 @@ public class EventTestUtil {
     public static List<EventDto> getTestListWithEventDto() {
         EventDto first = new EventDto()
                 .setId(1L)
-                .setTitle("first Test Event Title")
+                .setTitle("1TestTitle")
                 .setStartTime(LocalDateTime.of(2024, 11, 19, 6, 0))
                 .setPrice(new BigDecimal("100.00"))
                 .setContact(testContactDto)
@@ -141,7 +141,7 @@ public class EventTestUtil {
                 .setIsOnline(false);
         EventDto second = new EventDto()
                 .setId(2L)
-                .setTitle("second Test Event Title")
+                .setTitle("2TestTitle")
                 .setStartTime(LocalDateTime.of(2024, 11, 20, 6, 0))
                 .setPrice(new BigDecimal("200.00"))
                 .setContact(testContactDto)
@@ -151,7 +151,7 @@ public class EventTestUtil {
                 .setIsOnline(true);
         EventDto third = new EventDto()
                 .setId(3L)
-                .setTitle("third Test Event Title")
+                .setTitle("3TestTitle")
                 .setStartTime(LocalDateTime.of(2024, 11, 21, 6, 0))
                 .setPrice(new BigDecimal("300.00"))
                 .setContact(testContactDto)

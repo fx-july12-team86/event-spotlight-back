@@ -14,7 +14,7 @@ databaseChangeLog:
               - column: {name: description_id, value: 1}
               - column: {name: user_id, value: 2}
               - column: { name: is_deleted, valueBoolean: false }
-              - column: { name: is_online, valueBoolean: false }
+              - column: { name: is_online, valueBoolean: true }
               - column: { name: is_top, valueBoolean: false }
               - column: { name: is_accepted, valueBoolean: false }
         - insert:
@@ -28,7 +28,7 @@ databaseChangeLog:
               - column: {name: description_id, value: 2}
               - column: {name: user_id, value: 3}
               - column: { name: is_deleted, valueBoolean: false }
-              - column: { name: is_online, valueBoolean: false }
+              - column: { name: is_online, valueBoolean: true }
               - column: { name: is_top, valueBoolean: false }
               - column: { name: is_accepted, valueBoolean: false }
         - insert:
@@ -42,7 +42,7 @@ databaseChangeLog:
               - column: {name: description_id, value: 3}
               - column: {name: user_id, value: 4}
               - column: { name: is_deleted, valueBoolean: false }
-              - column: { name: is_online, valueBoolean: false }
+              - column: { name: is_online, valueBoolean: true }
               - column: { name: is_top, valueBoolean: false }
               - column: { name: is_accepted, valueBoolean: false }
         - insert:
@@ -210,7 +210,7 @@ databaseChangeLog:
               - column: {name: description_id, value: 15}
               - column: {name: user_id, value: 5}
               - column: { name: is_deleted, valueBoolean: false }
-              - column: { name: is_online, valueBoolean: false }
+              - column: { name: is_online, valueBoolean: true }
               - column: { name: is_top, valueBoolean: false }
               - column: { name: is_accepted, valueBoolean: false }
         - insert:
@@ -266,7 +266,7 @@ databaseChangeLog:
               - column: {name: description_id, value: 19}
               - column: {name: user_id, value: 9}
               - column: { name: is_deleted, valueBoolean: false }
-              - column: { name: is_online, valueBoolean: false }
+              - column: { name: is_online, valueBoolean: true }
               - column: { name: is_top, valueBoolean: false }
               - column: { name: is_accepted, valueBoolean: false }
 
@@ -274,99 +274,97 @@ databaseChangeLog:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 1}
-              - column: {name: category_id, value: 1}
-        - insert:
-            tableName: events_categories
-            columns:
-              - column: {name: event_id, value: 2}
-              - column: {name: category_id, value: 2}
-        - insert:
-            tableName: events_categories
-            columns:
-              - column: {name: event_id, value: 3}
-              - column: {name: category_id, value: 3}
-        - insert:
-            tableName: events_categories
-            columns:
-              - column: {name: event_id, value: 4}
-              - column: {name: category_id, value: 4}
-        - insert:
-            tableName: events_categories
-            columns:
-              - column: {name: event_id, value: 5}
-              - column: {name: category_id, value: 5}
-        - insert:
-            tableName: events_categories
-            columns:
-              - column: {name: event_id, value: 6}
-              - column: {name: category_id, value: 6}
-        - insert:
-            tableName: events_categories
-            columns:
-              - column: {name: event_id, value: 7}
-              - column: {name: category_id, value: 7}
-        - insert:
-            tableName: events_categories
-            columns:
-              - column: {name: event_id, value: 8}
               - column: {name: category_id, value: 8}
         - insert:
             tableName: events_categories
             columns:
-              - column: {name: event_id, value: 9}
+              - column: {name: event_id, value: 2}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 3}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 4}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 5}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 6}
               - column: {name: category_id, value: 9}
         - insert:
             tableName: events_categories
             columns:
+              - column: {name: event_id, value: 7}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 8}
+              - column: {name: category_id, value: 1}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 9}
+              - column: {name: category_id, value: 5}
+        - insert:
+            tableName: events_categories
+            columns:
               - column: {name: event_id, value: 10}
-              - column: {name: category_id, value: 10}
+              - column: {name: category_id, value: 9}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 11}
-              - column: {name: category_id, value: 11}
+              - column: {name: category_id, value: 5}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 12}
-              - column: {name: category_id, value: 12}
+              - column: {name: category_id, value: 10}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 13}
-              - column: {name: category_id, value: 13}
+              - column: {name: category_id, value: 5}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 14}
-              - column: {name: category_id, value: 14}
+              - column: {name: category_id, value: 10}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 15}
-              - column: {name: category_id, value: 15}
+              - column: {name: category_id, value: 8}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 16}
-              - column: {name: category_id, value: 16}
+              - column: {name: category_id, value: 9}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 17}
-              - column: {name: category_id, value: 17}
+              - column: {name: category_id, value: 3}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 18}
-              - column: {name: category_id, value: 18}
+              - column: {name: category_id, value: 8}
         - insert:
             tableName: events_categories
             columns:
               - column: {name: event_id, value: 19}
-              - column: {name: category_id, value: 19}
-
-
+              - column: {name: category_id, value: 12}
 
         - insert:
             tableName: events_my_events
@@ -465,3 +463,753 @@ databaseChangeLog:
               - column: { name: my_event_id, value: 9 }
 
 
+  - changeSet:
+      id: insert_additional_events_20_59
+      author: shumYevh
+      changes:
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Йога на даху"}
+              - column: {name: start_time, valueDate: "2025-06-20T10:00:00"}
+              - column: {name: price, valueNumeric: 1700.00}
+              - column: {name: contact_id, value: 20}
+              - column: {name: address_id, value: 10}
+              - column: {name: description_id, value: 20}
+              - column: {name: user_id, value: 2}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Курс цифрового малювання"}
+              - column: {name: start_time, valueDate: "2025-06-20T11:00:00"}
+              - column: {name: price, valueNumeric: 1800.00}
+              - column: {name: contact_id, value: 21}
+              - column: {name: address_id, value: 1}
+              - column: {name: description_id, value: 21}
+              - column: {name: user_id, value: 3}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Ніч настільних ігор"}
+              - column: {name: start_time, valueDate: "2025-06-20T12:00:00"}
+              - column: {name: price, valueNumeric: 1900.00}
+              - column: {name: contact_id, value: 22}
+              - column: {name: address_id, value: 2}
+              - column: {name: description_id, value: 22}
+              - column: {name: user_id, value: 4}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Велопрогулянка містом"}
+              - column: {name: start_time, valueDate: "2025-06-20T13:00:00"}
+              - column: {name: price, valueNumeric: 2000.00}
+              - column: {name: contact_id, value: 23}
+              - column: {name: address_id, value: 3}
+              - column: {name: description_id, value: 23}
+              - column: {name: user_id, value: 5}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Благодійний книжковий ярмарок"}
+              - column: {name: start_time, valueDate: "2025-06-20T14:00:00"}
+              - column: {name: price, valueNumeric: 2100.00}
+              - column: {name: contact_id, value: 24}
+              - column: {name: address_id, value: 4}
+              - column: {name: description_id, value: 24}
+              - column: {name: user_id, value: 6}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Скетчінг в парку"}
+              - column: {name: start_time, valueDate: "2025-06-20T15:00:00"}
+              - column: {name: price, valueNumeric: 2200.00}
+              - column: {name: contact_id, value: 25}
+              - column: {name: address_id, value: 5}
+              - column: {name: description_id, value: 25}
+              - column: {name: user_id, value: 7}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Кіберспортивний турнір"}
+              - column: {name: start_time, valueDate: "2025-06-20T16:00:00"}
+              - column: {name: price, valueNumeric: 2300.00}
+              - column: {name: contact_id, value: 26}
+              - column: {name: address_id, value: 6}
+              - column: {name: description_id, value: 26}
+              - column: {name: user_id, value: 8}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Школа стендап-комедії"}
+              - column: {name: start_time, valueDate: "2025-06-20T17:00:00"}
+              - column: {name: price, valueNumeric: 2400.00}
+              - column: {name: contact_id, value: 27}
+              - column: {name: address_id, value: 7}
+              - column: {name: description_id, value: 27}
+              - column: {name: user_id, value: 9}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Тренінг з емоційного інтелекту"}
+              - column: {name: start_time, valueDate: "2025-06-20T18:00:00"}
+              - column: {name: price, valueNumeric: 2500.00}
+              - column: {name: contact_id, value: 28}
+              - column: {name: address_id, value: 8}
+              - column: {name: description_id, value: 28}
+              - column: {name: user_id, value: 10}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Майстерня кавової культури"}
+              - column: {name: start_time, valueDate: "2025-06-20T19:00:00"}
+              - column: {name: price, valueNumeric: 2600.00}
+              - column: {name: contact_id, value: 29}
+              - column: {name: address_id, value: 9}
+              - column: {name: description_id, value: 29}
+              - column: {name: user_id, value: 11}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Арт-терапія для дорослих"}
+              - column: {name: start_time, valueDate: "2025-06-20T20:00:00"}
+              - column: {name: price, valueNumeric: 2700.00}
+              - column: {name: contact_id, value: 30}
+              - column: {name: address_id, value: 10}
+              - column: {name: description_id, value: 30}
+              - column: {name: user_id, value: 2}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Кіноніч просто неба"}
+              - column: {name: start_time, valueDate: "2025-06-20T21:00:00"}
+              - column: {name: price, valueNumeric: 2800.00}
+              - column: {name: contact_id, value: 31}
+              - column: {name: address_id, value: 1}
+              - column: {name: description_id, value: 31}
+              - column: {name: user_id, value: 3}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Творча майстерня для дітей"}
+              - column: {name: start_time, valueDate: "2025-06-21T07:00:00"}
+              - column: {name: price, valueNumeric: 3800.00}
+              - column: {name: contact_id, value: 20}
+              - column: {name: address_id, value: 1}
+              - column: {name: description_id, value: 41}
+              - column: {name: user_id, value: 3}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Йога для початківців"}
+              - column: {name: start_time, valueDate: "2025-06-21T08:00:00"}
+              - column: {name: price, valueNumeric: 3900.00}
+              - column: {name: contact_id, value: 21}
+              - column: {name: address_id, value: 2}
+              - column: {name: description_id, value: 42}
+              - column: {name: user_id, value: 4}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Курс цифрового малюва��ня"}
+              - column: {name: start_time, valueDate: "2025-06-21T09:00:00"}
+              - column: {name: price, valueNumeric: 4000.00}
+              - column: {name: contact_id, value: 22}
+              - column: {name: address_id, value: 3}
+              - column: {name: description_id, value: 43}
+              - column: {name: user_id, value: 5}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Ніч настільних ігор"}
+              - column: {name: start_time, valueDate: "2025-06-21T10:00:00"}
+              - column: {name: price, valueNumeric: 4100.00}
+              - column: {name: contact_id, value: 23}
+              - column: {name: address_id, value: 4}
+              - column: {name: description_id, value: 44}
+              - column: {name: user_id, value: 6}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Велопрогулянка містом"}
+              - column: {name: start_time, valueDate: "2025-06-21T11:00:00"}
+              - column: {name: price, valueNumeric: 4200.00}
+              - column: {name: contact_id, value: 24}
+              - column: {name: address_id, value: 5}
+              - column: {name: description_id, value: 45}
+              - column: {name: user_id, value: 7}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Благодійний книжковий ярмарок"}
+              - column: {name: start_time, valueDate: "2025-06-21T12:00:00"}
+              - column: {name: price, valueNumeric: 4300.00}
+              - column: {name: contact_id, value: 25}
+              - column: {name: address_id, value: 6}
+              - column: {name: description_id, value: 46}
+              - column: {name: user_id, value: 8}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Скетчінг в парку"}
+              - column: {name: start_time, valueDate: "2025-06-21T13:00:00"}
+              - column: {name: price, valueNumeric: 4400.00}
+              - column: {name: contact_id, value: 26}
+              - column: {name: address_id, value: 7}
+              - column: {name: description_id, value: 47}
+              - column: {name: user_id, value: 9}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Кіберспортивний турнір"}
+              - column: {name: start_time, valueDate: "2025-06-21T14:00:00"}
+              - column: {name: price, valueNumeric: 4500.00}
+              - column: {name: contact_id, value: 27}
+              - column: {name: address_id, value: 8}
+              - column: {name: description_id, value: 48}
+              - column: {name: user_id, value: 10}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Школа стендап-комедії"}
+              - column: {name: start_time, valueDate: "2025-06-21T15:00:00"}
+              - column: {name: price, valueNumeric: 4600.00}
+              - column: {name: contact_id, value: 28}
+              - column: {name: address_id, value: 9}
+              - column: {name: description_id, value: 49}
+              - column: {name: user_id, value: 11}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Тренінг з емоційного інтелекту"}
+              - column: {name: start_time, valueDate: "2025-06-21T16:00:00"}
+              - column: {name: price, valueNumeric: 4700.00}
+              - column: {name: contact_id, value: 29}
+              - column: {name: address_id, value: 10}
+              - column: {name: description_id, value: 50}
+              - column: {name: user_id, value: 2}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Майстерня кавової культури"}
+              - column: {name: start_time, valueDate: "2025-06-21T17:00:00"}
+              - column: {name: price, valueNumeric: 4800.00}
+              - column: {name: contact_id, value: 30}
+              - column: {name: address_id, value: 1}
+              - column: {name: description_id, value: 51}
+              - column: {name: user_id, value: 3}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Арт-терапія для дорослих"}
+              - column: {name: start_time, valueDate: "2025-06-21T18:00:00"}
+              - column: {name: price, valueNumeric: 4900.00}
+              - column: {name: contact_id, value: 31}
+              - column: {name: address_id, value: 2}
+              - column: {name: description_id, value: 52}
+              - column: {name: user_id, value: 4}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Кіноніч просто неба"}
+              - column: {name: start_time, valueDate: "2025-06-21T19:00:00"}
+              - column: {name: price, valueNumeric: 5000.00}
+              - column: {name: contact_id, value: 32}
+              - column: {name: address_id, value: 3}
+              - column: {name: description_id, value: 53}
+              - column: {name: user_id, value: 5}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Творча майстерня для дітей"}
+              - column: {name: start_time, valueDate: "2025-06-21T20:00:00"}
+              - column: {name: price, valueNumeric: 5100.00}
+              - column: {name: contact_id, value: 33}
+              - column: {name: address_id, value: 4}
+              - column: {name: description_id, value: 54}
+              - column: {name: user_id, value: 6}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Йога для початківців"}
+              - column: {name: start_time, valueDate: "2025-06-21T21:00:00"}
+              - column: {name: price, valueNumeric: 5200.00}
+              - column: {name: contact_id, value: 34}
+              - column: {name: address_id, value: 5}
+              - column: {name: description_id, value: 55}
+              - column: {name: user_id, value: 7}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Курс цифрового малювання"}
+              - column: {name: start_time, valueDate: "2025-06-21T22:00:00"}
+              - column: {name: price, valueNumeric: 5300.00}
+              - column: {name: contact_id, value: 35}
+              - column: {name: address_id, value: 6}
+              - column: {name: description_id, value: 56}
+              - column: {name: user_id, value: 8}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Ніч настільних ігор"}
+              - column: {name: start_time, valueDate: "2025-06-21T23:00:00"}
+              - column: {name: price, valueNumeric: 5400.00}
+              - column: {name: contact_id, value: 36}
+              - column: {name: address_id, value: 7}
+              - column: {name: description_id, value: 57}
+              - column: {name: user_id, value: 9}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Велопрогулянка містом"}
+              - column: {name: start_time, valueDate: "2025-06-22T00:00:00"}
+              - column: {name: price, valueNumeric: 5500.00}
+              - column: {name: contact_id, value: 37}
+              - column: {name: address_id, value: 8}
+              - column: {name: description_id, value: 58}
+              - column: {name: user_id, value: 10}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: true}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+        - insert:
+            tableName: events
+            columns:
+              - column: {name: title, value: "Благодійний книжковий ярмарок"}
+              - column: {name: start_time, valueDate: "2025-06-22T01:00:00"}
+              - column: {name: price, valueNumeric: 5600.00}
+              - column: {name: contact_id, value: 38}
+              - column: {name: address_id, value: 9}
+              - column: {name: description_id, value: 59}
+              - column: {name: user_id, value: 11}
+              - column: {name: is_deleted, valueBoolean: false}
+              - column: {name: is_online, valueBoolean: false}
+              - column: {name: is_top, valueBoolean: false}
+              - column: {name: is_accepted, valueBoolean: false}
+
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 20}
+              - column: {name: category_id, value: 1}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 21}
+              - column: {name: category_id, value: 2}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 22}
+              - column: {name: category_id, value: 3}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 23}
+              - column: {name: category_id, value: 4}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 24}
+              - column: {name: category_id, value: 5}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 25}
+              - column: {name: category_id, value: 6}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 26}
+              - column: {name: category_id, value: 7}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 27}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 28}
+              - column: {name: category_id, value: 9}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 29}
+              - column: {name: category_id, value: 10}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 30}
+              - column: {name: category_id, value: 11}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 31}
+              - column: {name: category_id, value: 1}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 32}
+              - column: {name: category_id, value: 2}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 33}
+              - column: {name: category_id, value: 3}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 34}
+              - column: {name: category_id, value: 4}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 35}
+              - column: {name: category_id, value: 5}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 36}
+              - column: {name: category_id, value: 6}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 37}
+              - column: {name: category_id, value: 7}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 38}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 39}
+              - column: {name: category_id, value: 9}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 40}
+              - column: {name: category_id, value: 10}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 41}
+              - column: {name: category_id, value: 11}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 42}
+              - column: {name: category_id, value: 1}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 43}
+              - column: {name: category_id, value: 2}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 44}
+              - column: {name: category_id, value: 3}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 45}
+              - column: {name: category_id, value: 4}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 46}
+              - column: {name: category_id, value: 5}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 47}
+              - column: {name: category_id, value: 6}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 48}
+              - column: {name: category_id, value: 7}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 49}
+              - column: {name: category_id, value: 8}
+        - insert:
+            tableName: events_categories
+            columns:
+              - column: {name: event_id, value: 50}
+              - column: {name: category_id, value: 9}
+
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 20}
+              - column: {name: my_event_id, value: 2}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 21}
+              - column: {name: my_event_id, value: 3}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 22}
+              - column: {name: my_event_id, value: 4}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 23}
+              - column: {name: my_event_id, value: 5}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 24}
+              - column: {name: my_event_id, value: 6}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 25}
+              - column: {name: my_event_id, value: 7}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 26}
+              - column: {name: my_event_id, value: 8}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 27}
+              - column: {name: my_event_id, value: 9}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 28}
+              - column: {name: my_event_id, value: 10}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 29}
+              - column: {name: my_event_id, value: 11}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 30}
+              - column: {name: my_event_id, value: 2}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 31}
+              - column: {name: my_event_id, value: 3}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 32}
+              - column: {name: my_event_id, value: 4}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 33}
+              - column: {name: my_event_id, value: 5}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 34}
+              - column: {name: my_event_id, value: 6}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 35}
+              - column: {name: my_event_id, value: 7}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 36}
+              - column: {name: my_event_id, value: 8}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 37}
+              - column: {name: my_event_id, value: 9}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 38}
+              - column: {name: my_event_id, value: 10}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 39}
+              - column: {name: my_event_id, value: 11}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 40}
+              - column: {name: my_event_id, value: 2}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 41}
+              - column: {name: my_event_id, value: 3}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 42}
+              - column: {name: my_event_id, value: 4}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 43}
+              - column: {name: my_event_id, value: 5}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 44}
+              - column: {name: my_event_id, value: 6}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 45}
+              - column: {name: my_event_id, value: 7}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 46}
+              - column: {name: my_event_id, value: 8}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 47}
+              - column: {name: my_event_id, value: 9}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 48}
+              - column: {name: my_event_id, value: 10}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 49}
+              - column: {name: my_event_id, value: 11}
+        - insert:
+            tableName: events_my_events
+            columns:
+              - column: {name: event_id, value: 50}
+              - column: {name: my_event_id, value: 2}

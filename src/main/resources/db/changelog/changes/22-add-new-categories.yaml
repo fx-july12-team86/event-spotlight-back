@@ -6,76 +6,48 @@ databaseChangeLog:
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Миловаріння"}
+              - column: {name: name, value: "Концерти"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Кулінарія"}
+              - column: {name: name, value: "Театр"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Малювання"}
+              - column: {name: name, value: "Стендап"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Фотографія"}
+              - column: {name: name, value: "Діти"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Гончарство"}
+              - column: {name: name, value: "Фестивалі"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Йога"}
+              - column: {name: name, value: "Танці"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Акторська майстерність"}
+              - column: {name: name, value: "Вечірки"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Музика"}
+              - column: {name: name, value: "Семінари і тренінги "}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Наука"}
+              - column: {name: name, value: "Спорт"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Благодійність"}
+              - column: {name: name, value: "Інше"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Вулична їжа"}
+              - column: {name: name, value: "Екскурсії"}
         - insert:
             tableName: categories
             columns:
-              - column: {name: name, value: "Кіно"}
-        - insert:
-            tableName: categories
-            columns:
-              - column: {name: name, value: "Комікси і косплей"}
-        - insert:
-            tableName: categories
-            columns:
-              - column: {name: name, value: "Осінній ярмарок"}
-        - insert:
-            tableName: categories
-            columns:
-              - column: {name: name, value: "Бізнес"}
-        - insert:
-            tableName: categories
-            columns:
-              - column: {name: name, value: "Настільні ігри"}
-        - insert:
-            tableName: categories
-            columns:
-              - column: {name: name, value: "Відкритий мікрофон"}
-        - insert:
-            tableName: categories
-            columns:
-              - column: {name: name, value: "Виживання"}
-        - insert:
-            tableName: categories
-            columns:
-              - column: {name: name, value: "Література"}
+              - column: {name: name, value: "Творчій вечір"}

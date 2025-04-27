@@ -177,3 +177,9 @@ databaseChangeLog:
               - column: {name: path, value: "/literature-evening.jpg"}
               - column: {name: shared_url, value: "https://www.dropbox.com/scl/fi/9ac5ndlkw22hd3nlvfwn1/literature-evening.jpg?rlkey=04glfgeyd8gd9fwby8gmaigrg&dl=0"}
               - column: {name: created_at, valueDate: "2025-03-30T21:08:13.727036"}
+        - insert:
+            tableName: photos
+            columns:
+              - column: { name: path, value: "/template.jpg" }
+              - column: { name: shared_url, value: "https://www.dropbox.com/scl/fi/lnbtdy7h2mz8osirh6qbw/template.jpg?rlkey=3l439e4cauh42lg0ie5b4aqcq&dl=0" }
+              - column: { name: created_at, valueDate: "2025-04-22T22:26:25.2525685" }
