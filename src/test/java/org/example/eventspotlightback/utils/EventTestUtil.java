@@ -22,6 +22,7 @@ import java.util.Set;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDtoWithFavorite;
 import org.example.eventspotlightback.model.Event;
 
 public class EventTestUtil {
@@ -58,6 +59,13 @@ public class EventTestUtil {
             .setStartTime(TEST_EVENT_START_TIME)
             .setPrice(TEST_EVENT_PRICE)
             .setAddress(testAddressDto);
+    public static final SimpleEventDtoWithFavorite testSimpleEventDtoWithFavorite =
+            new SimpleEventDtoWithFavorite()
+                    .setId(TEST_EVENT_ID)
+                    .setTitle(TEST_EVENT_TITLE)
+                    .setStartTime(TEST_EVENT_START_TIME)
+                    .setPrice(TEST_EVENT_PRICE)
+                    .setAddress(testAddressDto);
     public static final CreateEventDto addEventDto = new CreateEventDto()
             .setTitle(TEST_EVENT_TITLE)
             .setStartTime(TEST_EVENT_START_TIME)
@@ -122,6 +130,44 @@ public class EventTestUtil {
                 .setCategoryName(null)
                 .setIsOnline(false);
         List<SimpleEventDto> testList = new ArrayList<>();
+        testList.add(first);
+        testList.add(second);
+        testList.add(third);
+        return testList;
+    }
+
+    public static List<SimpleEventDtoWithFavorite> getTestListWithSimpleEventDtoWithFavorite() {
+        SimpleEventDtoWithFavorite first = new SimpleEventDtoWithFavorite()
+                .setId(9997L)
+                .setTitle("1TestTitle")
+                .setStartTime(LocalDateTime.of(2024, 11, 19, 6, 0))
+                .setUserId(TEST_USER_ID)
+                .setPrice(new BigDecimal("100.00"))
+                .setAddress(testAddressDto)
+                .setPhoto(null)
+                .setCategoryName(null)
+                .setIsOnline(false);
+        SimpleEventDtoWithFavorite second = new SimpleEventDtoWithFavorite()
+                .setId(9998L)
+                .setTitle("2TestTitle")
+                .setStartTime(LocalDateTime.of(2024, 11, 20, 6, 0))
+                .setUserId(TEST_USER_ID)
+                .setPrice(new BigDecimal("200.00"))
+                .setAddress(testAddressDto)
+                .setPhoto(null)
+                .setCategoryName(null)
+                .setIsOnline(true);
+        SimpleEventDtoWithFavorite third = new SimpleEventDtoWithFavorite()
+                .setId(9999L)
+                .setTitle("3TestTitle")
+                .setStartTime(LocalDateTime.of(2024, 11, 21, 6, 0))
+                .setUserId(TEST_USER_ID)
+                .setPrice(new BigDecimal("300.00"))
+                .setAddress(testAddressDto)
+                .setPhoto(null)
+                .setCategoryName(null)
+                .setIsOnline(false);
+        List<SimpleEventDtoWithFavorite> testList = new ArrayList<>();
         testList.add(first);
         testList.add(second);
         testList.add(third);

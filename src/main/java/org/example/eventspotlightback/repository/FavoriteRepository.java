@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     @EntityGraph(attributePaths = {
             "events",
+            "events.favorites",
             "user",
             "events.address",
             "events.address.city",

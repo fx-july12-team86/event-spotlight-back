@@ -1,11 +1,15 @@
 package org.example.eventspotlightback.mapper;
 
+import static org.example.eventspotlightback.security.SecurityUtil.getCurrentUserId;
+
 import java.util.Comparator;
 import java.util.List;
 import org.example.eventspotlightback.config.MapperConfig;
 import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
+import org.example.eventspotlightback.dto.internal.event.EventAdditionalDataHolder;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDtoWithFavorite;
 import org.example.eventspotlightback.dto.internal.photo.PhotoDto;
 import org.example.eventspotlightback.model.Category;
 import org.example.eventspotlightback.model.Event;
@@ -44,12 +48,17 @@ public interface EventMapper {
     List<SimpleEventDto> toSimpleDto(List<Event> events);
 
     @Mapping(source = "user.id", target = "userId")
+    SimpleEventDtoWithFavorite toSimpleDtoWithFavorite(Event event);
+
+    List<SimpleEventDtoWithFavorite> toSimpleDtoWithFavorite(List<Event> events);
+
+    @Mapping(source = "user.id", target = "userId")
     EventDto toDto(Event event);
 
     List<EventDto> toDto(List<Event> events);
 
     @AfterMapping
-    default void setPhotoId(@MappingTarget SimpleEventDto simpleEventDto, Event event) {
+    default void setPhotoId(@MappingTarget EventAdditionalDataHolder simpleEventDto, Event event) {
         if (event.getPhotos() != null) {
             simpleEventDto.setPhoto(event.getPhotos().stream()
                             .min(Comparator.comparing(Photo::getId))
@@ -66,12 +75,31 @@ public interface EventMapper {
     }
 
     @AfterMapping
-    default void setCategoryId(@MappingTarget SimpleEventDto simpleEventDto, Event event) {
+    default void setCategoryId(
+            @MappingTarget EventAdditionalDataHolder simpleEventDto,
+            Event event
+    ) {
         if (event.getCategories() != null) {
             simpleEventDto.setCategoryName(event.getCategories().stream()
                     .min(Comparator.comparing(Category::getId))
                     .map(Category::getName)
                     .orElse(null));
+        }
+    }
+
+    @AfterMapping
+    default void setIsFavorite(
+            @MappingTarget SimpleEventDtoWithFavorite simpleEventDto,
+            Event event
+    ) {
+        Long currentUserId = getCurrentUserId();
+
+        if (currentUserId != null && event.getFavorites() != null) {
+            boolean isFavorite = event.getFavorites().stream()
+                    .anyMatch(favorite -> favorite.getUser().getId().equals(currentUserId));
+            simpleEventDto.setIsFavorite(isFavorite);
+        } else {
+            simpleEventDto.setIsFavorite(false);
         }
     }
 }

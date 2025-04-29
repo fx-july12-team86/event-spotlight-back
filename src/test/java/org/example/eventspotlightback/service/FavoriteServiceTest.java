@@ -7,7 +7,7 @@ import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
 import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_PRICE;
 import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_START_TIME;
 import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_TITLE;
-import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDtoWithFavorite;
 import static org.example.eventspotlightback.utils.FavoriteTestUtil.TEST_FAVORITE_ID;
 import static org.example.eventspotlightback.utils.FavoriteTestUtil.testFavorite;
 import static org.example.eventspotlightback.utils.FavoriteTestUtil.testFavoriteDto;
@@ -75,7 +75,7 @@ public class FavoriteServiceTest {
                 .setUser(testUser);
         FavoriteDto testFavoriteDto = new FavoriteDto()
                 .setId(TEST_FAVORITE_ID)
-                .setEvents(List.of(testSimpleEventDto));
+                .setEvents(List.of(testSimpleEventDtoWithFavorite));
 
         Event testEvent = new Event()
                 .setId(TEST_EVENT_ID)

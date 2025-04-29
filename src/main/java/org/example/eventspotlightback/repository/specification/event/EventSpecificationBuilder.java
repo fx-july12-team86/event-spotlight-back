@@ -1,6 +1,7 @@
 package org.example.eventspotlightback.repository.specification.event;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.model.Event;
 import org.example.eventspotlightback.repository.specification.SpecificationBuilder;
@@ -15,6 +16,7 @@ public class EventSpecificationBuilder implements SpecificationBuilder<Event> {
     private static final String DATA_RANGE_SPEC_KEY = "dataRange";
     private static final String ONLINE_STATUS_SPEC_KEY = "isOnline";
     private static final String CITY_SPEC_KEY = "cities";
+    private static final String TITLE_SPEC_KEY = "title";
     private final SpecificationProviderManager<Event> specificationProviderManager;
 
     @Override
@@ -49,6 +51,12 @@ public class EventSpecificationBuilder implements SpecificationBuilder<Event> {
             specification = specification.and(specificationProviderManager
                     .getSpecificationProvider(CITY_SPEC_KEY)
                     .getSpecification(eventSearchParameters.cities()));
+        }
+
+        if (StringUtils.isNotBlank(eventSearchParameters.title())) {
+            specification = specification.and(specificationProviderManager
+                    .getSpecificationProvider(TITLE_SPEC_KEY)
+                    .getSpecification(new String[] {eventSearchParameters.title()}));
         }
         return specification;
     }

@@ -19,6 +19,7 @@ import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.testEvent;
 import static org.example.eventspotlightback.utils.EventTestUtil.testEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDtoWithFavorite;
 import static org.example.eventspotlightback.utils.PhotoTestUtil.TEST_PHOTO_ID;
 import static org.example.eventspotlightback.utils.PhotoTestUtil.testPhoto;
 import static org.example.eventspotlightback.utils.UserTestUtil.TEST_USER_ID;
@@ -39,6 +40,7 @@ import org.example.eventspotlightback.dto.internal.event.CreateEventDto;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDtoWithFavorite;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.EventMapper;
 import org.example.eventspotlightback.model.Event;
@@ -377,11 +379,12 @@ public class EventServiceTest {
         Page<Event> eventsPage = new PageImpl<>(testEventList, pageable, testEventList.size());
 
         when(eventRepository.findAll(pageable)).thenReturn(eventsPage);
-        when(eventMapper.toSimpleDto(testEventList)).thenReturn(List.of(testSimpleEventDto));
+        when(eventMapper.toSimpleDtoWithFavorite(testEventList))
+                .thenReturn(List.of(testSimpleEventDtoWithFavorite));
 
         //When
-        List<SimpleEventDto> expected = List.of(testSimpleEventDto);
-        List<SimpleEventDto> actual = eventService.findAllEvents(pageable);
+        List<SimpleEventDtoWithFavorite> expected = List.of(testSimpleEventDtoWithFavorite);
+        List<SimpleEventDtoWithFavorite> actual = eventService.findAllEvents(pageable);
 
         //Then
         assertEquals(expected, actual);
@@ -425,7 +428,7 @@ public class EventServiceTest {
     public void search_ValidParams_ListSimpleEventDto() {
         //Given
         String[] cities = {"TestCityName"};
-        EventSearchParameters params = new EventSearchParameters(
+        EventSearchParameters params = new EventSearchParameters(null,
                 null, null, null, cities
         );
         Specification<Event> specification = Specification.where(null);
@@ -434,11 +437,12 @@ public class EventServiceTest {
         when(specificationBuilder.build(params)).thenReturn(specification);
         when(eventRepository.findAll(any(Specification.class), any(Pageable.class)))
                 .thenReturn(new PageImpl<>(List.of(testEvent)));
-        when(eventMapper.toSimpleDto(any(Event.class))).thenReturn(testSimpleEventDto);
+        when(eventMapper.toSimpleDtoWithFavorite(any(Event.class)))
+                .thenReturn(testSimpleEventDtoWithFavorite);
 
         //When
-        List<SimpleEventDto> expected = List.of(testSimpleEventDto);
-        List<SimpleEventDto> actual = eventService.search(params, pageable);
+        List<SimpleEventDtoWithFavorite> expected = List.of(testSimpleEventDtoWithFavorite);
+        List<SimpleEventDtoWithFavorite> actual = eventService.search(params, pageable);
 
         //Then
         assertEquals(expected, actual);

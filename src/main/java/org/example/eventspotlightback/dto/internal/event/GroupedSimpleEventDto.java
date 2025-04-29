@@ -10,5 +10,5 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class GroupedSimpleEventDto {
     private String field;
-    private List<SimpleEventDto> events;
+    private List<SimpleEventDtoWithFavorite> events;
 }

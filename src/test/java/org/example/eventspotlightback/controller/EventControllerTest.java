@@ -3,7 +3,7 @@ package org.example.eventspotlightback.controller;
 import static org.example.eventspotlightback.utils.CityTestUtil.TEST_CITY_NAME;
 import static org.example.eventspotlightback.utils.EventTestUtil.TEST_EVENT_ID;
 import static org.example.eventspotlightback.utils.EventTestUtil.addEventDto;
-import static org.example.eventspotlightback.utils.EventTestUtil.getTestListWithSimpleEventDto;
+import static org.example.eventspotlightback.utils.EventTestUtil.getTestListWithSimpleEventDtoWithFavorite;
 import static org.example.eventspotlightback.utils.EventTestUtil.testEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.testSimpleEventDto;
 import static org.example.eventspotlightback.utils.EventTestUtil.updateEventDto;
@@ -26,6 +26,8 @@ import lombok.SneakyThrows;
 import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDtoWithFavorite;
+import org.example.eventspotlightback.utils.WithMockCustomUser;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -221,7 +223,7 @@ public class EventControllerTest {
                 .andReturn();
     }
 
-    @WithMockUser(username = "testUser", authorities = {"USER"})
+    @WithMockCustomUser(id = 1)
     @Test
     @DisplayName("Test find all Events")
     public void getAllEvents_Empty_ListOfSimpleEventDto() throws Exception {
@@ -229,10 +231,10 @@ public class EventControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<SimpleEventDto> expected = getTestListWithSimpleEventDto();
-        SimpleEventDto[] actual = objectMapper.readValue(
+        List<SimpleEventDtoWithFavorite> expected = getTestListWithSimpleEventDtoWithFavorite();
+        SimpleEventDtoWithFavorite[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                SimpleEventDto[].class
+                SimpleEventDtoWithFavorite[].class
         );
 
         Assertions.assertEquals(3, actual.length);
@@ -262,7 +264,7 @@ public class EventControllerTest {
         EqualsBuilder.reflectionEquals(expected, actual, "id");
     }
 
-    @WithMockUser(username = "testUser", authorities = {"USER"})
+    @WithMockCustomUser(id = 1)
     @Test
     @DisplayName("Test search Event by Event search parameters")
     public void search_EventSearchParametersAndPageable_ListOfSimpleEventDto() throws Exception {
@@ -276,7 +278,7 @@ public class EventControllerTest {
         String searchQuery = uriBuilder.toUriString();
 
         // Створюємо об'єкт EventSearchParameters
-        EventSearchParameters eventSearchParameters = new EventSearchParameters(
+        EventSearchParameters eventSearchParameters = new EventSearchParameters(null,
                 null, null, new String[]{"true"}, new String[]{TEST_CITY_NAME});
 
         // Конвертуємо об'єкт у JSON
@@ -290,13 +292,13 @@ public class EventControllerTest {
                 .andReturn();
 
         // Очікуваний результат
-        List<SimpleEventDto> expected = new ArrayList<>();
-        expected.add(getTestListWithSimpleEventDto().get(1));
+        List<SimpleEventDtoWithFavorite> expected = new ArrayList<>();
+        expected.add(getTestListWithSimpleEventDtoWithFavorite().get(1));
 
         // Перетворюємо відповідь у масив об'єктів
-        SimpleEventDto[] actual = objectMapper.readValue(
+        SimpleEventDtoWithFavorite[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                SimpleEventDto[].class
+                SimpleEventDtoWithFavorite[].class
         );
 
         // Перевіряємо, що повернуто 1 об'єкт і що він відповідає очікуваному

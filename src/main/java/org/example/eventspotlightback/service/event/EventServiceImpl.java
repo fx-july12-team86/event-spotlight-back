@@ -14,6 +14,7 @@ import org.example.eventspotlightback.dto.internal.event.EventResponseDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.dto.internal.event.GroupedSimpleEventDto;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDtoWithFavorite;
 import org.example.eventspotlightback.exception.EntityNotFoundException;
 import org.example.eventspotlightback.mapper.EventMapper;
 import org.example.eventspotlightback.model.Address;
@@ -82,6 +83,7 @@ public class EventServiceImpl implements EventService {
         return eventMapper.toDto(savedEvent);
     }
 
+    @Transactional
     @Override
     public SimpleEventDto acceptEvent(Long eventId) {
         Event event = eventRepository.findById(eventId).orElseThrow(
@@ -109,8 +111,8 @@ public class EventServiceImpl implements EventService {
     }
     
     @Override
-    public List<SimpleEventDto> findAllEvents(Pageable pageable) {
-        return eventMapper.toSimpleDto(eventRepository.findAll(pageable).toList());
+    public List<SimpleEventDtoWithFavorite> findAllEvents(Pageable pageable) {
+        return eventMapper.toSimpleDtoWithFavorite(eventRepository.findAll(pageable).toList());
     }
 
     @Override
@@ -121,13 +123,13 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<SimpleEventDto> search(
+    public List<SimpleEventDtoWithFavorite> search(
             EventSearchParameters eventSearchParameters,
             Pageable pageable
     ) {
         Specification<Event> specification = specificationBuilder.build(eventSearchParameters);
         return eventRepository.findAll(specification, pageable).stream()
-                .map(eventMapper::toSimpleDto)
+                .map(eventMapper::toSimpleDtoWithFavorite)
                 .toList();
     }
 
@@ -139,9 +141,9 @@ public class EventServiceImpl implements EventService {
         Specification<Event> specification = specificationBuilder.build(eventSearchParameters);
         Page<Event> page = eventRepository.findAll(specification, pageable);
 
-        Map<Month, List<SimpleEventDto>> groupedByMonth = page.getContent()
+        Map<Month, List<SimpleEventDtoWithFavorite>> groupedByMonth = page.getContent()
                 .stream()
-                .map(eventMapper::toSimpleDto)
+                .map(eventMapper::toSimpleDtoWithFavorite)
                 .collect(Collectors.groupingBy(dto -> dto.getStartTime().getMonth()));
 
         List<GroupedSimpleEventDto> groupedDtos = groupedByMonth.entrySet()
@@ -151,7 +153,7 @@ public class EventServiceImpl implements EventService {
                         .setEvents(entry.getValue()))
                 .sorted(Comparator.comparing(dto ->
                         dto.getEvents().stream()
-                                .map(SimpleEventDto::getStartTime)
+                                .map(SimpleEventDtoWithFavorite::getStartTime)
                                 .min(Comparator.naturalOrder())
                                 .orElse(LocalDateTime.MIN) // Безпечне сортування
                 ))

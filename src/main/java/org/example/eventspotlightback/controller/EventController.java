@@ -12,6 +12,7 @@ import org.example.eventspotlightback.dto.internal.event.EventDto;
 import org.example.eventspotlightback.dto.internal.event.EventResponseDto;
 import org.example.eventspotlightback.dto.internal.event.EventSearchParameters;
 import org.example.eventspotlightback.dto.internal.event.SimpleEventDto;
+import org.example.eventspotlightback.dto.internal.event.SimpleEventDtoWithFavorite;
 import org.example.eventspotlightback.service.event.EventService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -84,7 +85,7 @@ public class EventController {
             summary = "Find all Events"
     )
     @GetMapping
-    public List<SimpleEventDto> getAllEvents(Pageable pageable) {
+    public List<SimpleEventDtoWithFavorite> getAllEvents(Pageable pageable) {
         return eventService.findAllEvents(pageable);
     }
 
@@ -100,7 +101,7 @@ public class EventController {
             summary = "Search Event with parameters"
     )
     @PostMapping("/search")
-    public List<SimpleEventDto> searchEvents(
+    public List<SimpleEventDtoWithFavorite> searchEvents(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "8") int size,
             @RequestParam(defaultValue = "startTime,asc") String[] sort,
